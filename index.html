@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,7 +17,14 @@
 
 <!-- ============ Navigation ============ -->
 <nav class="nav">
-  <a href="#home" class="nav-logo">THUSCC</a>
+  <a href="#home" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 222 256" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#2366d1" d="M110.85 128L221.7 192L110.85 256L0 192Z"/>
+      <path fill="#609dff" d="M110.85 64L221.7 128L110.85 192L0 128Z"/>
+      <path fill="#a4c7ff" d="M110.85 0L221.7 64L110.85 128L0 64Z"/>
+    </svg>
+    <span>THUSCC</span>
+  </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#home" data-page="home">首页</a></li>
     <li><a href="#collaboration" data-page="collaboration">交叉合作</a></li>
@@ -39,6 +47,11 @@
 <!-- ============ Home Page Template (inline, always available) ============ -->
 <template id="tpl-home">
   <section class="hero">
+    <svg class="hero-logo" viewBox="0 0 222 256" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#2366d1" d="M110.85 128L221.7 192L110.85 256L0 192Z"/>
+      <path fill="#609dff" d="M110.85 64L221.7 128L110.85 192L0 128Z"/>
+      <path fill="#a4c7ff" d="M110.85 0L221.7 64L110.85 128L0 64Z"/>
+    </svg>
     <p class="hero-kicker">Tsinghua Student Cluster Competition Team</p>
     <h1 class="hero-title">清华大学<br>学生超算团队</h1>
     <p class="hero-sub">让超算技术走出竞赛场，走进科研现场。<br>用高性能计算、AI 系统和分布式架构，为科研团队解决真实的计算瓶颈。</p>

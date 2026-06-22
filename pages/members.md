@@ -9,7 +9,7 @@ lead: 所有成员均来自清华大学（除非另行标注院系，默认为�
 <ul class="members-grid">
 <li><a href="http://pacman.cs.tsinghua.edu.cn/~zjd/" target="_blank">翟季冬 教授</a></li>
 <li><a href="http://pacman.cs.tsinghua.edu.cn/~hanwentao/" target="_blank">韩文弢 助理研究员</a></li>
-<li>金煜阳</li>
+<li>金煜阳 助理研究员</li>
 </ul>
 
 前任指导老师：甘霖、黄小猛
