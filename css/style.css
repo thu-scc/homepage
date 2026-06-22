@@ -78,7 +78,7 @@ canvas.bg-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-ind
 .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: calc(var(--nav-h) + 40px) clamp(20px, 6vw, 80px) 80px; position: relative; }
 .hero::before { content: ""; position: absolute; inset: 0; background: var(--hero-overlay); z-index: -1; transition: background 0.6s; }
 .hero-kicker { font-family: var(--mono); font-size: max(10px, 0.72vw); letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.55; margin-bottom: 3vh; }
-.hero-logo { width: clamp(80px, 12vw, 140px); height: auto; margin-bottom: 3vh; animation: hero-logo-float 6s ease-in-out infinite; }
+.hero-logo { width: clamp(90px, 14vw, 160px); height: auto; margin-bottom: 3vh; animation: hero-logo-float 6s ease-in-out infinite; }
 @keyframes hero-logo-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 .hero-title { font-family: var(--serif-zh); font-weight: 900; font-size: clamp(2.2rem, 7vw, 5rem); line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 2.5vh; }
 .hero-sub { font-family: var(--serif-zh); font-weight: 400; font-size: clamp(0.95rem, 1.5vw, 1.3rem); line-height: 1.65; opacity: 0.78; max-width: 640px; }
