@@ -1,0 +1,13 @@
+{
+  "name": "thuscc-homepage",
+  "type": "module",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 8000",
+    "build": "astro build",
+    "preview": "astro preview --host 0.0.0.0 --port 8000"
+  },
+  "dependencies": {
+    "astro": "^5.9.0"
+  }
+}

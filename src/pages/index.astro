@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import DiabloLogo from '../components/DiabloLogo.astro';
+---
+<Base activePage="home">
+  <section class="hero">
+    <DiabloLogo size="hero" />
+    <p class="hero-kicker">Tsinghua Student Cluster Competition Team</p>
+    <h1 class="hero-title">清华大学<br>学生超算团队</h1>
+    <p class="hero-sub">让超算技术走出竞赛场，走进科研现场。<br>用高性能计算、AI 系统和分布式架构，为科研团队解决真实的计算瓶颈。</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><span class="n">14+</span><span class="l">国际赛事冠军</span></div>
+      <div class="hero-stat"><span class="n">13</span><span class="l">年竞赛历程</span></div>
+      <div class="hero-stat"><span class="n">100+</span><span class="l">历届队员</span></div>
+      <div class="hero-stat"><span class="n">4</span><span class="l">交叉合作项目</span></div>
+    </div>
+  </section>
+  <section class="sec">
+    <p class="sec-kicker">Explore</p>
+    <h2 class="sec-title">了解我们</h2>
+    <div class="cards">
+      <a class="card" href="/collaboration"><p class="card-tag">Cross-disciplinary</p><h3 class="card-title">交叉合作</h3><p class="card-desc">天格计划 · 化工系 LEB · 以超算技术服务科研一线</p></a>
+      <a class="card" href="/competition"><p class="card-tag">Competition</p><h3 class="card-title">竞赛情况</h3><p class="card-desc">ASC · ISC · SC 三大国际赛事，全球唯一满贯队伍</p></a>
+      <a class="card" href="/publications"><p class="card-tag">Research</p><h3 class="card-title">学术发表</h3><p class="card-desc">论文与技术报告</p></a>
+      <a class="card" href="/members"><p class="card-tag">People</p><h3 class="card-title">团队成员</h3><p class="card-desc">2008 级至今，百余位队员</p></a>
+      <a class="card" href="/honors"><p class="card-tag">Honors</p><h3 class="card-title">荣誉徽章</h3><p class="card-desc">团队与个人荣誉</p></a>
+      <a class="card" href="/join"><p class="card-tag">Join us</p><h3 class="card-title">加入我们</h3><p class="card-desc">欢迎热爱计算的你</p></a>
+    </div>
+  </section>
+</Base>

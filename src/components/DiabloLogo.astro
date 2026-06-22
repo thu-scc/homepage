@@ -1,0 +1,106 @@
+---
+interface Props {
+  class?: string;
+  size?: 'nav' | 'hero';
+}
+const { class: className = '', size = 'hero' } = Astro.props;
+const gradientId = size === 'nav' ? 'nl-fill' : 'hl-fill';
+const strokeId = size === 'nav' ? 'nl-fill' : 'hl-stroke';
+---
+{size === 'hero' ? (
+<svg class:list={['hero-logo', className]} viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="hl-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#d88fff"/>
+      <stop offset="30%" stop-color="#a855c8"/>
+      <stop offset="60%" stop-color="#82318E"/>
+      <stop offset="100%" stop-color="#4a1565"/>
+    </linearGradient>
+    <linearGradient id="hl-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#e0a0ff"/>
+      <stop offset="50%" stop-color="#a855c8"/>
+      <stop offset="100%" stop-color="#6b20a0"/>
+    </linearGradient>
+    <filter id="logo-glow">
+      <feGaussianBlur stdDeviation="2.5" result="blur"/>
+      <feFlood flood-color="#a855c8" flood-opacity="0.35"/>
+      <feComposite in2="blur" operator="in" result="glow"/>
+      <feMerge><feMergeNode in="glow"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <g fill="url(#hl-fill)" stroke="none" filter="url(#logo-glow)">
+    <polygon points="50,0 25,20 50,10" opacity="0.85"/>
+    <polygon points="50,0 75,20 50,10" opacity="0.85"/>
+    <polygon points="50,0 15,50 25,20" opacity="0.5"/>
+    <polygon points="50,0 85,50 75,20" opacity="0.5"/>
+    <polygon points="50,10 22,50 50,50" opacity="0.6"/>
+    <polygon points="50,10 78,50 50,50" opacity="0.6"/>
+    <polygon points="15,50 22,50 50,85 50,95" opacity="0.35"/>
+    <polygon points="85,50 78,50 50,85 50,95" opacity="0.35"/>
+    <polygon points="22,50 50,50 50,85" opacity="0.4"/>
+    <polygon points="78,50 50,50 50,85" opacity="0.4"/>
+    <polygon points="15,50 5,25 25,20" opacity="0.7"/>
+    <polygon points="5,25 18,35 15,50" opacity="0.45"/>
+    <polygon points="85,50 95,25 75,20" opacity="0.7"/>
+    <polygon points="95,25 82,35 85,50" opacity="0.45"/>
+    <polygon points="50,95 35,95 50,115" opacity="0.3"/>
+    <polygon points="50,95 65,95 50,115" opacity="0.3"/>
+  </g>
+  <g fill="none" stroke="url(#hl-stroke)" stroke-width="1" stroke-linejoin="miter" filter="url(#logo-glow)">
+    <polygon points="50,0 15,50 50,95 85,50"/>
+    <polygon points="50,10 22,50 50,85 78,50"/>
+    <line x1="15" y1="50" x2="85" y2="50"/>
+    <line x1="50" y1="10" x2="50" y2="95"/>
+    <polygon points="15,50 5,25 25,20"/>
+    <line x1="5" y1="25" x2="18" y2="35"/>
+    <polygon points="85,50 95,25 75,20"/>
+    <line x1="95" y1="25" x2="82" y2="35"/>
+    <line x1="25" y1="20" x2="50" y2="0"/>
+    <line x1="75" y1="20" x2="50" y2="0"/>
+    <line x1="35" y1="95" x2="50" y2="115"/>
+    <line x1="65" y1="95" x2="50" y2="115"/>
+  </g>
+</svg>
+) : (
+<svg class:list={['nav-logo-icon', className]} viewBox="0 0 100 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="nl-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#c06eff"/>
+      <stop offset="50%" stop-color="#8b2fc8"/>
+      <stop offset="100%" stop-color="#4a1080"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#nl-fill)" stroke="url(#nl-fill)" stroke-width="0.5" stroke-linejoin="miter">
+    <polygon points="50,0 15,50 50,10 25,20" opacity="0.7"/>
+    <polygon points="50,0 85,50 50,10 75,20" opacity="0.7"/>
+    <polygon points="15,50 50,95 50,85 22,50" opacity="0.55"/>
+    <polygon points="85,50 50,95 50,85 78,50" opacity="0.55"/>
+    <polygon points="50,0 25,20 50,10" opacity="0.9"/>
+    <polygon points="50,0 75,20 50,10" opacity="0.9"/>
+    <polygon points="50,10 22,50 50,50" opacity="0.65"/>
+    <polygon points="50,10 78,50 50,50" opacity="0.65"/>
+    <polygon points="22,50 50,85 50,50" opacity="0.5"/>
+    <polygon points="78,50 50,85 50,50" opacity="0.5"/>
+    <polygon points="15,50 5,25 25,20" opacity="0.8"/>
+    <polygon points="5,25 18,35 15,50" opacity="0.6"/>
+    <polygon points="85,50 95,25 75,20" opacity="0.8"/>
+    <polygon points="95,25 82,35 85,50" opacity="0.6"/>
+    <polygon points="50,95 35,95 50,115" opacity="0.45"/>
+    <polygon points="50,95 65,95 50,115" opacity="0.45"/>
+  </g>
+  <g fill="none" stroke="url(#nl-fill)" stroke-width="1.5" stroke-linejoin="miter">
+    <polygon points="50,0 15,50 50,95 85,50"/>
+    <polygon points="50,10 22,50 50,85 78,50"/>
+    <line x1="15" y1="50" x2="85" y2="50"/>
+    <line x1="50" y1="10" x2="50" y2="95"/>
+    <polygon points="15,50 5,25 25,20"/>
+    <line x1="5" y1="25" x2="18" y2="35"/>
+    <polygon points="85,50 95,25 75,20"/>
+    <line x1="95" y1="25" x2="82" y2="35"/>
+    <line x1="25" y1="20" x2="50" y2="0"/>
+    <line x1="75" y1="20" x2="50" y2="0"/>
+    <line x1="35" y1="95" x2="50" y2="115"/>
+    <line x1="65" y1="95" x2="50" y2="115"/>
+  </g>
+</svg>
+)}

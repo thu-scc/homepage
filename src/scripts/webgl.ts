@@ -1,4 +1,4 @@
-// ============ WebGL Dual Background ============
+// WebGL Dual Background
 (function() {
   const VS = 'attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}';
 
@@ -69,15 +69,15 @@ void main(){
 }`;
 
   let mouse = {x:0.5, y:0.5};
-  document.addEventListener('mousemove', e => { mouse.x=e.clientX/innerWidth; mouse.y=e.clientY/innerHeight; });
+  document.addEventListener('mousemove', (e: MouseEvent) => { mouse.x=e.clientX/innerWidth; mouse.y=e.clientY/innerHeight; });
 
-  function bootGL(canvasId, fsSrc) {
-    const canvas = document.getElementById(canvasId);
-    if (!canvas) return ()=>{};
+  function bootGL(canvasId: string, fsSrc: string) {
+    const canvas = document.getElementById(canvasId) as HTMLCanvasElement | null;
+    if (!canvas) return (_t: number)=>{};
     const gl = canvas.getContext('webgl', {alpha:false, antialias:false});
-    if (!gl) return ()=>{};
-    function mk(t,s){const sh=gl.createShader(t);gl.shaderSource(sh,s);gl.compileShader(sh);return sh;}
-    const prog=gl.createProgram();
+    if (!gl) return (_t: number)=>{};
+    function mk(t: number, s: string){const sh=gl!.createShader(t)!;gl!.shaderSource(sh,s);gl!.compileShader(sh);return sh;}
+    const prog=gl.createProgram()!;
     gl.attachShader(prog,mk(gl.VERTEX_SHADER,VS));
     gl.attachShader(prog,mk(gl.FRAGMENT_SHADER,fsSrc));
     gl.linkProgram(prog);gl.useProgram(prog);
@@ -89,9 +89,9 @@ void main(){
     const lRes=gl.getUniformLocation(prog,'u_resolution');
     const lT=gl.getUniformLocation(prog,'u_time');
     const lM=gl.getUniformLocation(prog,'u_mouse');
-    function resize(){const d=Math.min(devicePixelRatio||1,1.5);canvas.width=innerWidth*d;canvas.height=innerHeight*d;gl.viewport(0,0,canvas.width,canvas.height);}
+    function resize(){const d=Math.min(devicePixelRatio||1,1.5);canvas!.width=innerWidth*d;canvas!.height=innerHeight*d;gl!.viewport(0,0,canvas!.width,canvas!.height);}
     window.addEventListener('resize',resize);resize();
-    return (tSec)=>{gl.uniform2f(lRes,canvas.width,canvas.height);gl.uniform1f(lT,tSec);gl.uniform2f(lM,mouse.x,1.0-mouse.y);gl.drawArrays(gl.TRIANGLES,0,6);};
+    return (tSec: number)=>{gl!.uniform2f(lRes,canvas!.width,canvas!.height);gl!.uniform1f(lT,tSec);gl!.uniform2f(lM,mouse.x,1.0-mouse.y);gl!.drawArrays(gl!.TRIANGLES,0,6);};
   }
 
   const drawDark = bootGL('bg-dark', FS_DARK);

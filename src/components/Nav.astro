@@ -1,0 +1,49 @@
+---
+import DiabloLogo from './DiabloLogo.astro';
+
+interface Props {
+  activePage?: string;
+}
+const { activePage = 'home' } = Astro.props;
+
+const links = [
+  { href: '/', page: 'home', label: '首页' },
+  { href: '/collaboration', page: 'collaboration', label: '交叉合作' },
+  { href: '/competition', page: 'competition', label: '竞赛情况' },
+  { href: '/publications', page: 'publications', label: '学术发表' },
+  { href: '/members', page: 'members', label: '团队成员' },
+  { href: '/honors', page: 'honors', label: '荣誉徽章' },
+  { href: '/join', page: 'join', label: '加入我们' },
+];
+---
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <DiabloLogo class="nav-logo-icon" size="nav" />
+    <span>THUSCC</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    {links.map(l => (
+      <li><a href={l.href} class={activePage === l.page ? 'active' : ''}>{l.label}</a></li>
+    ))}
+  </ul>
+  <button class="theme-btn" id="themeBtn" aria-label="切换主题">
+    <svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></svg>
+    <span class="label" id="themeLabel">Dark</span>
+  </button>
+  <div class="nav-toggle" id="navToggle"><span></span><span></span><span></span></div>
+</nav>
+
+<style>
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px, 4vw, 56px); background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(var(--fg-rgb), 0.06); transition: background 0.6s; }
+.nav-logo { font-family: var(--serif-zh); font-weight: 700; font-size: 1.1rem; color: var(--fg); text-decoration: none; transition: color 0.6s; display: flex; align-items: center; gap: 10px; }
+.nav-logo-icon { width: 26px; height: 30px; flex-shrink: 0; }
+.nav-links { display: flex; gap: clamp(12px, 2vw, 28px); list-style: none; align-items: center; }
+.nav-links a { font-size: 0.82rem; color: rgba(var(--fg-rgb), 0.65); text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em; }
+.nav-links a:hover, .nav-links a.active { color: var(--fg); }
+.nav-toggle { display: none; cursor: pointer; padding: 8px; }
+.nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--fg); margin: 5px 0; transition: 0.3s; }
+.theme-btn { background: none; border: 1px solid rgba(var(--fg-rgb), 0.15); border-radius: 8px; padding: 6px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; color: var(--fg); transition: border-color 0.2s, color 0.6s; margin-left: clamp(8px, 1.5vw, 20px); }
+.theme-btn:hover { border-color: rgba(var(--fg-rgb), 0.35); }
+.theme-btn svg { width: 16px; height: 16px; }
+.theme-btn .label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
+</style>

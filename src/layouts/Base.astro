@@ -1,3 +1,46 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  activePage?: string;
+}
+
+const { title = 'THUSCC · 清华大学学生超算团队', description = '清华大学学生超算团队 - 让超算技术走出竞赛场，走进科研现场', activePage = 'home' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{title}</title>
+  <meta name="description" content={description}>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+  <canvas id="bg-dark" class="bg-canvas"></canvas>
+  <canvas id="bg-light" class="bg-canvas"></canvas>
+
+  <Nav activePage={activePage} />
+
+  <div class="page-container">
+    <slot />
+  </div>
+
+  <Footer />
+
+  <script src="../scripts/webgl.ts"></script>
+  <script src="../scripts/theme.ts"></script>
+  <script src="../scripts/nav-toggle.ts"></script>
+</body>
+</html>
+
+<style is:global>
 /* ============ Theme Variables ============ */
 :root {
   --ink: #0a1f3d;
@@ -54,22 +97,6 @@ canvas.bg-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-ind
 #bg-light { opacity: 0; }
 [data-theme="light"] #bg-dark { opacity: 0; }
 [data-theme="light"] #bg-light { opacity: 1; }
-
-/* ============ Nav ============ */
-.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: var(--nav-h); display: flex; align-items: center; justify-content: space-between; padding: 0 clamp(20px, 4vw, 56px); background: var(--nav-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid rgba(var(--fg-rgb), 0.06); transition: background 0.6s; }
-.nav-logo { font-family: var(--serif-zh); font-weight: 700; font-size: 1.1rem; color: var(--fg); text-decoration: none; transition: color 0.6s; display: flex; align-items: center; gap: 10px; }
-.nav-logo-icon { width: 26px; height: 30px; flex-shrink: 0; }
-.nav-links { display: flex; gap: clamp(12px, 2vw, 28px); list-style: none; align-items: center; }
-.nav-links a { font-size: 0.82rem; color: rgba(var(--fg-rgb), 0.65); text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em; }
-.nav-links a:hover, .nav-links a.active { color: var(--fg); }
-.nav-toggle { display: none; cursor: pointer; padding: 8px; }
-.nav-toggle span { display: block; width: 20px; height: 1.5px; background: var(--fg); margin: 5px 0; transition: 0.3s; }
-
-/* Theme Toggle */
-.theme-btn { background: none; border: 1px solid rgba(var(--fg-rgb), 0.15); border-radius: 8px; padding: 6px 8px; cursor: pointer; display: flex; align-items: center; gap: 4px; color: var(--fg); transition: border-color 0.2s, color 0.6s; margin-left: clamp(8px, 1.5vw, 20px); }
-.theme-btn:hover { border-color: rgba(var(--fg-rgb), 0.35); }
-.theme-btn svg { width: 16px; height: 16px; }
-.theme-btn .label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.7; }
 
 /* ============ Page Container ============ */
 .page-container { position: relative; z-index: 1; min-height: 100vh; }
@@ -142,8 +169,6 @@ table.dt tr:hover td { background: rgba(var(--fg-rgb), 0.03); }
 
 /* ============ Misc ============ */
 .divider { border: none; border-top: 1px solid rgba(var(--fg-rgb), 0.08); margin: 5vh 0; }
-.placeholder { padding: 40px; border: 1px dashed rgba(var(--fg-rgb), 0.12); border-radius: 10px; text-align: center; }
-.placeholder .mono { font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.2em; opacity: 0.5; }
 .foot { position: relative; z-index: 1; padding: 32px clamp(20px, 4vw, 56px); border-top: 1px solid rgba(var(--fg-rgb), 0.06); text-align: center; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; opacity: 0.4; }
 
 /* ============ Responsive ============ */
@@ -156,3 +181,4 @@ table.dt tr:hover td { background: rgba(var(--fg-rgb), 0.03); }
   .theme-btn .label { display: none; }
 }
 @media (max-width: 480px) { .members-grid { grid-template-columns: 1fr; } }
+</style>
