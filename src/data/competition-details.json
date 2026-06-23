@@ -345,7 +345,7 @@
     ]
   },
   "asc21": {
-    "name": "ASC 2020-21",
+    "name": "ASC 20-21",
     "location": "南方科技大学（深圳）",
     "date": "2021-05-08 ~ 2021-05-12",
     "awards": [
@@ -364,14 +364,27 @@
         "翟季冬",
         "韩文弢"
       ],
-      "players": [],
-      "support": [],
+      "players": [
+        "张晨",
+        "陈嘉杰",
+        "宋泽宇",
+        "王雨田",
+        "翟明书"
+      ],
+      "support": [
+        "何家傲",
+        "陈晟祺",
+        "钟闰鑫"
+      ],
       "training": []
     },
     "news": [],
-    "photos": [],
-    "highlights": "E-Prize 计算挑战奖：脉冲星搜索 PRESTO 优化。",
-    "_notes": "具体上场队员名单待确认"
+    "photos": [
+      "/img/competition/asc21/01.jpg",
+      "/img/competition/asc21/02.jpg",
+      "/img/competition/asc21/03.jpg"
+    ],
+    "highlights": "E-Prize 计算挑战奖：脉冲星搜索 PRESTO 优化。"
   },
   "isc21": {
     "name": "ISC 2021",
@@ -451,7 +464,11 @@
         "曹隽诚",
         "朱昱熹"
       ],
-      "support": [],
+      "support": [
+        "陈晟祺",
+        "张晨",
+        "曹焕琦"
+      ],
       "training": []
     },
     "news": [
@@ -501,7 +518,11 @@
         "宋泽宇",
         "翟明书"
       ],
-      "support": [],
+      "support": [
+        "何家傲",
+        "陈晟祺",
+        "曹焕琦"
+      ],
       "training": []
     },
     "news": [
@@ -530,15 +551,25 @@
     "team": {
       "coaches": [
         "翟季冬",
-        "韩文弢"
+        "韩文弢",
+        "甘霖"
       ],
-      "players": [],
-      "support": [],
+      "players": [
+        "陈晟祺",
+        "宋泽宇",
+        "陈嘉杰",
+        "王雨田",
+        "翟明书",
+        "张晨"
+      ],
+      "support": [
+        "何家傲",
+        "黄可钊"
+      ],
       "training": []
     },
     "news": [],
-    "photos": [],
-    "_notes": "具体信息待补充，官方报道未找到"
+    "photos": []
   },
   "asc19": {
     "name": "ASC 2019",
@@ -557,13 +588,24 @@
         "翟季冬",
         "韩文弢"
       ],
-      "players": [],
+      "players": [
+        "于纪平",
+        "郑立言",
+        "黄可钊",
+        "陈晟祺",
+        "唐适之"
+      ],
       "support": [],
-      "training": []
+      "training": [
+        "顾煜贤",
+        "张晨",
+        "赵成钢"
+      ]
     },
     "news": [],
-    "photos": [],
-    "_notes": "具体队员名单待确认"
+    "photos": [
+      "/img/competition/asc19/01.jpg"
+    ]
   },
   "isc19": {
     "name": "ISC 2019",
@@ -577,13 +619,21 @@
         "翟季冬",
         "韩文弢"
       ],
-      "players": [],
+      "players": [
+        "于纪平",
+        "郑立言",
+        "黄可钊",
+        "何家傲",
+        "唐适之",
+        "陈晟祺"
+      ],
       "support": [],
-      "training": []
+      "training": [
+        "张晨"
+      ]
     },
     "news": [],
-    "photos": [],
-    "_notes": "官方报道未找到，具体队员名单待确认"
+    "photos": []
   },
   "sc19": {
     "name": "SC 2019",
@@ -1085,6 +1135,37 @@
       "training": []
     },
     "news": [],
+    "photos": []
+  },
+  "sc25": {
+    "name": "IndySCC 2025",
+    "location": "美国圣路易斯",
+    "date": "2025-11",
+    "awards": [
+      "参赛"
+    ],
+    "team": {
+      "coaches": [
+        "韩文弢",
+        "金煜阳"
+      ],
+      "players": [
+        "张扬",
+        "黄嘉豪",
+        "秦非冉",
+        "董业恺",
+        "杨鑫和",
+        "王浩旭"
+      ],
+      "support": [],
+      "training": []
+    },
+    "news": [
+      {
+        "title": "From Spark to Flame: Introducing the IndySCC25 Teams",
+        "url": "https://sc25.supercomputing.org/2025/10/from-spark-to-flame-introducing-the-indyscc25-teams/"
+      }
+    ],
     "photos": []
   }
 }

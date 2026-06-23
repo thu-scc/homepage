@@ -1,109 +1,378 @@
 {
-  "competitions": ["ASC", "ISC", "SC", "其他"],
-  "grandSlamYears": [2015, 2018],
+  "competitions": [
+    "ASC",
+    "ISC",
+    "SC",
+    "其他"
+  ],
+  "grandSlamYears": [
+    2015,
+    2018
+  ],
   "records": [
     {
       "year": 2026,
-      "ASC": [{ "type": "runner-up", "label": "亚军", "id": "asc26" }],
+      "ASC": [
+        {
+          "type": "runner-up",
+          "label": "亚军",
+          "id": "asc26"
+        }
+      ],
       "ISC": [],
       "SC": [],
       "其他": []
     },
     {
       "year": 2025,
-      "ASC": [{ "type": "place", "label": "第五名", "id": "asc25" }],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc25" }, { "type": "linpack", "label": "最高 LINPACK", "id": "isc25" }],
-      "SC": [],
-      "其他": [{ "type": "special", "label": "PAC 优化赛道特等奖", "id": "pac25" }]
+      "ASC": [
+        {
+          "type": "place",
+          "label": "第五名",
+          "id": "asc25"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc25"
+        },
+        {
+          "type": "linpack",
+          "label": "最高 LINPACK",
+          "id": "isc25"
+        }
+      ],
+      "SC": [
+        {
+          "type": "place",
+          "label": "IndySCC 参赛",
+          "id": "sc25"
+        }
+      ],
+      "其他": [
+        {
+          "type": "special",
+          "label": "PAC 优化赛道特等奖",
+          "id": "pac25"
+        }
+      ]
     },
     {
       "year": 2024,
       "ASC": [],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc24" }, { "type": "linpack", "label": "最高 LINPACK", "id": "isc24" }, { "type": "runner-up", "label": "线上比赛亚军", "id": "isc24" }],
-      "SC": [{ "type": "champion", "label": "冠军", "id": "sc24" }],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc24"
+        },
+        {
+          "type": "linpack",
+          "label": "最高 LINPACK",
+          "id": "isc24"
+        },
+        {
+          "type": "runner-up",
+          "label": "线上比赛亚军",
+          "id": "isc24"
+        }
+      ],
+      "SC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "sc24"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2023,
-      "ASC": [{ "type": "place", "label": "第五名", "id": "asc23" }],
+      "ASC": [
+        {
+          "type": "place",
+          "label": "第五名",
+          "id": "asc23"
+        }
+      ],
       "ISC": [],
-      "SC": [{ "type": "place", "label": "第四名", "id": "sc23" }],
+      "SC": [
+        {
+          "type": "place",
+          "label": "第四名",
+          "id": "sc23"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2022,
-      "ASC": [],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc22", "note": "线上" }],
+      "ASC": [
+        {
+          "type": "notHeld",
+          "label": "未举行"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc22",
+          "note": "线上"
+        }
+      ],
       "SC": [],
       "其他": []
     },
     {
       "year": 2021,
-      "ASC": [{ "type": "runner-up", "label": "亚军", "id": "asc21" }, { "type": "eprize", "label": "E-Prize", "id": "asc21" }],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc21", "note": "线上" }, { "type": "linpack", "label": "最高 LINPACK", "id": "isc21", "note": "线上" }],
-      "SC": [{ "type": "champion", "label": "冠军", "id": "sc21", "note": "线上" }],
+      "ASC": [
+        {
+          "type": "runner-up",
+          "label": "亚军",
+          "id": "asc21"
+        },
+        {
+          "type": "eprize",
+          "label": "E-Prize",
+          "id": "asc21"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc21",
+          "note": "线上"
+        },
+        {
+          "type": "linpack",
+          "label": "最高 LINPACK",
+          "id": "isc21",
+          "note": "线上"
+        }
+      ],
+      "SC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "sc21",
+          "note": "线上"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2020,
-      "ASC": [],
-      "ISC": [{ "type": "place", "label": "第三名", "id": "isc20" }],
-      "SC": [{ "type": "champion", "label": "冠军", "id": "sc20", "note": "线上" }, { "type": "linpack", "label": "最高 LINPACK", "id": "sc20", "note": "线上" }],
+      "ASC": [
+        {
+          "type": "notHeld",
+          "label": "未举行"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "place",
+          "label": "第三名",
+          "id": "isc20"
+        }
+      ],
+      "SC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "sc20",
+          "note": "线上"
+        },
+        {
+          "type": "linpack",
+          "label": "最高 LINPACK",
+          "id": "sc20",
+          "note": "线上"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2019,
-      "ASC": [{ "type": "runner-up", "label": "亚军", "id": "asc19" }],
-      "ISC": [{ "type": "runner-up", "label": "亚军", "id": "isc19" }],
-      "SC": [{ "type": "champion", "label": "冠军", "id": "sc19" }],
+      "ASC": [
+        {
+          "type": "runner-up",
+          "label": "亚军",
+          "id": "asc19"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "runner-up",
+          "label": "亚军",
+          "id": "isc19"
+        }
+      ],
+      "SC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "sc19"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2018,
-      "ASC": [{ "type": "champion", "label": "冠军", "id": "asc18" }],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc18" }],
-      "SC": [{ "type": "champion", "label": "冠军", "id": "sc18" }],
+      "ASC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "asc18"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc18"
+        }
+      ],
+      "SC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "sc18"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2017,
-      "ASC": [{ "type": "champion", "label": "冠军", "id": "asc17" }],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc17" }],
-      "SC": [{ "type": "place", "label": "第三名", "id": "sc17" }],
+      "ASC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "asc17"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc17"
+        }
+      ],
+      "SC": [
+        {
+          "type": "place",
+          "label": "第三名",
+          "id": "sc17"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2016,
-      "ASC": [{ "type": "place", "label": "第五名", "id": "asc16" }],
-      "ISC": [{ "type": "runner-up", "label": "亚军", "id": "isc16" }],
+      "ASC": [
+        {
+          "type": "place",
+          "label": "第五名",
+          "id": "asc16"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "runner-up",
+          "label": "亚军",
+          "id": "isc16"
+        }
+      ],
       "SC": [],
       "其他": []
     },
     {
       "year": 2015,
-      "ASC": [{ "type": "champion", "label": "冠军", "id": "asc15" }],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc15" }],
-      "SC": [{ "type": "champion", "label": "冠军", "id": "sc15" }],
+      "ASC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "asc15"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc15"
+        }
+      ],
+      "SC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "sc15"
+        }
+      ],
       "其他": []
     },
     {
       "year": 2014,
-      "ASC": [{ "type": "eprize", "label": "E-Prize", "id": "asc14" }],
-      "ISC": [{ "type": "runner-up", "label": "亚军", "id": "isc14" }],
+      "ASC": [
+        {
+          "type": "eprize",
+          "label": "E-Prize",
+          "id": "asc14"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "runner-up",
+          "label": "亚军",
+          "id": "isc14"
+        }
+      ],
       "SC": [],
       "其他": []
     },
     {
       "year": 2013,
-      "ASC": [{ "type": "champion", "label": "冠军", "id": "asc13" }, { "type": "linpack", "label": "最高 LINPACK", "id": "asc13" }],
-      "ISC": [{ "type": "runner-up", "label": "亚军", "id": "isc13" }],
+      "ASC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "asc13"
+        },
+        {
+          "type": "linpack",
+          "label": "最高 LINPACK",
+          "id": "asc13"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "runner-up",
+          "label": "亚军",
+          "id": "isc13"
+        }
+      ],
       "SC": [],
       "其他": []
     },
     {
       "year": 2012,
-      "ASC": [{ "type": "champion", "label": "冠军", "id": "asc12" }],
-      "ISC": [{ "type": "champion", "label": "冠军", "id": "isc12" }],
+      "ASC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "asc12"
+        }
+      ],
+      "ISC": [
+        {
+          "type": "champion",
+          "label": "冠军",
+          "id": "isc12"
+        }
+      ],
       "SC": [],
       "其他": []
     }
