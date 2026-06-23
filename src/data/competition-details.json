@@ -393,10 +393,11 @@
       ],
       "support": [
         "何家傲",
-        "陈晟祺",
-        "钟闰鑫"
+        "陈晟祺"
       ],
-      "training": []
+      "training": [
+        "钟闰鑫"
+      ]
     },
     "news": [],
     "photos": [
@@ -1013,52 +1014,139 @@
   },
   "asc15": {
     "name": "ASC 2015",
-    "location": "太原",
-    "date": "2015-04",
+    "location": "太原理工大学",
+    "date": "2015-05-18 ~ 2015-05-22",
     "awards": [
       "冠军"
     ],
+    "problems": [
+      "3000W 功耗约束下搭建集群",
+      "7项科学计算赛题"
+    ],
     "team": {
-      "coaches": [],
-      "players": [],
-      "support": [],
-      "training": []
+      "coaches": [
+        "翟季冬"
+      ],
+      "players": [
+        "吴育昕",
+        "张阳",
+        "宋方睿",
+        "裘捷中",
+        "王邈"
+      ],
+      "support": [
+        "李恺威"
+      ],
+      "training": [
+        "卓有为"
+      ]
     },
-    "news": [],
-    "photos": []
+    "news": [
+      {
+        "title": "清华大学获得世界大学生超级计算机竞赛ASC15总冠军",
+        "url": "https://www.tsinghua.edu.cn/info/1182/41191.htm"
+      },
+      {
+        "title": "清华大学获得世界大学生超级计算机竞赛ASC15总冠军（计算机系）",
+        "url": "https://www.cs.tsinghua.edu.cn/info/1058/1129.htm"
+      }
+    ],
+    "photos": [
+      "/img/competition/asc15/01.jpg"
+    ],
+    "highlights": "全球6大洲152支队伍报名，16支入围决赛。同时获得应用创新奖。大满贯年第一冠。"
   },
   "isc15": {
     "name": "ISC 2015",
     "location": "德国法兰克福",
-    "date": "2015-06",
+    "date": "2015-07-11 ~ 2015-07-15",
     "awards": [
       "冠军"
     ],
+    "problems": [
+      "分子动力学",
+      "大气模拟",
+      "生物制药",
+      "天气预报",
+      "流体力学",
+      "材料科学"
+    ],
     "team": {
-      "coaches": [],
-      "players": [],
-      "support": [],
+      "coaches": [
+        "翟季冬"
+      ],
+      "players": [
+        "梁盾",
+        "卓有为",
+        "宋方睿",
+        "吴育昕",
+        "张阳",
+        "王邈"
+      ],
+      "support": [
+        "李恺威"
+      ],
       "training": []
     },
-    "news": [],
-    "photos": []
+    "news": [
+      {
+        "title": "清华大学获ISC15国际大学生超算竞赛总冠军",
+        "url": "https://www.cs.tsinghua.edu.cn/info/1088/2539.htm"
+      },
+      {
+        "title": "ISC15 报道（腾讯）",
+        "url": "https://ur.tencent.com/article/168"
+      }
+    ],
+    "photos": [
+      "/img/competition/isc15/01.jpg",
+      "/img/competition/isc15/02.jpg"
+    ],
+    "highlights": "3000瓦功耗限制，历时5天（含搭建调试+优化+面试）。大满贯年第二冠。"
   },
   "sc15": {
     "name": "SC 2015",
-    "location": "美国奥斯汀",
-    "date": "2015-11",
+    "location": "美国德克萨斯州奥斯汀",
+    "date": "2015-11-19",
     "awards": [
       "冠军"
     ],
+    "problems": [
+      "天气预测",
+      "量子力学",
+      "生物基因",
+      "人口流动",
+      "共5个应用程序 + 专家面试"
+    ],
     "team": {
-      "coaches": [],
-      "players": [],
-      "support": [],
+      "coaches": [
+        "翟季冬"
+      ],
+      "players": [
+        "梁盾",
+        "鲁逸沁",
+        "裘捷中",
+        "梁俊邦",
+        "王邈",
+        "卓有为"
+      ],
+      "support": [
+        "李恺威"
+      ],
       "training": []
     },
-    "news": [],
-    "photos": [],
-    "highlights": "大满贯年。"
+    "news": [
+      {
+        "title": "清华超算：48小时，我们终于赢了这场战役",
+        "url": "https://www.tsinghua.edu.cn/info/1175/20416.htm"
+      }
+    ],
+    "photos": [
+      "/img/competition/sc15/01.jpg",
+      "/img/competition/sc15/02.jpg",
+      "/img/competition/sc15/03.jpg"
+    ],
+    "highlights": "中国大陆高校首次在SC赛事获冠。48小时不间断比赛，3120瓦功率限制。包揽2015年三大赛全部冠军（大满贯）。"
   },
   "asc14": {
     "name": "ASC 2014",
