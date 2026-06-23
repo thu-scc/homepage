@@ -196,7 +196,7 @@ const slugMapJSON = JSON.stringify(slugMap);
       }
       let html = '';
       for (const [role, items] of Object.entries(grouped)) {
-        html += `<div class="modal-role-group"><p class="modal-role-label">${role}</p><div class="modal-comp-list">`;
+        html += `<div class="modal-role-group"><p class="modal-role-label">${role}（${items.length} 场次）</p><div class="modal-comp-list">`;
         for (const item of items) {
           const awardsStr = item.awards.length ? `：${item.awards.join('、')}` : '';
           html += `<a class="modal-comp-row" href="/competition/${item.id}">${item.name}${awardsStr}</a>`;
