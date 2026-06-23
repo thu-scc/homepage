@@ -1,9 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
 import DiabloLogo from '../components/DiabloLogo.astro';
-import competitions from '../data/competitions.json';
+import data from '../data/competitions.json';
 
-const { stats } = competitions;
+const { competitions, grandSlamYears, records } = data;
+const years = records[0].year - records[records.length - 1].year + 1;
+const champions = records.reduce((sum, row) => {
+  return sum + competitions.reduce((s, comp) => {
+    return s + ((row as any)[comp] || []).filter((i: any) => i.type === 'champion').length;
+  }, 0);
+}, 0);
+const grandSlams = grandSlamYears.length;
 ---
 <Base activePage="home">
   <section class="hero">
@@ -12,10 +19,10 @@ const { stats } = competitions;
     <h1 class="hero-title">清华大学<br>学生超算团队</h1>
     <p class="hero-sub">让超算技术走出竞赛场，走进科研现场。<br>用高性能计算、AI 系统和分布式架构，为科研团队解决真实的计算瓶颈。</p>
     <div class="hero-stats">
-      <div class="hero-stat"><span class="n">{stats.champions}</span><span class="l">国际赛事冠军</span></div>
-      <div class="hero-stat"><span class="n">{stats.years}</span><span class="l">年竞赛历程</span></div>
+      <div class="hero-stat"><span class="n">{champions}</span><span class="l">国际赛事冠军</span></div>
+      <div class="hero-stat"><span class="n">{years}</span><span class="l">年竞赛历程</span></div>
       <div class="hero-stat"><span class="n">100+</span><span class="l">历届队员</span></div>
-      <div class="hero-stat"><span class="n">{stats.grandSlams}</span><span class="l">次三大赛事满贯</span></div>
+      <div class="hero-stat"><span class="n">{grandSlams}</span><span class="l">次三大赛事满贯</span></div>
     </div>
   </section>
   <section class="sec">

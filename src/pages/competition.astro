@@ -2,7 +2,16 @@
 import Base from '../layouts/Base.astro';
 import data from '../data/competitions.json';
 
-const { stats, competitions, grandSlamYears, records } = data;
+const { competitions, grandSlamYears, records } = data;
+
+// Compute stats from data
+const years = records[0].year - records[records.length - 1].year + 1;
+const champions = records.reduce((sum, row) => {
+  return sum + competitions.reduce((s, comp) => {
+    return s + ((row as any)[comp] || []).filter((i: any) => i.type === 'champion').length;
+  }, 0);
+}, 0);
+const grandSlams = grandSlamYears.length;
 ---
 <Base title="竞赛情况 · THUSCC" activePage="competition">
   <section class="sec sec-top">
@@ -11,9 +20,9 @@ const { stats, competitions, grandSlamYears, records } = data;
     <p class="sec-lead">全球唯一在 ASC、ISC、SC 三大国际大学生超算竞赛中均获得过冠军的队伍。</p>
 
     <div class="stats-row">
-      <div class="stat-item"><span class="n">{stats.champions}</span><span class="l">国际赛事冠军</span></div>
-      <div class="stat-item"><span class="n">{stats.years}</span><span class="l">年竞赛历程</span></div>
-      <div class="stat-item"><span class="n">{stats.grandSlams}</span><span class="l">次三大赛事满贯</span></div>
+      <div class="stat-item"><span class="n">{champions}</span><span class="l">国际赛事冠军</span></div>
+      <div class="stat-item"><span class="n">{years}</span><span class="l">年竞赛历程</span></div>
+      <div class="stat-item"><span class="n">{grandSlams}</span><span class="l">次三大赛事满贯</span></div>
     </div>
 
     <h3 class="comp-section-title">完整成绩</h3>

@@ -1,12 +1,14 @@
 {
-  "stats": {
-    "champions": "16+",
-    "years": "14",
-    "grandSlams": "2"
-  },
   "competitions": ["ASC", "ISC", "SC", "其他"],
   "grandSlamYears": [2015, 2018],
   "records": [
+    {
+      "year": 2026,
+      "ASC": [{ "type": "runner-up", "label": "亚军", "id": "asc26" }],
+      "ISC": [],
+      "SC": [],
+      "其他": []
+    },
     {
       "year": 2025,
       "ASC": [{ "type": "place", "label": "第五名", "id": "asc25" }],
