@@ -294,20 +294,41 @@
   },
   "asc23": {
     "name": "ASC 2023",
-    "location": "",
-    "date": "2023",
+    "location": "中国科学技术大学",
+    "date": "2023-05-06 ~ 2023-05-10",
     "awards": [
       "第五名"
     ],
+    "problems": [
+      "HPL/HPCG 基准测试",
+      "AI 语言大模型训练（15亿/179亿参数）",
+      "机器学习分子动力学 DeePMD",
+      "气候水文模式 WRF-Hydro",
+      "超级团队赛：随机量子线路采样模拟"
+    ],
     "team": {
-      "coaches": [],
-      "players": [],
-      "support": [],
+      "coaches": [
+        "韩文弢",
+        "翟季冬"
+      ],
+      "players": [
+        "张闰清",
+        "刘蜀琪",
+        "曹隽诚",
+        "胡沐彦",
+        "任彦羽"
+      ],
+      "support": [
+        "陈晟祺",
+        "翟明书"
+      ],
       "training": []
     },
     "news": [],
-    "photos": [],
-    "_notes": "官方报道未找到"
+    "photos": [
+      "/img/competition/asc23/01.jpg"
+    ],
+    "highlights": "全球300余支队伍参赛，24支晋级决赛。3000W功耗约束。北大冠军，中科大亚军。清华获一等奖（第五名）。"
   },
   "sc23": {
     "name": "SC 2023",
