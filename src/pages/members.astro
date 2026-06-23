@@ -8,7 +8,7 @@ import members from '../data/members.json';
     <h2 class="sec-title">团队成员</h2>
     <p class="sec-lead">所有成员均来自清华大学（除非另行标注院系，默认为计算机科学与技术系）。</p>
 
-    <h3 class="group-heading">指导老师</h3>
+    <h3 class="group-heading">指导教师</h3>
     <div class="member-grid">
       {members.advisors.current.map(m => (
         <div class="member-card">
@@ -22,7 +22,7 @@ import members from '../data/members.json';
         </div>
       ))}
     </div>
-    <p class="former-note">前任指导老师：{members.advisors.former.join('、')}</p>
+    <p class="former-note">前任指导教师：{members.advisors.former.join('、')}</p>
 
     <h3 class="group-heading">在队成员</h3>
     {members.active.map(group => (

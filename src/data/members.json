@@ -2,7 +2,7 @@
   "advisors": {
     "current": [
       { "name": "翟季冬", "title": "教授", "url": "http://pacman.cs.tsinghua.edu.cn/~zjd/" },
-      { "name": "韩文弢", "title": "助理研究员", "url": "http://pacman.cs.tsinghua.edu.cn/~hanwentao/" },
+      { "name": "韩文弢", "title": "讲师", "url": "http://pacman.cs.tsinghua.edu.cn/~hanwentao/" },
       { "name": "金煜阳", "title": "助理研究员" }
     ],
     "former": ["甘霖", "黄小猛"]
