@@ -1,130 +1,132 @@
 # THUSCC Homepage
 
-清华大学学生超算团队官网。零构建纯静态站，支持 Markdown 编辑内容。
+清华大学学生超算团队官网。基于 [Astro](https://astro.build/) 7 静态站点生成。
+
+## 环境要求
+
+- **Node.js >= 22.12.0**（必须，不接受降级。项目使用 Astro 7 + Vite 7，依赖 Node 22+ 特性）
+- **pnpm**（包管理器）
+
+```bash
+node --version   # 确认 >= 22.12.0
+pnpm --version   # 确认已安装
+```
+
+## 快速开始
+
+```bash
+pnpm install
+pnpm dev          # 启动开发服务器（默认 localhost:4321）
+pnpm build        # 构建到 dist/
+pnpm preview      # 预览构建产物
+```
 
 ## 项目结构
 
 ```
-├── index.html          ← 页面骨架（导航栏、首页模板、footer）
-├── css/
-│   └── style.css       ← 全部样式（主题色、布局、组件）
-├── js/
-│   ├── app.js          ← 路由 + 主题切换 + Markdown 渲染
-│   └── webgl.js        ← WebGL 双背景（暗色全息 + 浅色涡流）
-└── pages/              ← 📝 页面内容（Markdown 格式）
-    ├── collaboration.md
-    ├── competition.md
-    ├── publications.md
-    ├── members.md
-    ├── honors.md
-    └── join.md
+├── src/
+│   ├── layouts/
+│   │   └── Base.astro          ← 全局布局（head、CSS 变量、nav/footer slot）
+│   ├── components/
+│   │   ├── Nav.astro           ← 导航栏
+│   │   ├── Footer.astro        ← 页脚
+│   │   └── DiabloLogo.astro    ← Diablo logo（nav 小版 + hero 大版）
+│   ├── pages/
+│   │   ├── index.astro         ← 首页
+│   │   └── [slug].astro        ← 内容页动态路由
+│   ├── content/
+│   │   └── pages/              ← 📝 页面内容（Markdown）
+│   │       ├── collaboration.md
+│   │       ├── competition.md
+│   │       ├── publications.md
+│   │       ├── members.md
+│   │       ├── honors.md
+│   │       └── join.md
+│   ├── content.config.ts       ← Content Collection schema + loader
+│   └── scripts/
+│       ├── theme.ts            ← Dark/Light/Auto 主题切换
+│       ├── webgl.ts            ← WebGL 双背景 shader
+│       └── nav-toggle.ts       ← 移动端导航展开
+├── public/
+│   ├── CNAME                   ← GitHub Pages 自定义域名
+│   └── img/                    ← 静态图片资源
+├── .nvmrc                      ← Node 版本锁定（24）
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
 ## 如何修改内容
 
 ### 编辑已有页面
 
-直接编辑 `pages/` 目录下对应的 `.md` 文件。**支持完整的 Markdown 语法**：
+编辑 `src/content/pages/` 下对应的 `.md` 文件。支持完整 Markdown + 内嵌 HTML。
 
-```markdown
+每个文件开头的 frontmatter：
+
+```yaml
 ---
-kicker: Section Label (英文小标签)
-title: 页面标题
-lead: 页面导语（一两句话的简要描述）
+kicker: Competition Record    # 页面顶部英文小标签
+title: 竞赛情况              # 主标题
+lead: 全球唯一...            # 导语
 ---
-
-正文用标准 Markdown 编写：
-
-## 二级标题
-
-普通段落文字，支持 **加粗**、*斜体*、`行内代码`、[链接](url)。
-
-- 列表项 1
-- 列表项 2
-
-| 表头1 | 表头2 |
-|-------|-------|
-| 内容  | 内容  |
-```
-
-### Front Matter（页头元数据）
-
-每个 `.md` 文件开头用 `---` 包裹的 YAML 块：
-
-| 字段 | 作用 | 示例 |
-|------|------|------|
-| `kicker` | 页面顶部的英文小标签 | `Competition Record` |
-| `title` | 页面主标题 | `竞赛情况` |
-| `lead` | 标题下方的导语 | `全球唯一...` |
-
-### 混合 HTML
-
-Markdown 中可以直接嵌入 HTML，用于实现卡片网格等复杂布局：
-
-```markdown
-<div class="cards">
-<div class="card">
-<h3 class="card-title">项目名称</h3>
-<p class="card-desc">项目描述</p>
-</div>
-</div>
 ```
 
 ### 可用的 CSS 组件
 
+在 Markdown 中直接内嵌 HTML 使用：
+
 | 类名 | 用途 |
 |------|------|
 | `.cards` | 卡片网格容器 |
-| `.cards-sm` | 小卡片网格（加在 `.cards` 上）|
+| `.cards-sm` | 小卡片网格 |
 | `.card` | 单个卡片 |
-| `.card-tag` | 卡片标签（等宽小字）|
+| `.card-tag` | 卡片标签 |
 | `.card-title` | 卡片标题 |
 | `.card-desc` | 卡片描述 |
-| `.card-center` | 居中卡片（加在 `.card` 上）|
 | `.stats-row` | 统计数字行 |
-| `.stat-item` | 单个统计项（内含 `.n` 和 `.l`）|
-| `.members-grid` | 成员网格列表 |
+| `.stat-item` + `.n` + `.l` | 统计项 |
+| `.members-grid` | 成员列表 |
 | `.grade-title` | 年级标题 |
 | `.gold` | 冠军金色徽章 |
-| `.placeholder` | 占位框（待填充内容）|
-| `.divider` | 分割线 |
+| `.table-wrap` + `table.dt` | 数据表格 |
 
 ### 添加新页面
 
-1. 在 `pages/` 下新建 `xxx.md` 文件
-2. 在 `index.html` 的 `<ul class="nav-links">` 中添加导航项：
-   ```html
-   <li><a href="#xxx" data-page="xxx">页面名</a></li>
-   ```
-3. 如需在首页卡片中显示，编辑 `<template id="tpl-home">` 中的卡片列表
+1. 在 `src/content/pages/` 下新建 `xxx.md`（写好 frontmatter）
+2. 在 `src/components/Nav.astro` 的 `links` 数组中添加导航项
+3. 如需在首页卡片中显示，编辑 `src/pages/index.astro`
 
 ### 修改首页
 
-首页内容直接在 `index.html` 的 `<template id="tpl-home">` 标签内编辑。
-
-## 本地预览
-
-```bash
-# 任何静态服务器都行
-python3 -m http.server 8000
-# 或
-npx serve .
-```
-
-打开 `http://localhost:8000` 即可预览。
+直接编辑 `src/pages/index.astro`。
 
 ## 部署
 
-纯静态文件，直接部署到 GitHub Pages / Vercel / Cloudflare Pages / 任何 CDN。
+构建产物为纯静态 HTML，部署到 GitHub Pages / Vercel / Cloudflare Pages 均可。
 
-GitHub Pages 配置：Settings → Pages → Source 选 `new-website` 分支，目录选 `/`（root）。
+```bash
+pnpm build
+# dist/ 即为部署目录
+```
+
+GitHub Pages：配置 GitHub Actions 运行 `pnpm build`，部署 `dist/` 目录。
 
 ## 技术栈
 
-- **零依赖零构建**：不需要 Node.js / npm / 任何构建工具
-- **Markdown 渲染**：[marked.js](https://github.com/markedjs/marked)（CDN 加载，7KB gzip）
-- **WebGL 背景**：双 shader 实时渲染（暗色全息色散 + 浅色银色涡流）
-- **SPA 路由**：hash-based，页面切换无刷新
-- **主题切换**：Dark / Light / Auto，localStorage 持久化
-- **字体**：Playfair Display + Noto Serif SC + Noto Sans SC + IBM Plex Mono
-- **配色**：靛蓝瓷（Indigo Porcelain）+ 清华紫强调色
+- **框架**: [Astro](https://astro.build/) 7 — 静态站点生成，Content Layer API
+- **语言**: TypeScript
+- **包管理**: pnpm
+- **运行时**: Node.js 24 LTS（最低要求 22.12.0，不可降级）
+- **WebGL 背景**: 双 shader 实时渲染（暗色全息 + 浅色银色涡流）
+- **主题**: Dark / Light / Auto，localStorage 持久化
+- **字体**: Playfair Display + Noto Serif SC + Noto Sans SC + IBM Plex Mono
+- **配色**: 靛蓝瓷（Indigo Porcelain）+ 紫色强调色
+
+## 分支说明
+
+| 分支 | 状态 | 说明 |
+|------|------|------|
+| `new-website-astro` | **活跃开发** | Astro 版本，当前主线 |
+| `new-website` | 冻结 | 纯 HTML/CSS/JS SPA 版本，不再维护 |
+| `master` | 旧版 | MkDocs 版本，已废弃 |

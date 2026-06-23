@@ -3,11 +3,21 @@
   "type": "module",
   "version": "1.0.0",
   "scripts": {
-    "dev": "astro dev --host 0.0.0.0 --port 8000",
+    "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview --host 0.0.0.0 --port 8000"
+    "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^5.9.0"
+    "astro": "^7.0.0"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@10.34.4",
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
   }
 }

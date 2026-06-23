@@ -1,19 +1,19 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
   return pages.map(page => ({
-    params: { slug: page.id.replace(/\.md$/, '') },
+    params: { slug: page.id },
     props: { page },
   }));
 }
 
 const { page } = Astro.props;
-const { Content } = await page.render();
+const { Content } = await render(page);
 const { kicker, title, lead } = page.data;
-const slug = page.id.replace(/\.md$/, '');
+const slug = page.id;
 ---
 <Base title={`${title || slug} · THUSCC`} activePage={slug}>
   <section class="sec sec-top">
