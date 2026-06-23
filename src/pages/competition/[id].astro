@@ -9,18 +9,12 @@ export function getStaticPaths() {
   }));
 }
 
-interface CompInfo {
-  name: string;
-  location: string;
-  date: string;
-  awards: string[];
-  team?: { coaches?: string[]; players?: string[]; support?: string[]; training?: string[] };
-  problems?: string[];
-  photos?: string[];
-  news?: { title: string; url: string }[];
-}
-
-const { id, info } = Astro.props as { id: string; info: CompInfo };
+const { id, info } = Astro.props as { id: string; info: any };
+const hasTeam = info.team && (info.team.players?.length || info.team.coaches?.length || info.team.support?.length || info.team.training?.length);
+const hasProblems = info.problems?.length;
+const hasNews = info.news?.length;
+const hasHighlights = info.highlights;
+const hasNotes = info._notes;
 ---
 <Base title={`${info.name} · THUSCC`} activePage="competition">
   <section class="sec sec-top">
@@ -34,69 +28,105 @@ const { id, info } = Astro.props as { id: string; info: CompInfo };
     {info.location && <p class="sec-lead">{info.location}</p>}
 
     <div class="detail-awards">
-      {info.awards.map(a => <span class="detail-award">{a}</span>)}
+      {info.awards.map((a: string) => <span class="detail-award">{a}</span>)}
     </div>
 
-    <div class="detail-placeholder">
-      <div class="placeholder-inner">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-        <p>详细信息待补充</p>
-        <p class="placeholder-hint">可添加：指导老师、上场队员、技术支持、参加训练人员、赛题、照片、新闻报道</p>
+    {hasHighlights && (
+      <p class="detail-highlights">{info.highlights}</p>
+    )}
+
+    {hasTeam && (
+      <div class="detail-section">
+        <h3 class="detail-heading">团队成员</h3>
+        <div class="team-grid">
+          {info.team.coaches?.length > 0 && (
+            <div class="team-group">
+              <p class="team-role">指导教师</p>
+              <ul class="team-list">{info.team.coaches.map((n: string) => <li>{n}</li>)}</ul>
+            </div>
+          )}
+          {info.team.players?.length > 0 && (
+            <div class="team-group">
+              <p class="team-role">上场队员</p>
+              <ul class="team-list">{info.team.players.map((n: string) => <li>{n}</li>)}</ul>
+            </div>
+          )}
+          {info.team.support?.length > 0 && (
+            <div class="team-group">
+              <p class="team-role">技术支持</p>
+              <ul class="team-list">{info.team.support.map((n: string) => <li>{n}</li>)}</ul>
+            </div>
+          )}
+          {info.team.training?.length > 0 && (
+            <div class="team-group">
+              <p class="team-role">参加训练</p>
+              <ul class="team-list">{info.team.training.map((n: string) => <li>{n}</li>)}</ul>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    )}
+
+    {hasProblems && (
+      <div class="detail-section">
+        <h3 class="detail-heading">赛题</h3>
+        <ul class="problems-list">
+          {info.problems.map((p: string) => <li>{p}</li>)}
+        </ul>
+      </div>
+    )}
+
+    {hasNews && (
+      <div class="detail-section">
+        <h3 class="detail-heading">相关报道</h3>
+        <ul class="news-list">
+          {info.news.map((n: any) => (
+            <li><a href={n.url} target="_blank" rel="noopener">{n.title}
+              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553l-9.056 8.194a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd"/></svg>
+            </a></li>
+          ))}
+        </ul>
+      </div>
+    )}
+
+    {!hasTeam && !hasProblems && !hasNews && (
+      <div class="detail-placeholder">
+        <div class="placeholder-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+          <p>详细信息待补充</p>
+        </div>
+      </div>
+    )}
+
+    {hasNotes && (
+      <p class="detail-notes">⚠️ {info._notes}</p>
+    )}
   </section>
 </Base>
 
 <style>
-  .back-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    color: var(--accent-light);
-    text-decoration: none;
-    margin-bottom: 3vh;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-  }
+  .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.78rem; color: var(--accent-light); text-decoration: none; margin-bottom: 3vh; opacity: 0.8; transition: opacity 0.2s; }
   .back-link:hover { opacity: 1; }
-  .detail-awards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin: 3vh 0;
-  }
-  .detail-award {
-    display: inline-block;
-    padding: 6px 14px;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    background: var(--gold-bg);
-    color: var(--gold-color);
-    border: 1px solid rgba(255,200,0,0.2);
-  }
-  .detail-placeholder {
-    margin-top: 5vh;
-    padding: 48px 24px;
-    border: 1px dashed rgba(var(--fg-rgb), 0.12);
-    border-radius: 12px;
-    text-align: center;
-  }
-  .placeholder-inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-    opacity: 0.45;
-  }
-  .placeholder-inner p {
-    font-size: 0.9rem;
-  }
-  .placeholder-hint {
-    font-family: var(--mono);
-    font-size: 0.72rem !important;
-    max-width: 400px;
-  }
+  .detail-awards { display: flex; flex-wrap: wrap; gap: 10px; margin: 2vh 0 3vh; }
+  .detail-award { display: inline-block; padding: 6px 14px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; background: var(--gold-bg); color: var(--gold-color); border: 1px solid rgba(255,200,0,0.2); }
+  .detail-highlights { font-family: var(--serif-zh); font-size: 0.92rem; opacity: 0.75; line-height: 1.7; margin-bottom: 4vh; max-width: 680px; }
+  .detail-section { margin-bottom: 4vh; }
+  .detail-heading { font-family: var(--serif-zh); font-weight: 600; font-size: 1.15rem; margin-bottom: 1.5vh; }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .team-group { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 16px; }
+  .team-role { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; margin-bottom: 8px; }
+  .team-list { list-style: none; padding: 0; }
+  .team-list li { font-size: 0.9rem; padding: 3px 0; }
+  .problems-list { list-style: none; padding: 0; }
+  .problems-list li { font-size: 0.88rem; padding: 6px 0; border-bottom: 1px solid rgba(var(--fg-rgb), 0.04); opacity: 0.82; }
+  .problems-list li:last-child { border-bottom: none; }
+  .news-list { list-style: none; padding: 0; }
+  .news-list li { padding: 8px 0; border-bottom: 1px solid rgba(var(--fg-rgb), 0.04); }
+  .news-list li:last-child { border-bottom: none; }
+  .news-list a { color: var(--link-color); text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; }
+  .news-list a:hover { text-decoration: underline; }
+  .news-list svg { flex-shrink: 0; opacity: 0.6; }
+  .detail-placeholder { margin-top: 5vh; padding: 48px 24px; border: 1px dashed rgba(var(--fg-rgb), 0.12); border-radius: 12px; text-align: center; }
+  .placeholder-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.45; }
+  .detail-notes { font-family: var(--mono); font-size: 0.75rem; opacity: 0.6; margin-top: 3vh; padding: 12px; background: rgba(var(--fg-rgb), 0.03); border-radius: 6px; }
 </style>

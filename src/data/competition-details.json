@@ -1,206 +1,427 @@
 {
   "asc26": {
     "name": "ASC 2026",
-    "location": "待补充",
-    "date": "2026",
-    "awards": ["亚军"]
+    "location": "无锡学院",
+    "date": "2026-05-16 ~ 2026-05-20",
+    "awards": ["亚军"],
+    "problems": ["HPL/HPCG 基准测试", "世界模型 UnifoLM-WMA-0", "引力波数值模拟 AMSS-NCKU", "量子线路仿真 QiboTN", "世界模型 LeWorldModel", "超级团队赛：全球气候数值模拟 ICON"],
+    "team": {
+      "coaches": ["韩文弢", "金煜阳", "翟季冬"],
+      "players": [],
+      "support": [],
+      "training": []
+    },
+    "news": [
+      { "title": "ASC26世界大学生超算竞赛落幕，北大清华分获冠亚军", "url": "https://tech.gmw.cn/2026-05/21/content_38779557.htm" },
+      { "title": "ASC26世界大学生超算竞赛落幕", "url": "https://news.sciencenet.cn/htmlnews/2026/5/565178.shtm" }
+    ],
+    "photos": [],
+    "_notes": "清华官网暂无 ASC26 专门报道，上场队员名单待确认"
   },
   "isc25": {
     "name": "ISC 2025",
-    "location": "Hamburg, Germany",
-    "date": "2025-06",
-    "awards": ["冠军", "最高 LINPACK"]
+    "location": "德国汉堡国际会议中心",
+    "date": "2025-06-12",
+    "awards": ["冠军", "最高 LINPACK"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "IO500 基准测试", "地震模拟 SeisSol", "大模型后训练 Llama", "计算流体力学 code_saturne", "分子动力学模拟 LAMMPS（神秘应用）"],
+    "team": {
+      "coaches": ["韩文弢", "金煜阳", "翟季冬"],
+      "players": ["杨雨晴", "李双宇", "吕嘉鑫", "杨恺", "贾朝蓬", "张扬"],
+      "support": ["张闰清", "单敬博", "陈晟祺"],
+      "training": ["岳章乔", "施程予", "王宇澄"]
+    },
+    "news": [
+      { "title": "清华大学学生超算团队获得2025国际大学生超算竞赛总冠军", "url": "https://www.tsinghua.edu.cn/info/1175/119554.htm" },
+      { "title": "清华大学学生超算团队获得2025国际大学生超算竞赛总冠军（计算机系）", "url": "https://www.cs.tsinghua.edu.cn/info/1058/6764.htm" },
+      { "title": "Tsinghua's Student Cluster Team claims championship at ISC25", "url": "https://www.tsinghua.edu.cn/en/info/1245/14332.htm" }
+    ],
+    "photos": [],
+    "highlights": "LINPACK 成绩 340TFLOPS，打破赛事纪录。4机12卡配置，6千瓦功率限制。第19个三大赛冠军，ISC 第8个冠军。"
   },
   "asc25": {
     "name": "ASC 2025",
     "location": "待补充",
     "date": "2025",
-    "awards": ["第五名"]
+    "awards": ["第五名"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待查找官方报道补充详情"
   },
   "pac25": {
     "name": "PAC 2025 优化赛道",
     "location": "",
     "date": "2025",
-    "awards": ["特等奖"]
+    "awards": ["特等奖"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待查找官方报道补充详情"
   },
   "isc24": {
     "name": "ISC 2024",
-    "location": "Hamburg, Germany",
-    "date": "2024-05",
-    "awards": ["冠军", "最高 LINPACK", "线上比赛亚军"]
+    "location": "德国汉堡国际会议中心",
+    "date": "2024-05-15",
+    "awards": ["冠军", "最高 LINPACK", "线上比赛亚军"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "HPCC 基准测试", "高阶光谱元素流动模拟 Neko", "第一性原理计算 Conquest", "区域大气模式 RegCM", "格子玻尔兹曼模拟 OpenLB（神秘应用）"],
+    "team": {
+      "coaches": ["韩文弢", "翟季冬", "金煜阳"],
+      "players": ["张闰清", "单敬博", "袁兴业", "杨恺", "薛志宇", "潘佳奇"],
+      "support": ["陈晟祺", "翟明书"],
+      "training": []
+    },
+    "news": [
+      { "title": "清华大学学生超算团队获得2024国际大学生超算竞赛总冠军", "url": "https://www.tsinghua.edu.cn/info/1175/111550.htm" },
+      { "title": "清华大学学生超算团队获得2024国际大学生超算竞赛总冠军（计算机系）", "url": "https://www.cs.tsinghua.edu.cn/info/1058/6092.htm" }
+    ],
+    "photos": [],
+    "highlights": "LINPACK 成绩 337TFLOPS，首次在该单项获得第一名。6千瓦功率限制。第17个三大赛冠军，ISC 第7个冠军。自2019年以来首次参加现场比赛。"
   },
   "sc24": {
     "name": "SC 2024",
-    "location": "Atlanta, USA",
-    "date": "2024-11",
-    "awards": ["冠军"]
+    "location": "美国亚特兰大",
+    "date": "2024-11-21",
+    "awards": ["冠军"],
+    "problems": ["LINPACK 基准测试", "MLPerf 基准测试", "NPB 基准测试", "天气预报和气候建模系统 ICON", "并行分子动力学程序 NAMD", "复现挑战：数据流生命周期分析", "神秘应用：针对猫的物体识别挑战"],
+    "team": {
+      "coaches": ["韩文弢", "金煜阳", "翟季冬"],
+      "players": ["杨恺", "李轶凡", "薛志宇", "杨雨晴", "王宇澄", "施程予"],
+      "support": ["陈晟祺", "翟明书", "张闰清", "单敬博"],
+      "training": []
+    },
+    "news": [
+      { "title": "清华大学学生超算团队获得2024全球大学生超算竞赛总冠军", "url": "https://www.tsinghua.edu.cn/info/1175/115401.htm" },
+      { "title": "清华大学学生超算团队获得2024全球大学生超算竞赛总冠军（计算机系）", "url": "https://www.cs.tsinghua.edu.cn/info/1058/6449.htm" }
+    ],
+    "photos": [],
+    "highlights": "4.5千瓦功率限制。连续47小时比赛。第18个三大赛冠军。"
   },
   "asc23": {
     "name": "ASC 2023",
     "location": "待补充",
     "date": "2023",
-    "awards": ["第五名"]
+    "awards": ["第五名"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待查找官方报道补充详情"
   },
   "sc23": {
     "name": "SC 2023",
-    "location": "Denver, USA",
+    "location": "美国丹佛",
     "date": "2023-11",
-    "awards": ["第四名"]
+    "awards": ["第四名"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待查找官方报道补充详情"
   },
   "isc22": {
     "name": "ISC 2022",
-    "location": "Hamburg, Germany（线上）",
-    "date": "2022-05",
-    "awards": ["冠军"]
+    "location": "德国汉堡（线上）",
+    "date": "2022-06-01",
+    "awards": ["冠军"],
+    "problems": ["天气预报程序 ICON", "计算化学程序 NWChem", "流体力学程序 Xcompact3d", "DPU 编程挑战"],
+    "team": {
+      "coaches": ["韩文弢", "翟季冬"],
+      "players": ["翟明书", "宋泽宇", "融凯源", "曹隽诚", "胡沐彦", "罗富文"],
+      "support": ["张晨", "陈嘉杰"],
+      "training": ["张闰清", "袁兴业"]
+    },
+    "news": [
+      { "title": "计算机系学生超算团队获得国际大学生超算竞赛(ISC22)总冠军", "url": "https://www.cs.tsinghua.edu.cn/info/1058/5040.htm" }
+    ],
+    "photos": []
   },
   "asc21": {
     "name": "ASC 2021",
     "location": "待补充",
     "date": "2021",
-    "awards": ["亚军", "E-Prize"]
+    "awards": ["亚军", "E-Prize"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待查找官方报道补充详情"
   },
   "isc21": {
     "name": "ISC 2021",
     "location": "线上",
-    "date": "2021-06",
-    "awards": ["冠军", "最高 LINPACK"]
+    "date": "2021-07-01",
+    "awards": ["冠军", "最高 LINPACK"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "HPCC 基准测试", "天气预报程序 WRF", "分子动力学模拟 LAMMPS", "宏基因组组装 MetaHipMer", "量子力学原子模拟 GPAW", "编程挑战：应用通信模式分析"],
+    "team": {
+      "coaches": ["韩文弢", "翟季冬"],
+      "players": ["张晨", "钟闰鑫", "陈嘉杰", "王雨田", "翟明书", "宋泽宇"],
+      "support": ["陈晟祺", "何家傲"],
+      "training": []
+    },
+    "news": [
+      { "title": "计算机系学生超算团队获国际大学生超算竞赛(ISC21)总冠军", "url": "https://www.cs.tsinghua.edu.cn/info/1058/4847.htm" }
+    ],
+    "photos": []
   },
   "sc21": {
     "name": "SC 2021",
+    "location": "美国圣路易斯（线上）",
+    "date": "2021-11-19",
+    "awards": ["冠军"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "IO500 基准测试", "多尺度心脏模拟 Cardioid", "量子材料模拟 Quantum ESPRESSO", "SC20论文复现：大规模贝叶斯网络并行学习框架", "神秘应用：Cosmic Tagger（高能中微子物理图像分类）"],
+    "team": {
+      "coaches": ["翟季冬", "韩文弢"],
+      "players": ["翟明书", "宋泽宇", "融凯源", "任彦羽", "曹隽诚", "朱昱熹"],
+      "support": [],
+      "training": []
+    },
+    "news": [
+      { "title": "计算机系本科生获得国际大学生超算竞赛(SC21)总冠军", "url": "https://www.cs.tsinghua.edu.cn/info/1058/4883.htm" },
+      { "title": "'破壁少年'迎来超算四连冠", "url": "https://www.tsinghua.edu.cn/info/1182/89126.htm" }
+    ],
+    "photos": [],
+    "highlights": "SC 系列四连冠。三大竞赛第15个冠军。"
+  },
+  "sc20": {
+    "name": "SC 2020",
     "location": "线上",
-    "date": "2021-11",
-    "awards": ["冠军"]
+    "date": "2020-11-20",
+    "awards": ["冠军", "最高 LINPACK"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "IO500 基准测试", "地球系统模型 CESM", "分子动力学模型 GROMACS", "SC19论文复现：大规模并行CT重建 MemXCT", "神秘应用：miniVite（图社区发现）"],
+    "team": {
+      "coaches": ["翟季冬", "韩文弢", "甘霖"],
+      "players": ["张晨", "陈嘉杰", "王雨田", "钟闰鑫", "宋泽宇", "翟明书"],
+      "support": [],
+      "training": []
+    },
+    "news": [
+      { "title": "计算机系学生超算团队获得国际大学生超算竞赛SC20总冠军", "url": "https://www.cs.tsinghua.edu.cn/info/1058/4871.htm" },
+      { "title": "清华学生超算团队获国际大学生超级计算机竞赛SC20总冠军", "url": "https://www.tsinghua.edu.cn/info/1173/18693.htm" }
+    ],
+    "photos": [],
+    "highlights": "SC 系列三连冠。IO500 成绩 143.73 分，5倍于第二名。"
   },
   "isc20": {
     "name": "ISC 2020",
     "location": "线上",
     "date": "2020-06",
-    "awards": ["第三名"]
-  },
-  "sc20": {
-    "name": "SC 2020",
-    "location": "线上",
-    "date": "2020-11",
-    "awards": ["冠军", "最高 LINPACK"]
+    "awards": ["第三名"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待补充"
   },
   "asc19": {
     "name": "ASC 2019",
-    "location": "大连",
-    "date": "2019-04",
-    "awards": ["亚军"]
+    "location": "大连理工大学",
+    "date": "2019-04-21 ~ 2019-04-25",
+    "awards": ["亚军"],
+    "problems": ["LINPACK 基准测试", "AI 图像超分辨率 SR", "气候模拟 CESM"],
+    "team": { "coaches": ["翟季冬", "韩文弢"], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "具体上场队员待确认"
   },
   "isc19": {
     "name": "ISC 2019",
-    "location": "Hamburg, Germany",
-    "date": "2019-06",
-    "awards": ["亚军"]
+    "location": "德国法兰克福",
+    "date": "2019-06-19",
+    "awards": ["亚军"],
+    "team": { "coaches": ["翟季冬", "韩文弢"], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "具体上场队员待确认"
   },
   "sc19": {
     "name": "SC 2019",
-    "location": "Denver, USA",
-    "date": "2019-11",
-    "awards": ["冠军"]
+    "location": "美国丹佛",
+    "date": "2019-11-21",
+    "awards": ["冠军"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "IO-500 基准测试", "向量粒子模拟 VPIC", "系统结构模拟器 SST", "SC18论文复现：恒星内部法向模式计算", "稠密整数矩阵乘法 Sparkler"],
+    "team": {
+      "coaches": ["翟季冬", "韩文弢"],
+      "players": ["何家傲", "陈晟祺", "黄可钊", "郑立言", "张晨", "赵成钢"],
+      "support": [],
+      "training": []
+    },
+    "news": [],
+    "photos": [],
+    "highlights": "IO-500 第一名（30.56分）。三大竞赛第12个冠军。16支队伍来自7个国家参赛。"
   },
   "asc18": {
     "name": "ASC 2018",
-    "location": "南昌",
-    "date": "2018-05",
-    "awards": ["冠军"]
+    "location": "南昌大学",
+    "date": "2018-05-09",
+    "awards": ["冠军"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "三维重建 Relion", "分子动力学 SIESTA", "计算流体力学 CFL3D", "深度学习 CNTK（MSMARCO 数据集）"],
+    "team": {
+      "coaches": ["翟季冬", "韩文弢"],
+      "players": ["李北辰", "冯冠宇", "谢磊", "于纪平", "陈宇", "王邈", "刘家昌", "唐适之"],
+      "support": [],
+      "training": []
+    },
+    "news": [],
+    "photos": [],
+    "highlights": "6台服务器，16块V100 GPU。大满贯年第一冠。",
+    "_notes": "上场队员人数超过6人，可能含替补/技术支持，待确认分类"
   },
   "isc18": {
     "name": "ISC 2018",
-    "location": "Hamburg, Germany",
-    "date": "2018-06",
-    "awards": ["冠军"]
+    "location": "德国法兰克福",
+    "date": "2018-06-27 ~ 2018-06-30",
+    "awards": ["冠军"],
+    "problems": ["HPCC 基准测试", "HPCG 基准测试", "数据并行库 Grid", "有限元 Nektar++", "TensorFlow", "计算流体力学 Nek5000"],
+    "team": {
+      "coaches": ["翟季冬", "韩文弢"],
+      "players": ["李北辰", "冯冠宇", "于纪平", "唐适之", "陈宇", "何家傲"],
+      "support": ["刘家昌"],
+      "training": []
+    },
+    "news": [],
+    "photos": [],
+    "highlights": "5台服务器，16块V100 GPU，每台2块FDR InfiniBand网卡。大满贯年第二冠。"
   },
   "sc18": {
     "name": "SC 2018",
-    "location": "Dallas, USA",
-    "date": "2018-11",
-    "awards": ["冠军"]
+    "location": "美国达拉斯",
+    "date": "2018-11-15",
+    "awards": ["冠军"],
+    "problems": ["LINPACK 基准测试", "HPCG 基准测试", "机器学习", "裂变链式反应模拟", "地震模拟（论文复现）", "天气预报 WRF"],
+    "team": {
+      "coaches": ["翟季冬", "韩文弢"],
+      "players": ["于纪平", "余欣健", "何家傲", "郑立言", "赵成钢", "娄晨耀"],
+      "support": ["曹焕琦", "冯冠宇", "王邈"],
+      "training": ["唐适之", "陈宇", "顾煜贤", "陈晟祺", "张晨"]
+    },
+    "news": [],
+    "photos": [],
+    "highlights": "总分 88.398/100，领先第二名南洋理工大学 11.518 分。大满贯年第三冠，完成全满贯。"
   },
   "asc17": {
     "name": "ASC 2017",
     "location": "无锡",
     "date": "2017-04",
-    "awards": ["冠军"]
+    "awards": ["冠军"],
+    "team": { "coaches": ["翟季冬", "韩文弢"], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待补充"
   },
   "isc17": {
     "name": "ISC 2017",
-    "location": "Hamburg, Germany",
+    "location": "德国法兰克福",
     "date": "2017-06",
-    "awards": ["冠军"]
+    "awards": ["冠军"],
+    "team": { "coaches": ["翟季冬", "韩文弢"], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待补充"
   },
   "sc17": {
     "name": "SC 2017",
-    "location": "Denver, USA",
+    "location": "美国丹佛",
     "date": "2017-11",
-    "awards": ["第三名"]
+    "awards": ["第三名"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "_notes": "待补充"
   },
   "asc16": {
     "name": "ASC 2016",
     "location": "待补充",
     "date": "2016",
-    "awards": ["第五名"]
+    "awards": ["第五名"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "isc16": {
     "name": "ISC 2016",
-    "location": "Hamburg, Germany",
+    "location": "德国法兰克福",
     "date": "2016-06",
-    "awards": ["亚军"]
+    "awards": ["亚军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "asc15": {
     "name": "ASC 2015",
     "location": "太原",
     "date": "2015-04",
-    "awards": ["冠军"]
+    "awards": ["冠军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "isc15": {
     "name": "ISC 2015",
-    "location": "Hamburg, Germany",
+    "location": "德国法兰克福",
     "date": "2015-06",
-    "awards": ["冠军"]
+    "awards": ["冠军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "sc15": {
     "name": "SC 2015",
-    "location": "Austin, USA",
+    "location": "美国奥斯汀",
     "date": "2015-11",
-    "awards": ["冠军"]
+    "awards": ["冠军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": [],
+    "highlights": "大满贯年。"
   },
   "asc14": {
     "name": "ASC 2014",
     "location": "待补充",
     "date": "2014",
-    "awards": ["E-Prize"]
+    "awards": ["E-Prize"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "isc14": {
     "name": "ISC 2014",
-    "location": "Hamburg, Germany",
+    "location": "德国莱比锡",
     "date": "2014-06",
-    "awards": ["亚军"]
+    "awards": ["亚军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "asc13": {
     "name": "ASC 2013",
     "location": "待补充",
     "date": "2013",
-    "awards": ["冠军", "最高 LINPACK"]
+    "awards": ["冠军", "最高 LINPACK"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "isc13": {
     "name": "ISC 2013",
-    "location": "Hamburg, Germany",
+    "location": "德国莱比锡",
     "date": "2013-06",
-    "awards": ["亚军"]
+    "awards": ["亚军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "asc12": {
     "name": "ASC 2012",
     "location": "待补充",
     "date": "2012",
-    "awards": ["冠军"]
+    "awards": ["冠军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   },
   "isc12": {
     "name": "ISC 2012",
-    "location": "Hamburg, Germany",
+    "location": "德国汉堡",
     "date": "2012-06",
-    "awards": ["冠军"]
+    "awards": ["冠军"],
+    "team": { "coaches": [], "players": [], "support": [], "training": [] },
+    "news": [],
+    "photos": []
   }
 }
