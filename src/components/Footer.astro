@@ -1,1 +1,34 @@
-<footer class="foot">Copyright &copy; 2012–2026 清华大学学生超算团队</footer>
+---
+declare const __BUILD_TIME__: string;
+declare const __COMMIT_HASH__: string;
+
+const buildTime = __BUILD_TIME__;
+const commitHash = __COMMIT_HASH__;
+const commitUrl = commitHash
+  ? `https://github.com/thu-scc/homepage/tree/${commitHash}`
+  : '';
+---
+<footer class="foot">
+  <div>Copyright &copy; 2012–2026 清华大学学生超算团队</div>
+  {commitHash && (
+    <div class="foot-build">
+      Built {buildTime} ·
+      <a href={commitUrl} target="_blank" rel="noopener">{commitHash}</a>
+    </div>
+  )}
+</footer>
+
+<style>
+  .foot-build {
+    margin-top: 6px;
+    font-size: 0.62rem;
+    opacity: 0.5;
+  }
+  .foot-build a {
+    color: var(--link-color);
+    text-decoration: none;
+  }
+  .foot-build a:hover {
+    text-decoration: underline;
+  }
+</style>

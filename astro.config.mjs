@@ -1,6 +1,11 @@
 import { defineConfig } from 'astro/config';
-
+import { execSync } from 'node:child_process';
 import cloudflare from '@astrojs/cloudflare';
+
+let commitHash = '';
+try {
+  commitHash = execSync('git rev-parse --short HEAD', { encoding: 'utf-8' }).trim();
+} catch {}
 
 export default defineConfig({
   site: 'https://sc.team',
@@ -10,5 +15,12 @@ export default defineConfig({
     assets: '_assets'
   },
 
-  adapter: cloudflare()
+  adapter: cloudflare(),
+
+  vite: {
+    define: {
+      __BUILD_TIME__: JSON.stringify(new Date().toISOString().replace('T', ' ').slice(0, 19) + ' UTC'),
+      __COMMIT_HASH__: JSON.stringify(commitHash),
+    }
+  }
 });
