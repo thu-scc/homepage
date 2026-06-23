@@ -15,7 +15,7 @@ type ParticipationRecord = {
   name: string;
   role: string;
   awards: string[];
-  year: number;
+  sortDate: string;
 };
 
 const participationIndex: Record<string, ParticipationRecord[]> = {};
@@ -30,6 +30,7 @@ const roleLabels: Record<string, string> = {
 for (const [compId, comp] of Object.entries(competitions as Record<string, any>)) {
   if (!comp.team) continue;
   const year = parseInt(comp.date?.split('-')[0] || '0');
+  const sortDate = comp.sortDate || `${year}-01`;
   for (const [role, people] of Object.entries(comp.team as Record<string, string[]>)) {
     if (!Array.isArray(people)) continue;
     for (const person of people) {
@@ -39,15 +40,15 @@ for (const [compId, comp] of Object.entries(competitions as Record<string, any>)
         name: comp.name,
         role: roleLabels[role] || role,
         awards: comp.awards || [],
-        year,
+        sortDate,
       });
     }
   }
 }
 
-// Sort each person's records by year descending
+// Sort each person's records by sortDate descending
 for (const records of Object.values(participationIndex)) {
-  records.sort((a, b) => b.year - a.year);
+  records.sort((a, b) => b.sortDate.localeCompare(a.sortDate));
 }
 
 // Build name→slug mapping for all members

@@ -35,7 +35,8 @@
       }
     ],
     "photos": [],
-    "_notes": "清华官网暂无 ASC26 专门报道，上场队员名单待确认"
+    "_notes": "清华官网暂无 ASC26 专门报道，上场队员名单待确认",
+    "sortDate": "2026-05"
   },
   "isc25": {
     "name": "ISC 2025",
@@ -96,7 +97,8 @@
     "photos": [
       "/img/competition/isc25/01.jpg"
     ],
-    "highlights": "LINPACK 成绩 340TFLOPS，打破赛事纪录。4机12卡配置，6千瓦功率限制。第19个三大赛冠军，ISC 第8个冠军。"
+    "highlights": "LINPACK 成绩 340TFLOPS，打破赛事纪录。4机12卡配置，6千瓦功率限制。第19个三大赛冠军，ISC 第8个冠军。",
+    "sortDate": "2025-06"
   },
   "asc25": {
     "name": "ASC 2025",
@@ -141,7 +143,8 @@
     "photos": [
       "/img/competition/asc25/01.jpg"
     ],
-    "highlights": "全球300余支队伍参赛，25支晋级决赛。4000瓦功耗约束。ASC举办以来海拔最高的一届（青海大学）。上交冠军，北大亚军。"
+    "highlights": "全球300余支队伍参赛，25支晋级决赛。4000瓦功耗约束。ASC举办以来海拔最高的一届（青海大学）。上交冠军，北大亚军。",
+    "sortDate": "2025-05"
   },
   "pac25": {
     "name": "PAC 2025 (第十二届并行应用挑战赛)",
@@ -179,7 +182,8 @@
     "photos": [
       "/img/competition/pac25/01.jpg"
     ],
-    "highlights": "首次获得优化赛道特等奖。Int8GEMM 加速 56,300 倍，Attention 加速 2,083 倍。"
+    "highlights": "首次获得优化赛道特等奖。Int8GEMM 加速 56,300 倍，Attention 加速 2,083 倍。",
+    "sortDate": "2025-08"
   },
   "isc24": {
     "name": "ISC 2024",
@@ -234,7 +238,8 @@
       "/img/competition/isc24/02.jpg",
       "/img/competition/isc24/03.jpg"
     ],
-    "highlights": "LINPACK 成绩 337TFLOPS，首次在该单项获得第一名。6千瓦功率限制。第17个三大赛冠军，ISC 第7个冠军。自2019年以来首次参加现场比赛。"
+    "highlights": "LINPACK 成绩 337TFLOPS，首次在该单项获得第一名。6千瓦功率限制。第17个三大赛冠军，ISC 第7个冠军。自2019年以来首次参加现场比赛。",
+    "sortDate": "2024-05"
   },
   "sc24": {
     "name": "SC 2024",
@@ -290,7 +295,8 @@
       "/img/competition/sc24/03.jpg",
       "/img/competition/sc24/04.jpg"
     ],
-    "highlights": "4.5千瓦功率限制。连续47小时比赛。第18个三大赛冠军。"
+    "highlights": "4.5千瓦功率限制。连续47小时比赛。第18个三大赛冠军。",
+    "sortDate": "2024-11"
   },
   "asc23": {
     "name": "ASC 2023",
@@ -328,7 +334,8 @@
     "photos": [
       "/img/competition/asc23/01.jpg"
     ],
-    "highlights": "全球300余支队伍参赛，24支晋级决赛。3000W功耗约束。北大冠军，中科大亚军。清华获一等奖（第五名）。"
+    "highlights": "全球300余支队伍参赛，24支晋级决赛。3000W功耗约束。北大冠军，中科大亚军。清华获一等奖（第五名）。",
+    "sortDate": "2023-05"
   },
   "sc23": {
     "name": "SC 2023",
@@ -365,7 +372,8 @@
     "photos": [
       "/img/competition/sc23/01.jpg",
       "/img/competition/sc23/02.jpg"
-    ]
+    ],
+    "sortDate": "2023-11"
   },
   "isc22": {
     "name": "ISC 2022",
@@ -411,7 +419,8 @@
     "photos": [
       "/img/competition/isc22/01.jpg",
       "/img/competition/isc22/02.jpg"
-    ]
+    ],
+    "sortDate": "2022-06"
   },
   "asc21": {
     "name": "ASC 20-21",
@@ -454,7 +463,8 @@
       "/img/competition/asc21/02.jpg",
       "/img/competition/asc21/03.jpg"
     ],
-    "highlights": "E-Prize 计算挑战奖：脉冲星搜索 PRESTO 优化。"
+    "highlights": "E-Prize 计算挑战奖：脉冲星搜索 PRESTO 优化。",
+    "sortDate": "2021-05"
   },
   "isc21": {
     "name": "ISC 2021",
@@ -503,7 +513,8 @@
       "/img/competition/isc21/01.jpg",
       "/img/competition/isc21/02.jpg",
       "/img/competition/isc21/03.jpg"
-    ]
+    ],
+    "sortDate": "2021-07"
   },
   "sc21": {
     "name": "SC 2021",
@@ -555,7 +566,8 @@
       "/img/competition/sc21/01.jpg",
       "/img/competition/sc21/02.jpg"
     ],
-    "highlights": "SC 系列四连冠。三大竞赛第15个冠军。"
+    "highlights": "SC 系列四连冠。三大竞赛第15个冠军。",
+    "sortDate": "2021-11"
   },
   "sc20": {
     "name": "SC 2020",
@@ -609,7 +621,8 @@
       "/img/competition/sc20/01.jpg",
       "/img/competition/sc20/02.jpg"
     ],
-    "highlights": "SC 系列三连冠。IO500 成绩 143.73 分，5倍于第二名。"
+    "highlights": "SC 系列三连冠。IO500 成绩 143.73 分，5倍于第二名。",
+    "sortDate": "2020-11"
   },
   "isc20": {
     "name": "ISC 2020",
@@ -639,7 +652,8 @@
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "sortDate": "2020-06"
   },
   "asc19": {
     "name": "ASC 2019",
@@ -675,7 +689,8 @@
     "news": [],
     "photos": [
       "/img/competition/asc19/01.jpg"
-    ]
+    ],
+    "sortDate": "2019-04"
   },
   "isc19": {
     "name": "ISC 2019",
@@ -703,7 +718,8 @@
       ]
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "sortDate": "2019-06"
   },
   "sc19": {
     "name": "SC 2019",
@@ -748,7 +764,8 @@
       "/img/competition/sc19/02.jpg",
       "/img/competition/sc19/03.jpg"
     ],
-    "highlights": "IO-500 性能排名第一（30.56分，带宽3.08GiB/s，元数据操作303.12kIOP/s）。16支队伍来自7个国家，3千瓦功率限制。三大竞赛第12个冠军。"
+    "highlights": "IO-500 性能排名第一（30.56分，带宽3.08GiB/s，元数据操作303.12kIOP/s）。16支队伍来自7个国家，3千瓦功率限制。三大竞赛第12个冠军。",
+    "sortDate": "2019-11"
   },
   "asc18": {
     "name": "ASC 2018",
@@ -798,7 +815,8 @@
       "/img/competition/asc18/04.jpg",
       "/img/competition/asc18/05.jpg"
     ],
-    "highlights": "6台服务器，16块V100 GPU。大满贯年第一冠。"
+    "highlights": "6台服务器，16块V100 GPU。大满贯年第一冠。",
+    "sortDate": "2018-05"
   },
   "isc18": {
     "name": "ISC 2018",
@@ -846,7 +864,8 @@
       "/img/competition/isc18/04.jpg",
       "/img/competition/isc18/05.jpg"
     ],
-    "highlights": "5台服务器，16块V100 GPU，每台2块FDR InfiniBand网卡。大满贯年第二冠。"
+    "highlights": "5台服务器，16块V100 GPU，每台2块FDR InfiniBand网卡。大满贯年第二冠。",
+    "sortDate": "2018-06"
   },
   "sc18": {
     "name": "SC 2018",
@@ -911,7 +930,8 @@
       "/img/competition/sc18/13.jpg",
       "/img/competition/sc18/14.jpg"
     ],
-    "highlights": "总分 88.398/100，领先第二名南洋理工大学 11.518 分。大满贯年第三冠，完成全满贯。"
+    "highlights": "总分 88.398/100，领先第二名南洋理工大学 11.518 分。大满贯年第三冠，完成全满贯。",
+    "sortDate": "2018-11"
   },
   "asc17": {
     "name": "ASC 2017",
@@ -957,7 +977,8 @@
       "/img/competition/asc17/01.jpg",
       "/img/competition/asc17/02.jpg"
     ],
-    "highlights": "MASNUM 在神威平台上取得 392 倍加速，获 E-Prize 计算挑战奖。230支高校队伍参赛，来自15个国家和地区。3千瓦功率限制。"
+    "highlights": "MASNUM 在神威平台上取得 392 倍加速，获 E-Prize 计算挑战奖。230支高校队伍参赛，来自15个国家和地区。3千瓦功率限制。",
+    "sortDate": "2017-04"
   },
   "isc17": {
     "name": "ISC 2017",
@@ -1008,7 +1029,8 @@
       "/img/competition/isc17/02.jpg",
       "/img/competition/isc17/03.jpg"
     ],
-    "highlights": "ISC 第6届比赛中清华第3次夺冠。2017年包揽 ASC+ISC 冠军。3千瓦功率限制，11支队伍来自7个国家。同时获得深度学习验证码识别挑战冠军。"
+    "highlights": "ISC 第6届比赛中清华第3次夺冠。2017年包揽 ASC+ISC 冠军。3千瓦功率限制，11支队伍来自7个国家。同时获得深度学习验证码识别挑战冠军。",
+    "sortDate": "2017-06"
   },
   "sc17": {
     "name": "SC 2017",
@@ -1040,7 +1062,8 @@
       ]
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "sortDate": "2017-11"
   },
   "asc16": {
     "name": "ASC 2016",
@@ -1080,7 +1103,8 @@
     ],
     "photos": [],
     "highlights": "8机6卡(K80)配置，3000W严格功耗限制。华科夺冠，上交亚军。",
-    "_notes": "具体上场队员名单待确认。博文作者为2015大满贯老队员，提到四字班新队员表现强。"
+    "_notes": "具体上场队员名单待确认。博文作者为2015大满贯老队员，提到四字班新队员表现强。",
+    "sortDate": "2016-04"
   },
   "isc16": {
     "name": "ISC 2016",
@@ -1106,7 +1130,8 @@
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "sortDate": "2016-06"
   },
   "asc15": {
     "name": "ASC 2015",
@@ -1155,7 +1180,8 @@
     "photos": [
       "/img/competition/asc15/01.jpg"
     ],
-    "highlights": "6机6卡(Tesla K80)配置，3000W功率限制。NAMD应用创新奖。全球152支队伍报名，16支入围决赛。大满贯年第一冠。"
+    "highlights": "6机6卡(Tesla K80)配置，3000W功率限制。NAMD应用创新奖。全球152支队伍报名，16支入围决赛。大满贯年第一冠。",
+    "sortDate": "2015-05"
   },
   "isc15": {
     "name": "ISC 2015",
@@ -1204,7 +1230,8 @@
       "/img/competition/isc15/01.jpg",
       "/img/competition/isc15/02.jpg"
     ],
-    "highlights": "7机5卡配置(赛中从8机调整)，3000瓦功率限制。神秘应用(PyFR)时间估算极精准，最后一分钟运行完毕。时隔三年再度夺冠。大满贯年第二冠。"
+    "highlights": "7机5卡配置(赛中从8机调整)，3000瓦功率限制。神秘应用(PyFR)时间估算极精准，最后一分钟运行完毕。时隔三年再度夺冠。大满贯年第二冠。",
+    "sortDate": "2015-07"
   },
   "sc15": {
     "name": "SC 2015",
@@ -1248,7 +1275,8 @@
       "/img/competition/sc15/02.jpg",
       "/img/competition/sc15/03.jpg"
     ],
-    "highlights": "中国大陆高校首次在SC赛事获冠。48小时不间断比赛，3120瓦功率限制。包揽2015年三大赛全部冠军（大满贯）。"
+    "highlights": "中国大陆高校首次在SC赛事获冠。48小时不间断比赛，3120瓦功率限制。包揽2015年三大赛全部冠军（大满贯）。",
+    "sortDate": "2015-11"
   },
   "asc14": {
     "name": "ASC 2014",
@@ -1278,7 +1306,8 @@
     "news": [],
     "photos": [],
     "highlights": "78支参赛队伍，16支进决赛。SU2应用创新奖（第一名甩开第二名很多）。上交夺冠。",
-    "_notes": "队员5人（含蒋林浩、喬宇宸等），教练徐世真、李恺威。具体名单待确认。"
+    "_notes": "队员5人（含蒋林浩、喬宇宸等），教练徐世真、李恺威。具体名单待确认。",
+    "sortDate": "2014-04"
   },
   "isc14": {
     "name": "ISC 2014",
@@ -1307,7 +1336,8 @@
     "news": [],
     "photos": [],
     "highlights": "神秘应用(Quantum Espresso低功耗)仅三队得分，清华次于南非CHPC。总分第三，次于南非CHPC和中科大。",
-    "_notes": "⚠️ 此前记录为亚军，但队员博客明确写'第三名，次于南非CHPC和中科大'。需人工确认。郭家宝参与了Quantum Espresso神秘应用。"
+    "_notes": "⚠️ 此前记录为亚军，但队员博客明确写'第三名，次于南非CHPC和中科大'。需人工确认。郭家宝参与了Quantum Espresso神秘应用。",
+    "sortDate": "2014-07"
   },
   "asc13": {
     "name": "ASC 2013",
@@ -1329,7 +1359,8 @@
     "news": [],
     "photos": [],
     "highlights": "8机10卡（浪潮英信NF5280M3、Tesla K20），HPL达到7579Gflops，刷新同类赛事记录。人称'梦之队'。",
-    "_notes": "具体队员名单待确认（博客提到'前两年的带队老师黄小猛'）"
+    "_notes": "具体队员名单待确认（博客提到'前两年的带队老师黄小猛'）",
+    "sortDate": "2013-04"
   },
   "isc13": {
     "name": "ISC 2013",
@@ -1349,7 +1380,8 @@
     "news": [],
     "photos": [],
     "highlights": "8所学校参加。展示前领先第二名甚多，展示环节（占50分）后被反超。",
-    "_notes": "具体队员同ASC13"
+    "_notes": "具体队员同ASC13",
+    "sortDate": "2013-06"
   },
   "asc12": {
     "name": "ASC 2012",
@@ -1368,7 +1400,8 @@
     },
     "news": [],
     "photos": [],
-    "_notes": "第一届ASC比赛。具体信息待补充。"
+    "_notes": "第一届ASC比赛。具体信息待补充。",
+    "sortDate": "2012-05"
   },
   "isc12": {
     "name": "ISC 2012",
@@ -1387,7 +1420,8 @@
     },
     "news": [],
     "photos": [],
-    "_notes": "ISC SCC第一届比赛。具体信息待补充。"
+    "_notes": "ISC SCC第一届比赛。具体信息待补充。",
+    "sortDate": "2012-06"
   },
   "sc25": {
     "name": "IndySCC 2025",
@@ -1419,6 +1453,7 @@
       }
     ],
     "photos": [],
-    "highlights": "IndySCC 为线上赛制。"
+    "highlights": "IndySCC 为线上赛制。",
+    "sortDate": "2025-11"
   }
 }
