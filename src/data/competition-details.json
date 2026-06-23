@@ -3,7 +3,7 @@
     "name": "ISC 2025",
     "location": "Hamburg, Germany",
     "date": "2025-06",
-    "awards": ["总冠军", "最高 LINPACK"]
+    "awards": ["冠军", "最高 LINPACK"]
   },
   "asc25": {
     "name": "ASC 2025",
@@ -21,7 +21,7 @@
     "name": "ISC 2024",
     "location": "Hamburg, Germany",
     "date": "2024-05",
-    "awards": ["总冠军", "最高 LINPACK", "线上比赛亚军"]
+    "awards": ["冠军", "最高 LINPACK", "线上比赛亚军"]
   },
   "sc24": {
     "name": "SC 2024",
@@ -75,7 +75,7 @@
     "name": "SC 2020",
     "location": "线上",
     "date": "2020-11",
-    "awards": ["冠军"]
+    "awards": ["冠军", "最高 LINPACK"]
   },
   "asc19": {
     "name": "ASC 2019",
