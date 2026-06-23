@@ -2,6 +2,12 @@
 import Base from '../layouts/Base.astro';
 import members from '../data/members.json';
 import competitions from '../data/competition-details.json';
+import { pinyin } from 'pinyin-pro';
+
+// Generate pinyin slug for a name
+function toSlug(name: string): string {
+  return pinyin(name, { toneType: 'none', type: 'array' }).join('').toLowerCase();
+}
 
 // Build reverse index: person name → competition participation records
 type ParticipationRecord = {
@@ -44,8 +50,20 @@ for (const records of Object.values(participationIndex)) {
   records.sort((a, b) => b.year - a.year);
 }
 
+// Build name→slug mapping for all members
+const slugMap: Record<string, string> = {};
+const allMembers = [
+  ...members.advisors.current.map(m => m.name),
+  ...members.active.flatMap(g => g.members.map(m => m.name)),
+  ...members.alumni.flatMap(g => g.members.map(m => m.name)),
+];
+for (const name of allMembers) {
+  slugMap[name] = toSlug(name);
+}
+
 // Serialize for client-side use
 const indexJSON = JSON.stringify(participationIndex);
+const slugMapJSON = JSON.stringify(slugMap);
 ---
 <Base title="团队成员 · THUSCC" activePage="members">
   <section class="sec sec-top">
@@ -56,7 +74,7 @@ const indexJSON = JSON.stringify(participationIndex);
     <h3 class="group-heading">指导教师</h3>
     <div class="member-grid">
       {members.advisors.current.map(m => (
-        <div class="member-card" data-name={m.name} data-url={m.url || ''} data-dept={m.title || ''}>
+        <div class="member-card" id={slugMap[m.name]} data-name={m.name} data-url={m.url || ''} data-dept={m.title || ''}>
           <span class="member-name">{m.name}</span>
           {m.title && <span class="member-dept">{m.title}</span>}
           {m.url && (
@@ -75,7 +93,7 @@ const indexJSON = JSON.stringify(participationIndex);
         <p class="grade-label">{group.grade}</p>
         <div class="member-grid">
           {group.members.map(m => (
-            <div class="member-card" data-name={m.name} data-url={m.url || ''} data-dept={m.dept || ''}>
+            <div class="member-card" id={slugMap[m.name]} data-name={m.name} data-url={m.url || ''} data-dept={m.dept || ''}>
               <span class="member-name">{m.name}</span>
               {m.dept && <span class="member-dept">{m.dept}</span>}
               {m.url && (
@@ -95,7 +113,7 @@ const indexJSON = JSON.stringify(participationIndex);
         <p class="grade-label">{group.grade}</p>
         <div class="member-grid">
           {group.members.map(m => (
-            <div class="member-card" data-name={m.name} data-url={m.url || ''} data-dept={m.dept || ''}>
+            <div class="member-card" id={slugMap[m.name]} data-name={m.name} data-url={m.url || ''} data-dept={m.dept || ''}>
               <span class="member-name">{m.name}</span>
               {m.dept && <span class="member-dept">{m.dept}</span>}
               {m.url && (
@@ -126,14 +144,21 @@ const indexJSON = JSON.stringify(participationIndex);
   </div>
 </Base>
 
-<script define:vars={{ indexJSON }}>
+<script define:vars={{ indexJSON, slugMapJSON }}>
   const participationIndex = JSON.parse(indexJSON);
+  const slugMap = JSON.parse(slugMapJSON);
+  // Reverse: slug → name
+  const nameBySlug = {};
+  for (const [name, slug] of Object.entries(slugMap)) {
+    nameBySlug[slug] = name;
+  }
 
   function openProfile(card) {
     const name = card.dataset.name;
     const dept = card.dataset.dept;
     const url = card.dataset.url;
     const records = participationIndex[name] || [];
+    const slug = slugMap[name] || '';
 
     document.getElementById('modalName').textContent = name;
     const deptEl = document.getElementById('modalDept');
@@ -172,6 +197,13 @@ const indexJSON = JSON.stringify(participationIndex);
     }
 
     document.getElementById('profileModal').classList.add('open');
+    // Update URL hash
+    if (slug) history.replaceState(null, '', `#${slug}`);
+  }
+
+  function closeModal() {
+    document.getElementById('profileModal').classList.remove('open');
+    history.replaceState(null, '', window.location.pathname);
   }
 
   // Attach click handlers
@@ -180,17 +212,24 @@ const indexJSON = JSON.stringify(participationIndex);
   });
 
   // Close modal
-  document.getElementById('modalClose').addEventListener('click', () => {
-    document.getElementById('profileModal').classList.remove('open');
-  });
+  document.getElementById('modalClose').addEventListener('click', closeModal);
   document.getElementById('profileModal').addEventListener('click', (e) => {
-    if (e.target === e.currentTarget) {
-      document.getElementById('profileModal').classList.remove('open');
-    }
+    if (e.target === e.currentTarget) closeModal();
   });
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') document.getElementById('profileModal').classList.remove('open');
+    if (e.key === 'Escape') closeModal();
   });
+
+  // Handle hash on page load
+  function handleHash() {
+    const hash = window.location.hash.slice(1);
+    if (hash && nameBySlug[hash]) {
+      const card = document.getElementById(hash);
+      if (card) openProfile(card);
+    }
+  }
+  handleHash();
+  window.addEventListener('hashchange', handleHash);
 </script>
 
 <style>
