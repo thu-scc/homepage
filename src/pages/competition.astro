@@ -65,7 +65,7 @@ const grandSlams = grandSlamYears.length;
                             const badgeClass = `badge badge-${item.type}`;
                             const hasLink = item.id && item.type !== 'absent';
                             return hasLink ? (
-                              <a href={`/competition/${item.id}`} class={badgeClass}>
+                              <a href={`/competition/${item.id}`} class={badgeClass} title="点击查看详情">
                                 {item.label}{item.note && <span class="badge-note">({item.note})</span>}
                               </a>
                             ) : (
@@ -235,5 +235,10 @@ const grandSlams = grandSlamYears.length;
       font-size: 0.7rem;
       padding: 2px 6px;
     }
+  }
+  .click-hint {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    opacity: 0.5;
   }
 </style>

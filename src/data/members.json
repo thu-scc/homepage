@@ -1,49 +1,105 @@
 {
   "advisors": {
     "current": [
-      { "name": "翟季冬", "title": "教授", "url": "http://pacman.cs.tsinghua.edu.cn/~zjd/" },
-      { "name": "韩文弢", "title": "讲师", "url": "http://pacman.cs.tsinghua.edu.cn/~hanwentao/" },
-      { "name": "金煜阳", "title": "助理研究员" }
+      {
+        "name": "翟季冬",
+        "title": "教授",
+        "url": "http://pacman.cs.tsinghua.edu.cn/~zjd/"
+      },
+      {
+        "name": "韩文弢",
+        "title": "讲师",
+        "url": "http://pacman.cs.tsinghua.edu.cn/~hanwentao/"
+      },
+      {
+        "name": "金煜阳",
+        "title": "助理研究员"
+      }
     ],
-    "former": ["甘霖", "黄小猛"]
+    "former": [
+      "甘霖",
+      "黄小猛"
+    ]
   },
   "active": [
     {
-      "grade": "2024 级",
-      "members": [
-        { "name": "施程予" },
-        { "name": "岳章乔" }
-      ]
-    },
-    {
       "grade": "2023 级",
       "members": [
-        { "name": "王浩旭" },
-        { "name": "黄晨衍" },
-        { "name": "黄嘉豪" },
-        { "name": "牛俊博" },
-        { "name": "杨鑫和" },
-        { "name": "秦非冉" },
-        { "name": "王宇澄" }
+        {
+          "name": "王浩旭",
+          "dept": "致理书院"
+        },
+        {
+          "name": "黄晨衍",
+          "dept": "致理书院"
+        },
+        {
+          "name": "黄嘉豪",
+          "dept": "致理书院"
+        },
+        {
+          "name": "任世鑫",
+          "dept": "致理书院"
+        },
+        {
+          "name": "牛俊博"
+        },
+        {
+          "name": "杨鑫和"
+        },
+        {
+          "name": "秦非冉"
+        },
+        {
+          "name": "张扬",
+          "dept": "致理书院"
+        }
       ]
     },
     {
       "grade": "2022 级",
       "members": [
-        { "name": "李轶凡" },
-        { "name": "薛志宇" },
-        { "name": "蔡欣然", "dept": "交叉信息研究院" },
-        { "name": "潘佳奇", "dept": "交叉信息研究院" }
+        {
+          "name": "杨雨晴"
+        },
+        {
+          "name": "王宇澄"
+        },
+        {
+          "name": "施程予"
+        },
+        {
+          "name": "蔡欣然",
+          "dept": "交叉信息研究院"
+        },
+        {
+          "name": "潘佳奇",
+          "dept": "交叉信息研究院"
+        },
+        {
+          "name": "李双宇"
+        },
+        {
+          "name": "吕嘉鑫"
+        },
+        {
+          "name": "贾朝蓬",
+          "dept": "致理书院"
+        }
       ]
     },
     {
       "grade": "2021 级",
       "members": [
-        { "name": "杨雨晴" },
-        { "name": "李双宇" },
-        { "name": "吕嘉鑫" },
-        { "name": "贾朝蓬", "dept": "致理书院" },
-        { "name": "张扬", "dept": "致理书院" }
+        {
+          "name": "李轶凡"
+        },
+        {
+          "name": "薛志宇"
+        },
+        {
+          "name": "岳章乔"
+        }
       ]
     }
   ],
@@ -51,137 +107,281 @@
     {
       "grade": "2021 级",
       "members": [
-        { "name": "杨恺", "dept": "致理书院" }
+        {
+          "name": "杨恺",
+          "dept": "致理书院"
+        }
       ]
     },
     {
       "grade": "2020 级",
       "members": [
-        { "name": "张闰清", "dept": "致理书院" },
-        { "name": "袁兴业", "dept": "致理书院" },
-        { "name": "单敬博", "dept": "致理书院" },
-        { "name": "项晨东" }
+        {
+          "name": "张闰清",
+          "dept": "致理书院"
+        },
+        {
+          "name": "袁兴业",
+          "dept": "致理书院"
+        },
+        {
+          "name": "单敬博",
+          "dept": "致理书院"
+        },
+        {
+          "name": "项晨东"
+        }
       ]
     },
     {
       "grade": "2019 级",
       "members": [
-        { "name": "任彦羽" },
-        { "name": "朱昱熹" },
-        { "name": "曹隽诚" },
-        { "name": "罗富文" },
-        { "name": "胡沐彦" },
-        { "name": "刘蜀琪" }
+        {
+          "name": "任彦羽"
+        },
+        {
+          "name": "朱昱熹"
+        },
+        {
+          "name": "曹隽诚"
+        },
+        {
+          "name": "罗富文"
+        },
+        {
+          "name": "胡沐彦"
+        },
+        {
+          "name": "刘蜀琪"
+        }
       ]
     },
     {
       "grade": "2018 级",
       "members": [
-        { "name": "宋泽宇" },
-        { "name": "翟明书" },
-        { "name": "融凯源" }
+        {
+          "name": "宋泽宇"
+        },
+        {
+          "name": "翟明书"
+        },
+        {
+          "name": "融凯源"
+        }
       ]
     },
     {
       "grade": "2017 级",
       "members": [
-        { "name": "赵成钢" },
-        { "name": "顾煜贤" },
-        { "name": "张晨", "url": "https://github.com/heheda12345" },
-        { "name": "王雨田" },
-        { "name": "陈嘉杰", "url": "https://github.com/jiegec" },
-        { "name": "钟闰鑫" }
+        {
+          "name": "赵成钢"
+        },
+        {
+          "name": "顾煜贤"
+        },
+        {
+          "name": "张晨",
+          "url": "https://github.com/heheda12345"
+        },
+        {
+          "name": "王雨田"
+        },
+        {
+          "name": "陈嘉杰",
+          "url": "https://github.com/jiegec"
+        },
+        {
+          "name": "钟闰鑫"
+        }
       ]
     },
     {
       "grade": "2016 级",
       "members": [
-        { "name": "何家傲", "url": "https://laekov.com.cn/" },
-        { "name": "郑立言" },
-        { "name": "陈晟祺", "url": "https://github.com/Harry-Chen" },
-        { "name": "黄可钊" },
-        { "name": "娄晨耀", "dept": "交叉信息研究院" }
+        {
+          "name": "何家傲",
+          "url": "https://laekov.com.cn/"
+        },
+        {
+          "name": "郑立言"
+        },
+        {
+          "name": "陈晟祺",
+          "url": "https://github.com/Harry-Chen"
+        },
+        {
+          "name": "黄可钊"
+        },
+        {
+          "name": "娄晨耀",
+          "dept": "交叉信息研究院"
+        }
       ]
     },
     {
       "grade": "2015 级",
       "members": [
-        { "name": "于纪平" },
-        { "name": "陈宇" },
-        { "name": "唐适之" },
-        { "name": "余欣健" },
-        { "name": "谢倩" }
+        {
+          "name": "于纪平"
+        },
+        {
+          "name": "陈宇"
+        },
+        {
+          "name": "唐适之"
+        },
+        {
+          "name": "余欣健"
+        },
+        {
+          "name": "谢倩"
+        }
       ]
     },
     {
       "grade": "2014 级",
       "members": [
-        { "name": "李北辰" },
-        { "name": "冯冠宇" },
-        { "name": "谢磊" },
-        { "name": "劉家昌" }
+        {
+          "name": "李北辰"
+        },
+        {
+          "name": "冯冠宇"
+        },
+        {
+          "name": "谢磊"
+        },
+        {
+          "name": "劉家昌"
+        }
       ]
     },
     {
       "grade": "2013 级",
       "members": [
-        { "name": "叶方轲" },
-        { "name": "李宇轩" },
-        { "name": "王邈" },
-        { "name": "龙浩民" }
+        {
+          "name": "叶方轲"
+        },
+        {
+          "name": "李宇轩"
+        },
+        {
+          "name": "王邈"
+        },
+        {
+          "name": "龙浩民"
+        }
       ]
     },
     {
       "grade": "2012 级",
       "members": [
-        { "name": "卓有为" },
-        { "name": "梁俊邦" },
-        { "name": "郭家宝" },
-        { "name": "裘捷中" },
-        { "name": "梁盾" },
-        { "name": "鲁逸沁" }
+        {
+          "name": "卓有为"
+        },
+        {
+          "name": "梁俊邦"
+        },
+        {
+          "name": "郭家宝"
+        },
+        {
+          "name": "裘捷中"
+        },
+        {
+          "name": "梁盾"
+        },
+        {
+          "name": "鲁逸沁"
+        }
       ]
     },
     {
       "grade": "2011 级",
       "members": [
-        { "name": "宋方睿" },
-        { "name": "吴育昕" },
-        { "name": "程淼", "dept": "自动化系" },
-        { "name": "张阳", "dept": "物理系" },
-        { "name": "高凡" }
+        {
+          "name": "宋方睿"
+        },
+        {
+          "name": "吴育昕"
+        },
+        {
+          "name": "程淼",
+          "dept": "自动化系"
+        },
+        {
+          "name": "张阳",
+          "dept": "物理系"
+        },
+        {
+          "name": "高凡"
+        }
       ]
     },
     {
       "grade": "2010 级",
       "members": [
-        { "name": "李恺威" },
-        { "name": "乔宇宸" },
-        { "name": "蒋林浩" },
-        { "name": "陈逸翀" },
-        { "name": "刘艺宁" },
-        { "name": "王凝枰" }
+        {
+          "name": "李恺威"
+        },
+        {
+          "name": "乔宇宸"
+        },
+        {
+          "name": "蒋林浩"
+        },
+        {
+          "name": "陈逸翀"
+        },
+        {
+          "name": "刘艺宁"
+        },
+        {
+          "name": "王凝枰"
+        }
       ]
     },
     {
       "grade": "2009 级",
       "members": [
-        { "name": "徐持衡" },
-        { "name": "姜碧野" },
-        { "name": "骆可强" },
-        { "name": "金昊衠" },
-        { "name": "王欣亮" }
+        {
+          "name": "徐持衡"
+        },
+        {
+          "name": "姜碧野"
+        },
+        {
+          "name": "骆可强"
+        },
+        {
+          "name": "金昊衠"
+        },
+        {
+          "name": "王欣亮"
+        }
       ]
     },
     {
       "grade": "2008 级",
       "members": [
-        { "name": "徐世真" },
-        { "name": "程芃祺" },
-        { "name": "任一恒" },
-        { "name": "吕子鉷" },
-        { "name": "廖俊峰" },
-        { "name": "杨弋", "dept": "交叉信息研究院" }
+        {
+          "name": "徐世真"
+        },
+        {
+          "name": "程芃祺"
+        },
+        {
+          "name": "任一恒"
+        },
+        {
+          "name": "吕子鉷"
+        },
+        {
+          "name": "廖俊峰"
+        },
+        {
+          "name": "杨弋",
+          "dept": "交叉信息研究院"
+        }
       ]
     }
   ]

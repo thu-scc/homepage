@@ -10,11 +10,11 @@ export function getStaticPaths() {
 }
 
 const { id, info } = Astro.props as { id: string; info: any };
-const hasTeam = info.team && (info.team.players?.length || info.team.coaches?.length || info.team.support?.length || info.team.training?.length);
-const hasProblems = info.problems?.length;
-const hasNews = info.news?.length;
-const hasHighlights = info.highlights;
-const hasNotes = info._notes;
+const hasTeam = !!(info.team && (info.team.players?.length || info.team.coaches?.length || info.team.support?.length || info.team.training?.length));
+const hasProblems = !!(info.problems?.length);
+const hasNews = !!(info.news?.length);
+const hasHighlights = !!info.highlights;
+const hasNotes = !!info._notes;
 ---
 <Base title={`${info.name} · THUSCC`} activePage="competition">
   <section class="sec sec-top">
@@ -101,6 +101,19 @@ const hasNotes = info._notes;
     {hasNotes && (
       <p class="detail-notes">⚠️ {info._notes}</p>
     )}
+
+    {info.photos?.length > 0 && (
+      <div class="detail-section">
+        <h3 class="detail-heading">照片</h3>
+        <div class="photos-grid">
+          {info.photos.map((src: string) => (
+            <a href={src} target="_blank" class="photo-link">
+              <img src={src} alt={`${info.name} 团队照片`} class="comp-photo" loading="lazy" />
+            </a>
+          ))}
+        </div>
+      </div>
+    )}
   </section>
 </Base>
 
@@ -129,4 +142,8 @@ const hasNotes = info._notes;
   .detail-placeholder { margin-top: 5vh; padding: 48px 24px; border: 1px dashed rgba(var(--fg-rgb), 0.12); border-radius: 12px; text-align: center; }
   .placeholder-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.45; }
   .detail-notes { font-family: var(--mono); font-size: 0.75rem; opacity: 0.6; margin-top: 3vh; padding: 12px; background: rgba(var(--fg-rgb), 0.03); border-radius: 6px; }
+  .photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .photo-link { display: block; border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border); transition: border-color 0.2s, transform 0.15s; }
+  .photo-link:hover { border-color: var(--accent-light); transform: translateY(-2px); }
+  .comp-photo { width: 100%; display: block; }
 </style>
