@@ -1,0 +1,230 @@
+---
+import Base from '../layouts/Base.astro';
+import data from '../data/competitions.json';
+
+const { stats, competitions, grandSlamYears, records } = data;
+---
+<Base title="竞赛情况 · THUSCC" activePage="competition">
+  <section class="sec sec-top">
+    <p class="sec-kicker">Competition Record</p>
+    <h2 class="sec-title">竞赛情况</h2>
+    <p class="sec-lead">全球唯一在 ASC、ISC、SC 三大国际大学生超算竞赛中均获得过冠军的队伍。</p>
+
+    <div class="stats-row">
+      <div class="stat-item"><span class="n">{stats.champions}</span><span class="l">国际赛事冠军</span></div>
+      <div class="stat-item"><span class="n">{stats.years}</span><span class="l">年竞赛历程</span></div>
+      <div class="stat-item"><span class="n">{stats.grandSlams}</span><span class="l">大赛事满贯</span></div>
+    </div>
+
+    <h3 class="comp-section-title">完整成绩</h3>
+    <p class="comp-legend">
+      <span class="badge badge-champion">冠军</span>
+      <span class="badge badge-runner-up">亚军</span>
+      <span class="badge badge-linpack">LINPACK</span>
+      <span class="badge badge-eprize">E-Prize</span>
+      <span class="badge badge-special">特别奖</span>
+    </p>
+
+    <div class="comp-table-wrap">
+      <table class="comp-table">
+        <thead>
+          <tr>
+            <th class="col-year">Year</th>
+            {competitions.map(c => <th>{c}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {records.map(row => {
+            const isGrandSlam = grandSlamYears.includes(row.year);
+            return (
+              <tr class={isGrandSlam ? 'row-grandslam' : ''}>
+                <td class="col-year">
+                  <span class="year-num">{row.year}</span>
+                  {isGrandSlam && (
+                    <span class="grandslam-icon" title="三大赛事大满贯">
+                      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10 1c-1.828 0-3.623.149-5.371.435a.75.75 0 0 0-.629.74v.387c-.827.157-1.642.345-2.445.564a.75.75 0 0 0-.552.698 5 5 0 0 0 4.503 5.152 6 6 0 0 0 2.946 1.822A1.51 1.51 0 0 1 7.5 11.268v.732H6a.75.75 0 0 0-.75.75v1.5h-.75a.75.75 0 0 0-.75.75v2.25c0 .414.336.75.75.75h11a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75h-.75v-1.5a.75.75 0 0 0-.75-.75h-1.5v-.732a1.51 1.51 0 0 1-.952-.47 6 6 0 0 0 2.946-1.822 5 5 0 0 0 4.503-5.152.75.75 0 0 0-.552-.698A31 31 0 0 0 16 2.562v-.388a.75.75 0 0 0-.629-.74A33 33 0 0 0 10 1M2.525 4.422a29 29 0 0 1 1.975-.478v2.2a4.5 4.5 0 0 0 1.735 3.55 3.5 3.5 0 0 1-3.71-5.272m14.95 0a3.5 3.5 0 0 1-3.71 5.272 4.5 4.5 0 0 0 1.735-3.55v-2.2c.68.127 1.338.282 1.975.478" clip-rule="evenodd"/></svg>
+                    </span>
+                  )}
+                </td>
+                {competitions.map(comp => {
+                  const items = (row as any)[comp] || [];
+                  return (
+                    <td>
+                      {items.length === 0 ? null : (
+                        <div class="cell-badges">
+                          {items.map((item: any) => {
+                            const badgeClass = `badge badge-${item.type}`;
+                            const hasLink = item.id && item.type !== 'absent';
+                            return hasLink ? (
+                              <a href={`/competition/${item.id}`} class={badgeClass}>
+                                {item.label}{item.note && <span class="badge-note">({item.note})</span>}
+                              </a>
+                            ) : (
+                              <span class={badgeClass}>
+                                {item.label}{item.note && <span class="badge-note">({item.note})</span>}
+                              </span>
+                            );
+                          })}
+                        </div>
+                      )}
+                    </td>
+                  );
+                })}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .comp-section-title {
+    font-family: var(--serif-zh);
+    font-weight: 600;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    margin: 5vh 0 1.5vh;
+  }
+  .comp-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 3vh;
+    opacity: 0.8;
+  }
+  .comp-table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+  .comp-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 640px;
+  }
+  .comp-table th {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 2px solid rgba(var(--fg-rgb), 0.12);
+    white-space: nowrap;
+  }
+  .comp-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(var(--fg-rgb), 0.05);
+    vertical-align: top;
+  }
+  .comp-table tr:hover td {
+    background: rgba(var(--fg-rgb), 0.02);
+  }
+  .col-year {
+    width: 100px;
+    white-space: nowrap;
+  }
+  .year-num {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 0.9rem;
+  }
+
+  /* Grand Slam row */
+  .row-grandslam {
+    background: linear-gradient(90deg, rgba(255,200,0,0.06) 0%, transparent 100%);
+  }
+  .row-grandslam td {
+    border-bottom-color: rgba(255,200,0,0.15);
+  }
+  .grandslam-icon {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 6px;
+    color: var(--gold-color);
+    vertical-align: middle;
+    line-height: 0;
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  a.badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .badge-note {
+    font-weight: 400;
+    opacity: 0.7;
+    margin-left: 2px;
+    font-size: 0.68rem;
+  }
+  .cell-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  /* Badge types */
+  .badge-champion {
+    background: var(--gold-bg);
+    color: var(--gold-color);
+    border: 1px solid rgba(255,200,0,0.2);
+  }
+  .badge-runner-up {
+    background: rgba(192,192,192,0.12);
+    color: rgba(var(--fg-rgb), 0.75);
+    border: 1px solid rgba(192,192,192,0.25);
+  }
+  .badge-linpack {
+    background: rgba(80,200,255,0.1);
+    color: #4db8d4;
+    border: 1px solid rgba(80,200,255,0.2);
+  }
+  [data-theme="light"] .badge-linpack {
+    color: #1a7a94;
+  }
+  .badge-eprize {
+    background: rgba(160,80,255,0.1);
+    color: #a855c8;
+    border: 1px solid rgba(160,80,255,0.2);
+  }
+  .badge-special {
+    background: rgba(255,140,50,0.1);
+    color: #d4843a;
+    border: 1px solid rgba(255,140,50,0.2);
+  }
+  [data-theme="light"] .badge-special {
+    color: #9a5520;
+  }
+  .badge-place {
+    background: rgba(var(--fg-rgb), 0.04);
+    color: rgba(var(--fg-rgb), 0.65);
+    border: 1px solid rgba(var(--fg-rgb), 0.08);
+  }
+
+  @media (max-width: 768px) {
+    .comp-table {
+      font-size: 0.8rem;
+    }
+    .comp-table th, .comp-table td {
+      padding: 10px 8px;
+    }
+    .badge {
+      font-size: 0.7rem;
+      padding: 2px 6px;
+    }
+  }
+</style>

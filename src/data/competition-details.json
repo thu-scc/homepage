@@ -1,0 +1,200 @@
+{
+  "isc25": {
+    "name": "ISC 2025",
+    "location": "Hamburg, Germany",
+    "date": "2025-06",
+    "awards": ["总冠军", "最高 LINPACK"]
+  },
+  "asc25": {
+    "name": "ASC 2025",
+    "location": "待补充",
+    "date": "2025",
+    "awards": ["第五名"]
+  },
+  "pac25": {
+    "name": "PAC 2025 优化赛道",
+    "location": "",
+    "date": "2025",
+    "awards": ["特等奖"]
+  },
+  "isc24": {
+    "name": "ISC 2024",
+    "location": "Hamburg, Germany",
+    "date": "2024-05",
+    "awards": ["总冠军", "最高 LINPACK", "线上比赛亚军"]
+  },
+  "sc24": {
+    "name": "SC 2024",
+    "location": "Atlanta, USA",
+    "date": "2024-11",
+    "awards": ["冠军"]
+  },
+  "asc23": {
+    "name": "ASC 2023",
+    "location": "待补充",
+    "date": "2023",
+    "awards": ["第五名"]
+  },
+  "sc23": {
+    "name": "SC 2023",
+    "location": "Denver, USA",
+    "date": "2023-11",
+    "awards": ["第四名"]
+  },
+  "isc22": {
+    "name": "ISC 2022",
+    "location": "Hamburg, Germany（线上）",
+    "date": "2022-05",
+    "awards": ["冠军"]
+  },
+  "asc21": {
+    "name": "ASC 2021",
+    "location": "待补充",
+    "date": "2021",
+    "awards": ["亚军", "E-Prize"]
+  },
+  "isc21": {
+    "name": "ISC 2021",
+    "location": "线上",
+    "date": "2021-06",
+    "awards": ["冠军", "最高 LINPACK"]
+  },
+  "sc21": {
+    "name": "SC 2021",
+    "location": "线上",
+    "date": "2021-11",
+    "awards": ["冠军"]
+  },
+  "isc20": {
+    "name": "ISC 2020",
+    "location": "线上",
+    "date": "2020-06",
+    "awards": ["第三名"]
+  },
+  "sc20": {
+    "name": "SC 2020",
+    "location": "线上",
+    "date": "2020-11",
+    "awards": ["冠军"]
+  },
+  "asc19": {
+    "name": "ASC 2019",
+    "location": "大连",
+    "date": "2019-04",
+    "awards": ["亚军"]
+  },
+  "isc19": {
+    "name": "ISC 2019",
+    "location": "Hamburg, Germany",
+    "date": "2019-06",
+    "awards": ["亚军"]
+  },
+  "sc19": {
+    "name": "SC 2019",
+    "location": "Denver, USA",
+    "date": "2019-11",
+    "awards": ["冠军"]
+  },
+  "asc18": {
+    "name": "ASC 2018",
+    "location": "南昌",
+    "date": "2018-05",
+    "awards": ["冠军"]
+  },
+  "isc18": {
+    "name": "ISC 2018",
+    "location": "Hamburg, Germany",
+    "date": "2018-06",
+    "awards": ["冠军"]
+  },
+  "sc18": {
+    "name": "SC 2018",
+    "location": "Dallas, USA",
+    "date": "2018-11",
+    "awards": ["冠军"]
+  },
+  "asc17": {
+    "name": "ASC 2017",
+    "location": "无锡",
+    "date": "2017-04",
+    "awards": ["冠军"]
+  },
+  "isc17": {
+    "name": "ISC 2017",
+    "location": "Hamburg, Germany",
+    "date": "2017-06",
+    "awards": ["冠军"]
+  },
+  "sc17": {
+    "name": "SC 2017",
+    "location": "Denver, USA",
+    "date": "2017-11",
+    "awards": ["第三名"]
+  },
+  "asc16": {
+    "name": "ASC 2016",
+    "location": "待补充",
+    "date": "2016",
+    "awards": ["第五名"]
+  },
+  "isc16": {
+    "name": "ISC 2016",
+    "location": "Hamburg, Germany",
+    "date": "2016-06",
+    "awards": ["亚军"]
+  },
+  "asc15": {
+    "name": "ASC 2015",
+    "location": "太原",
+    "date": "2015-04",
+    "awards": ["冠军"]
+  },
+  "isc15": {
+    "name": "ISC 2015",
+    "location": "Hamburg, Germany",
+    "date": "2015-06",
+    "awards": ["冠军"]
+  },
+  "sc15": {
+    "name": "SC 2015",
+    "location": "Austin, USA",
+    "date": "2015-11",
+    "awards": ["冠军"]
+  },
+  "asc14": {
+    "name": "ASC 2014",
+    "location": "待补充",
+    "date": "2014",
+    "awards": ["E-Prize"]
+  },
+  "isc14": {
+    "name": "ISC 2014",
+    "location": "Hamburg, Germany",
+    "date": "2014-06",
+    "awards": ["亚军"]
+  },
+  "asc13": {
+    "name": "ASC 2013",
+    "location": "待补充",
+    "date": "2013",
+    "awards": ["冠军", "最高 LINPACK"]
+  },
+  "isc13": {
+    "name": "ISC 2013",
+    "location": "Hamburg, Germany",
+    "date": "2013-06",
+    "awards": ["亚军"]
+  },
+  "asc12": {
+    "name": "ASC 2012",
+    "location": "待补充",
+    "date": "2012",
+    "awards": ["冠军"]
+  },
+  "isc12": {
+    "name": "ISC 2012",
+    "location": "Hamburg, Germany",
+    "date": "2012-06",
+    "awards": ["冠军"]
+  }
+}

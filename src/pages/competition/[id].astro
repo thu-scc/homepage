@@ -1,0 +1,102 @@
+---
+import Base from '../../layouts/Base.astro';
+import details from '../../data/competition-details.json';
+
+export function getStaticPaths() {
+  return Object.entries(details).map(([id, info]) => ({
+    params: { id },
+    props: { id, info },
+  }));
+}
+
+interface CompInfo {
+  name: string;
+  location: string;
+  date: string;
+  awards: string[];
+  team?: { coaches?: string[]; players?: string[]; support?: string[]; training?: string[] };
+  problems?: string[];
+  photos?: string[];
+  news?: { title: string; url: string }[];
+}
+
+const { id, info } = Astro.props as { id: string; info: CompInfo };
+---
+<Base title={`${info.name} · THUSCC`} activePage="competition">
+  <section class="sec sec-top">
+    <a href="/competition" class="back-link">
+      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z" clip-rule="evenodd"/></svg>
+      返回竞赛总览
+    </a>
+
+    <p class="sec-kicker">{info.date}</p>
+    <h2 class="sec-title">{info.name}</h2>
+    {info.location && <p class="sec-lead">{info.location}</p>}
+
+    <div class="detail-awards">
+      {info.awards.map(a => <span class="detail-award">{a}</span>)}
+    </div>
+
+    <div class="detail-placeholder">
+      <div class="placeholder-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+        <p>详细信息待补充</p>
+        <p class="placeholder-hint">可添加：指导老师、上场队员、技术支持、参加训练人员、赛题、照片、新闻报道</p>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--accent-light);
+    text-decoration: none;
+    margin-bottom: 3vh;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 1; }
+  .detail-awards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 3vh 0;
+  }
+  .detail-award {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--gold-bg);
+    color: var(--gold-color);
+    border: 1px solid rgba(255,200,0,0.2);
+  }
+  .detail-placeholder {
+    margin-top: 5vh;
+    padding: 48px 24px;
+    border: 1px dashed rgba(var(--fg-rgb), 0.12);
+    border-radius: 12px;
+    text-align: center;
+  }
+  .placeholder-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    opacity: 0.45;
+  }
+  .placeholder-inner p {
+    font-size: 0.9rem;
+  }
+  .placeholder-hint {
+    font-family: var(--mono);
+    font-size: 0.72rem !important;
+    max-width: 400px;
+  }
+</style>
