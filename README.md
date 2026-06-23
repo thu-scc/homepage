@@ -12,6 +12,10 @@ node --version   # 确认 >= 22.12.0
 pnpm --version   # 确认已安装
 ```
 
+## 预览
+
+当前部署预览地址：https://scc-homepage.harry-chen.workers.dev/
+
 ## 快速开始
 
 ```bash
