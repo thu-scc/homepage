@@ -206,7 +206,13 @@ const indexJSON = JSON.stringify(participationIndex);
   .member-link { position: absolute; top: 10px; right: 10px; color: var(--accent-light); opacity: 0.6; transition: opacity 0.2s; line-height: 0; }
   .member-link:hover { opacity: 1; }
 
-  /* Modal */
+  @media (max-width: 480px) {
+    .member-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
+  }
+</style>
+
+<style is:global>
+  /* Modal — must be global because content is JS-generated */
   .modal-overlay { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,0.6); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px; }
   .modal-overlay.open { display: flex; }
   .modal-content { background: var(--bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 0; max-width: 420px; width: 100%; max-height: 80vh; overflow: hidden; position: relative; box-shadow: 0 20px 60px rgba(0,0,0,0.3); display: flex; flex-direction: column; }
@@ -227,7 +233,6 @@ const indexJSON = JSON.stringify(participationIndex);
   .modal-comp-row:hover { background: rgba(var(--fg-rgb), 0.06); border-color: var(--accent-light); }
 
   @media (max-width: 480px) {
-    .member-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
     .modal-content { max-width: 100%; border-radius: 12px; }
     .modal-header { padding: 22px 20px 16px; }
     .modal-body { padding: 16px 20px 22px; }
