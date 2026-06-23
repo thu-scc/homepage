@@ -1042,8 +1042,13 @@
       "冠军"
     ],
     "problems": [
-      "3000W 功耗约束下搭建集群",
-      "7项科学计算赛题"
+      "HPL 基准测试",
+      "HPCG 基准测试",
+      "分子动力学 NAMD",
+      "天气预报 WRF-CHEM",
+      "Xeon Phi 优化",
+      "流体模拟 Palabos",
+      "展示环节"
     ],
     "team": {
       "coaches": [
@@ -1076,7 +1081,7 @@
     "photos": [
       "/img/competition/asc15/01.jpg"
     ],
-    "highlights": "全球6大洲152支队伍报名，16支入围决赛。同时获得应用创新奖。大满贯年第一冠。"
+    "highlights": "6机6卡(Tesla K80)配置，3000W功率限制。NAMD应用创新奖。全球152支队伍报名，16支入围决赛。大满贯年第一冠。"
   },
   "isc15": {
     "name": "ISC 2015",
@@ -1086,12 +1091,13 @@
       "冠军"
     ],
     "problems": [
-      "分子动力学",
-      "大气模拟",
-      "生物制药",
-      "天气预报",
-      "流体力学",
-      "材料科学"
+      "HPL 基准测试",
+      "HPCC 基准测试",
+      "量子模拟 Octopus",
+      "计算流体力学 PyFR",
+      "分子动力学 LAMMPS",
+      "图计算 Graph 500",
+      "神秘应用：PyFR 低功耗挑战"
     ],
     "team": {
       "coaches": [
@@ -1124,7 +1130,7 @@
       "/img/competition/isc15/01.jpg",
       "/img/competition/isc15/02.jpg"
     ],
-    "highlights": "3000瓦功耗限制，历时5天（含搭建调试+优化+面试）。大满贯年第二冠。"
+    "highlights": "7机5卡配置(赛中从8机调整)，3000瓦功率限制。神秘应用(PyFR)时间估算极精准，最后一分钟运行完毕。时隔三年再度夺冠。大满贯年第二冠。"
   },
   "sc15": {
     "name": "SC 2015",
@@ -1172,52 +1178,84 @@
   },
   "asc14": {
     "name": "ASC 2014",
-    "location": "",
-    "date": "2014",
+    "location": "广州中山大学",
+    "date": "2014-04-21 ~ 2014-04-25",
     "awards": [
       "E-Prize"
     ],
+    "problems": [
+      "HPL 基准测试",
+      "Quantum Espresso",
+      "SU2 计算流体力学",
+      "3D-EW 地震波模拟（天河二号）",
+      "海洋模式 LICOM2",
+      "神秘应用：mpiBLAST 基因比对",
+      "Palabos 流体模拟"
+    ],
     "team": {
-      "coaches": [],
+      "coaches": [
+        "黄小猛",
+        "翟季冬"
+      ],
       "players": [],
       "support": [],
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "highlights": "78支参赛队伍，16支进决赛。SU2应用创新奖（第一名甩开第二名很多）。上交夺冠。",
+    "_notes": "队员5人（含蒋林浩、喬宇宸等），教练徐世真、李恺威。具体名单待确认。"
   },
   "isc14": {
     "name": "ISC 2014",
-    "location": "德国莱比锡",
-    "date": "2014-06",
+    "location": "德国法兰克福",
+    "date": "2014-07",
     "awards": [
-      "亚军"
+      "第三名"
+    ],
+    "problems": [
+      "HPCC 基准测试",
+      "LINPACK 基准测试",
+      "Quantum Espresso",
+      "OpenFOAM",
+      "HPCG（神秘应用）",
+      "Gadget",
+      "Quantum Espresso 低功耗挑战（神秘应用）"
     ],
     "team": {
-      "coaches": [],
+      "coaches": [
+        "翟季冬"
+      ],
       "players": [],
       "support": [],
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "highlights": "神秘应用(Quantum Espresso低功耗)仅三队得分，清华次于南非CHPC。总分第三，次于南非CHPC和中科大。",
+    "_notes": "⚠️ 此前记录为亚军，但队员博客明确写'第三名，次于南非CHPC和中科大'。需人工确认。郭家宝参与了Quantum Espresso神秘应用。"
   },
   "asc13": {
     "name": "ASC 2013",
-    "location": "",
-    "date": "2013",
+    "location": "上海交通大学",
+    "date": "2013-04",
     "awards": [
       "冠军",
       "最高 LINPACK"
     ],
+    "problems": [],
     "team": {
-      "coaches": [],
+      "coaches": [
+        "黄小猛"
+      ],
       "players": [],
       "support": [],
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "highlights": "8机10卡（浪潮英信NF5280M3、Tesla K20），HPL达到7579Gflops，刷新同类赛事记录。人称'梦之队'。",
+    "_notes": "具体队员名单待确认（博客提到'前两年的带队老师黄小猛'）"
   },
   "isc13": {
     "name": "ISC 2013",
@@ -1227,13 +1265,17 @@
       "亚军"
     ],
     "team": {
-      "coaches": [],
+      "coaches": [
+        "黄小猛"
+      ],
       "players": [],
       "support": [],
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "highlights": "8所学校参加。展示前领先第二名甚多，展示环节（占50分）后被反超。",
+    "_notes": "具体队员同ASC13"
   },
   "asc12": {
     "name": "ASC 2012",
@@ -1243,13 +1285,16 @@
       "冠军"
     ],
     "team": {
-      "coaches": [],
+      "coaches": [
+        "黄小猛"
+      ],
       "players": [],
       "support": [],
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "_notes": "第一届ASC比赛。具体信息待补充。"
   },
   "isc12": {
     "name": "ISC 2012",
@@ -1259,13 +1304,16 @@
       "冠军"
     ],
     "team": {
-      "coaches": [],
+      "coaches": [
+        "黄小猛"
+      ],
       "players": [],
       "support": [],
       "training": []
     },
     "news": [],
-    "photos": []
+    "photos": [],
+    "_notes": "ISC SCC第一届比赛。具体信息待补充。"
   },
   "sc25": {
     "name": "IndySCC 2025",
