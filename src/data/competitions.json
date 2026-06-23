@@ -48,7 +48,8 @@
         {
           "type": "place",
           "label": "IndySCC 参赛",
-          "id": "sc25"
+          "id": "sc25",
+          "note": "线上"
         }
       ],
       "其他": [

@@ -289,14 +289,34 @@
       "第四名"
     ],
     "team": {
-      "coaches": [],
-      "players": [],
-      "support": [],
+      "coaches": [
+        "韩文弢",
+        "翟季冬"
+      ],
+      "players": [
+        "张闰清",
+        "单敬博",
+        "杨恺",
+        "袁兴业",
+        "项晨东",
+        "蔡欣然"
+      ],
+      "support": [
+        "陈晟祺",
+        "翟明书"
+      ],
       "training": []
     },
-    "news": [],
-    "photos": [],
-    "_notes": "官方报道未找到"
+    "news": [
+      {
+        "title": "Meet This Year's SCC Teams (SC23)",
+        "url": "https://sc23.supercomputing.org/2023/08/meet-this-years-scc-teams/"
+      }
+    ],
+    "photos": [
+      "/img/competition/sc23/01.jpg",
+      "/img/competition/sc23/02.jpg"
+    ]
   },
   "isc22": {
     "name": "ISC 2022",
@@ -1139,7 +1159,7 @@
   },
   "sc25": {
     "name": "IndySCC 2025",
-    "location": "美国圣路易斯",
+    "location": "线上",
     "date": "2025-11",
     "awards": [
       "参赛"
@@ -1166,6 +1186,7 @@
         "url": "https://sc25.supercomputing.org/2025/10/from-spark-to-flame-introducing-the-indyscc25-teams/"
       }
     ],
-    "photos": []
+    "photos": [],
+    "highlights": "IndySCC 为线上赛制。"
   }
 }
