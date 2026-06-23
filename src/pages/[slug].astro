@@ -4,10 +4,12 @@ import Base from '../layouts/Base.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
-  return pages.map(page => ({
-    params: { slug: page.id },
-    props: { page },
-  }));
+  return pages
+    .filter(page => page.id !== 'members')
+    .map(page => ({
+      params: { slug: page.id },
+      props: { page },
+    }));
 }
 
 const { page } = Astro.props;
