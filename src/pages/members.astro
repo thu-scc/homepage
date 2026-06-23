@@ -161,12 +161,12 @@ const indexJSON = JSON.stringify(participationIndex);
       }
       let html = '';
       for (const [role, items] of Object.entries(grouped)) {
-        html += `<div class="modal-role-group"><p class="modal-role-label">${role}</p>`;
+        html += `<div class="modal-role-group"><p class="modal-role-label">${role}</p><div class="modal-comp-list">`;
         for (const item of items) {
-          const awardsStr = item.awards.length ? `<span class="modal-awards">${item.awards.join(' · ')}</span>` : '';
-          html += `<a class="modal-comp-row" href="/competition/${item.id}"><span class="modal-comp-name">${item.name}</span>${awardsStr}</a>`;
+          const awardsStr = item.awards.length ? `：${item.awards.join('、')}` : '';
+          html += `<a class="modal-comp-row" href="/competition/${item.id}">${item.name}${awardsStr}</a>`;
         }
-        html += '</div>';
+        html += '</div></div>';
       }
       body.innerHTML = html;
     }
@@ -219,14 +219,12 @@ const indexJSON = JSON.stringify(participationIndex);
   .modal-url:hover { color: var(--accent-light); }
   .modal-body { padding: 20px 28px 28px; overflow-y: auto; flex: 1; }
   .modal-empty { opacity: 0.4; font-size: 0.85rem; text-align: center; padding: 20px 0; }
-  .modal-role-group { margin-bottom: 20px; }
+  .modal-role-group { margin-bottom: 24px; }
   .modal-role-group:last-child { margin-bottom: 0; }
-  .modal-role-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid rgba(var(--fg-rgb), 0.06); }
-  .modal-comp-row { display: block; padding: 10px 12px; margin: 0 -12px 8px; border-radius: 8px; text-decoration: none; color: inherit; transition: background 0.15s; border: 1px solid rgba(var(--fg-rgb), 0.04); }
-  .modal-comp-row:last-child { margin-bottom: 0; }
-  .modal-comp-row:hover { background: rgba(var(--fg-rgb), 0.05); border-color: rgba(var(--fg-rgb), 0.08); }
-  .modal-comp-name { display: block; font-size: 0.85rem; font-weight: 500; font-family: var(--sans-zh); color: var(--fg); margin-bottom: 2px; }
-  .modal-awards { display: block; font-family: var(--mono); font-size: 0.67rem; color: var(--gold-color); letter-spacing: 0.02em; }
+  .modal-role-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.45; margin-bottom: 12px; padding-bottom: 6px; border-bottom: 1px solid rgba(var(--fg-rgb), 0.06); }
+  .modal-comp-list { display: flex; flex-direction: column; gap: 6px; }
+  .modal-comp-row { display: block; padding: 10px 14px; border-radius: 8px; text-decoration: none; color: var(--fg); font-size: 0.85rem; font-family: var(--sans-zh); background: rgba(var(--fg-rgb), 0.025); border: 1px solid rgba(var(--fg-rgb), 0.05); transition: background 0.15s, border-color 0.15s; }
+  .modal-comp-row:hover { background: rgba(var(--fg-rgb), 0.06); border-color: var(--accent-light); }
 
   @media (max-width: 480px) {
     .member-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
