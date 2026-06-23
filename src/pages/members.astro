@@ -54,6 +54,7 @@ for (const records of Object.values(participationIndex)) {
 const slugMap: Record<string, string> = {};
 const allMembers = [
   ...members.advisors.current.map(m => m.name),
+  ...members.advisors.former,
   ...members.active.flatMap(g => g.members.map(m => m.name)),
   ...members.alumni.flatMap(g => g.members.map(m => m.name)),
 ];
@@ -85,7 +86,15 @@ const slugMapJSON = JSON.stringify(slugMap);
         </div>
       ))}
     </div>
-    <p class="former-note">前任指导教师：{members.advisors.former.join('、')}</p>
+    <p class="former-note">前任指导教师</p>
+    <div class="member-grid">
+      {members.advisors.former.map(name => (
+        <div class="member-card" id={slugMap[name] || ''} data-name={name} data-url="" data-dept="前任指导教师">
+          <span class="member-name">{name}</span>
+          <span class="member-dept">前任指导教师</span>
+        </div>
+      ))}
+    </div>
 
     <h3 class="group-heading">在队成员</h3>
     {members.active.map(group => (

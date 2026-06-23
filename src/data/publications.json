@@ -1,7 +1,17 @@
 [
   {
     "title": "Critique of \"Data Flow Lifecycles for Optimizing Workflow Coordination\" by SCC Team From Tsinghua University",
-    "authors": ["杨恺", "李轶凡", "薛志宇", "杨雨晴", "王宇澄", "施程予", "韩文弢", "金煜阳", "翟季冬"],
+    "authors": [
+      "杨恺",
+      "李轶凡",
+      "薛志宇",
+      "杨雨晴",
+      "王宇澄",
+      "施程予",
+      "韩文弢",
+      "金煜阳",
+      "翟季冬"
+    ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",
     "year": 2025,
@@ -11,7 +21,16 @@
   },
   {
     "title": "Critique of \"A Parallel Framework for Constraint-Based Bayesian Network Learning via Markov Blanket Discovery\" by SCC Team From Tsinghua University",
-    "authors": ["翟明书", "宋泽宇", "融凯源", "任彦羽", "曹隽诚", "朱昱熹", "韩文弢", "翟季冬"],
+    "authors": [
+      "翟明书",
+      "宋泽宇",
+      "融凯源",
+      "任彦羽",
+      "曹隽诚",
+      "朱昱熹",
+      "韩文弢",
+      "翟季冬"
+    ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",
     "year": 2023,
@@ -21,7 +40,17 @@
   },
   {
     "title": "Critique of \"MemXCT: Memory-Centric X-ray CT Reconstruction with Massive Parallelization\" by SCC Team from Tsinghua University",
-    "authors": ["钟闰鑫", "陈嘉杰", "张晨", "翟明书", "宋泽宇", "王雨田", "韩文弢", "甘霖", "翟季冬"],
+    "authors": [
+      "钟闰鑫",
+      "陈嘉杰",
+      "张晨",
+      "翟明书",
+      "宋泽宇",
+      "王雨田",
+      "韩文弢",
+      "甘霖",
+      "翟季冬"
+    ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",
     "year": 2022,
@@ -31,7 +60,16 @@
   },
   {
     "title": "Critique of \"Planetary Normal Mode Computation: Parallel Algorithms, Performance, and Reproducibility\" by SCC Team From Tsinghua University",
-    "authors": ["张晨", "赵成钢", "何家傲", "陈晟祺", "郑立言", "黄可钊", "韩文弢", "翟季冬"],
+    "authors": [
+      "张晨",
+      "赵成钢",
+      "何家傲",
+      "陈晟祺",
+      "郑立言",
+      "黄可钊",
+      "韩文弢",
+      "翟季冬"
+    ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",
     "year": 2021,
