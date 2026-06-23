@@ -1,0 +1,49 @@
+---
+import Base from '../layouts/Base.astro';
+import publications from '../data/publications.json';
+---
+<Base title="学术发表 · THUSCC" activePage="publications">
+  <section class="sec sec-top">
+    <p class="sec-kicker">Publications</p>
+    <h2 class="sec-title">学术发表</h2>
+    <p class="sec-lead">团队相关论文与技术报告。均发表于 SC Student Cluster Competition 论文复现挑战。</p>
+
+    <ol class="pub-list">
+      {publications.map(pub => (
+        <li class="pub-item">
+          <div class="pub-title">
+            <a href={pub.url} target="_blank" rel="noopener">{pub.title}</a>
+          </div>
+          <div class="pub-authors">{pub.authors.join(', ')}</div>
+          <div class="pub-meta">
+            <span class="pub-venue">{pub.venueShort}</span>
+            <span class="pub-year">{pub.year}</span>
+            {pub.competition && <span class="pub-comp">{pub.competition} Reproducibility Challenge</span>}
+            {pub.doi && <a class="pub-doi" href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener">DOI</a>}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+</Base>
+
+<style>
+  .pub-list { list-style: none; padding: 0; counter-reset: pub; }
+  .pub-item { margin-bottom: 28px; padding: 20px 24px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; position: relative; }
+  .pub-item::before { counter-increment: pub; content: "[" counter(pub) "]"; position: absolute; top: 20px; left: -8px; font-family: var(--mono); font-size: 0.7rem; opacity: 0.4; display: none; }
+  .pub-title { margin-bottom: 8px; }
+  .pub-title a { font-family: var(--serif-zh); font-weight: 600; font-size: 0.95rem; line-height: 1.5; color: var(--fg); text-decoration: none; transition: color 0.2s; }
+  .pub-title a:hover { color: var(--accent-light); }
+  .pub-authors { font-size: 0.82rem; opacity: 0.7; margin-bottom: 10px; line-height: 1.6; }
+  .pub-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .pub-venue { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; opacity: 0.8; }
+  .pub-year { font-family: var(--mono); font-size: 0.72rem; opacity: 0.5; }
+  .pub-comp { font-family: var(--mono); font-size: 0.68rem; padding: 2px 8px; border-radius: 4px; background: rgba(var(--fg-rgb), 0.04); opacity: 0.6; }
+  .pub-doi { font-family: var(--mono); font-size: 0.68rem; padding: 2px 8px; border-radius: 4px; background: var(--accent-dim); color: var(--accent-light); text-decoration: none; transition: background 0.2s; }
+  .pub-doi:hover { background: rgba(130,49,142,0.2); }
+
+  @media (max-width: 480px) {
+    .pub-item { padding: 16px; }
+    .pub-title a { font-size: 0.88rem; }
+  }
+</style>
