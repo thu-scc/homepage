@@ -105,8 +105,9 @@ const grandSlams = grandSlamYears.length;
   .comp-table-wrap {
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    margin: 0 -20px;
-    padding: 0 20px;
+    margin: 0 calc(-1 * min(var(--page-gutter), 20px));
+    padding: 0 min(var(--page-gutter), 20px) 6px;
+    overscroll-behavior-inline: contain;
   }
   .comp-table {
     width: 100%;
@@ -232,8 +233,10 @@ const grandSlams = grandSlamYears.length;
   }
 
   @media (max-width: 768px) {
+    .comp-legend { gap: 6px; }
     .comp-table {
       font-size: 0.8rem;
+      min-width: 600px;
     }
     .comp-table th, .comp-table td {
       padding: 10px 8px;
@@ -241,6 +244,24 @@ const grandSlams = grandSlamYears.length;
     .badge {
       font-size: 0.7rem;
       padding: 2px 6px;
+    }
+  }
+  @media (max-width: 480px) {
+    .comp-table-wrap {
+      margin-inline: calc(-1 * var(--page-gutter));
+      padding-inline: var(--page-gutter);
+    }
+    .comp-table {
+      min-width: 560px;
+      font-size: 0.76rem;
+    }
+    .col-year {
+      width: 76px;
+    }
+    .badge-note {
+      display: block;
+      margin-left: 0;
+      margin-top: 1px;
     }
   }
   .click-hint {
