@@ -12,7 +12,7 @@ navToggle?.addEventListener('click', () => {
   setMenuOpen(!navLinks?.classList.contains('open'));
 });
 
-navLinks?.querySelectorAll('a').forEach(link => {
+navLinks?.querySelectorAll('a')?.forEach(link => {
   link.addEventListener('click', () => setMenuOpen(false));
 });
 

@@ -292,8 +292,8 @@ const slugMapJSON = JSON.stringify(slugMap);
   .modal-comp-row:hover { background: rgba(var(--fg-rgb), 0.06); border-color: var(--accent-light); }
 
   @media (max-width: 480px) {
-    .modal-overlay { align-items: flex-end; padding: 12px; }
-    .modal-content { width: 100%; max-height: calc(100svh - 24px); border-radius: 12px; }
+    .modal-overlay { align-items: flex-end; padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+    .modal-content { width: 100%; max-height: calc(100svh - max(24px, env(safe-area-inset-top) + env(safe-area-inset-bottom))); border-radius: 12px; }
     .modal-header { padding: 22px 20px 16px; }
     .modal-body { padding: 16px 20px 22px; }
   }
