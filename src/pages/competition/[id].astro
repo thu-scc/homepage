@@ -125,7 +125,7 @@ const hasNotes = !!info._notes;
   .detail-highlights { font-family: var(--serif-zh); font-size: 0.92rem; opacity: 0.75; line-height: 1.7; margin-bottom: 4vh; max-width: 680px; }
   .detail-section { margin-bottom: 4vh; }
   .detail-heading { font-family: var(--serif-zh); font-weight: 600; font-size: 1.15rem; margin-bottom: 1.5vh; }
-  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 16px; }
   .team-group { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 16px; }
   .team-role { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; margin-bottom: 8px; }
   .team-list { list-style: none; padding: 0; }
@@ -136,14 +136,28 @@ const hasNotes = !!info._notes;
   .news-list { list-style: none; padding: 0; }
   .news-list li { padding: 8px 0; border-bottom: 1px solid rgba(var(--fg-rgb), 0.04); }
   .news-list li:last-child { border-bottom: none; }
-  .news-list a { color: var(--link-color); text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; }
+  .news-list a { color: var(--link-color); text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; max-width: 100%; overflow-wrap: anywhere; }
   .news-list a:hover { text-decoration: underline; }
   .news-list svg { flex-shrink: 0; opacity: 0.6; }
   .detail-placeholder { margin-top: 5vh; padding: 48px 24px; border: 1px dashed rgba(var(--fg-rgb), 0.12); border-radius: 12px; text-align: center; }
   .placeholder-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.45; }
-  .detail-notes { font-family: var(--mono); font-size: 0.75rem; opacity: 0.6; margin-top: 3vh; padding: 12px; background: rgba(var(--fg-rgb), 0.03); border-radius: 6px; }
-  .photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+  .detail-notes { font-family: var(--mono); font-size: 0.75rem; opacity: 0.6; margin-top: 3vh; padding: 12px; background: rgba(var(--fg-rgb), 0.03); border-radius: 6px; overflow-wrap: anywhere; }
+  .photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
   .photo-link { display: block; border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border); transition: border-color 0.2s, transform 0.15s; }
   .photo-link:hover { border-color: var(--accent-light); transform: translateY(-2px); }
   .comp-photo { width: 100%; display: block; }
+
+  @media (max-width: 767px) {
+    .detail-awards { gap: 8px; }
+    .detail-award { font-size: 0.82rem; padding: 5px 10px; }
+    .team-grid, .photos-grid { gap: 12px; }
+    .team-group { padding: 14px; }
+    .news-list a { align-items: flex-start; }
+    .news-list svg { margin-top: 0.2em; }
+    .detail-placeholder { padding: 36px 18px; }
+  }
+
+  @media (min-width: 1440px) {
+    .photos-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
 </style>
