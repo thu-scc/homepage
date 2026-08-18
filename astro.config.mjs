@@ -1,6 +1,5 @@
 import { defineConfig } from 'astro/config';
 import { execSync } from 'node:child_process';
-import cloudflare from '@astrojs/cloudflare';
 
 let commitHash = '';
 try {
@@ -14,8 +13,6 @@ export default defineConfig({
   build: {
     assets: '_assets'
   },
-
-  adapter: cloudflare(),
 
   vite: {
     define: {
