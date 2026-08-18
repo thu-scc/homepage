@@ -14,7 +14,7 @@ pnpm --version   # 确认已安装
 
 ## 预览
 
-当前部署预览地址：https://scc-homepage.harry-chen.workers.dev/
+当前部署预览地址：<https://new.sc.team/> 或 <https://scc-homepage.pages.dev/>
 
 ## 快速开始
 
