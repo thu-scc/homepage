@@ -1,10 +1,9 @@
 import membersJson from '../data/members.json';
-import { pinyin } from 'pinyin-pro';
 import { details, roleLabels, roleOrder, sortDateOf } from './competitions';
 
 export interface Person {
   name: string;
-  /** Department; omitted means 计算机系. */
+  /** Department; omitted means Computer Science and Technology. */
   dept?: string;
   /** Academic title, advisors only. */
   title?: string;
@@ -26,9 +25,14 @@ export const alumniGroups = membersJson.alumni as GradeGroup[];
 export const memberCount =
   activeGroups.reduce((n, g) => n + g.members.length, 0) + alumniGroups.reduce((n, g) => n + g.members.length, 0);
 
-/** URL-safe pinyin slug, e.g. 翟季冬 → zhaijidong. */
+/** URL-safe slug, e.g. "Jidong Zhai" → "jidong-zhai". */
 export function toSlug(name: string): string {
-  return pinyin(name, { toneType: 'none', type: 'array' }).join('').toLowerCase();
+  return name
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 const allNames = [

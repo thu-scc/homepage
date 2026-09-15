@@ -21,6 +21,7 @@ const photos = (info.photos ?? []).map((src) => ({
   src,
   image: photoModules[src.replace(/^\/img\//, '/src/assets/')],
 }));
+const heroPhoto = photos[0]?.image;
 
 const teamRoles = roleOrder.filter((r) => (info.team?.[r]?.length ?? 0) > 0);
 const problems = info.problems ?? [];
@@ -29,136 +30,182 @@ const hasBody = teamRoles.length > 0 || problems.length > 0 || news.length > 0 |
 const eyebrow = [info.date ?? info.sortDate, info.location].filter(Boolean).join(' · ');
 
 function awardType(award: string): string {
-  if (award.includes('冠军')) return 'champion';
-  if (award.includes('亚军')) return 'runner-up';
-  if (/linpack/i.test(award)) return 'linpack';
-  if (/e-?prize/i.test(award)) return 'eprize';
+  const a = award.toLowerCase();
+  if (a.includes('champion')) return 'champion';
+  if (a.includes('runner-up')) return 'runner-up';
+  if (a.includes('linpack')) return 'linpack';
+  if (a.includes('e-prize') || a.includes('eprize')) return 'eprize';
+  if (a.includes('prize') || a.includes('award')) return 'special';
   return 'place';
 }
 ---
-<Base title={info.name} activePage="competition">
-  <a class="back-link" href="/competition"><span aria-hidden="true">←</span> 返回竞赛总览</a>
-
-  <PageIntro eyebrow={eyebrow} title={info.name}>
-    {info.awards.length > 0 && (
-      <ul class="badge-list awards" aria-label="获奖">
-        {info.awards.map((a) => (
-          <li><span class={`badge badge-${awardType(a)} award`}>{a}</span></li>
-        ))}
-      </ul>
-    )}
-    {info.highlights && <p class="lead">{info.highlights}</p>}
-  </PageIntro>
-
-  {teamRoles.length > 0 && (
-    <section class="section">
-      <div class="section-head"><h2 class="section-title">团队成员</h2></div>
-      <div class="team-grid">
-        {teamRoles.map((role) => (
-          <div class="team-role">
-            <h3 class="eyebrow">{roleLabels[role]}</h3>
-            <ul class="name-list">
-              {info.team![role]!.map((name) => {
-                const href = memberHref(name);
-                return <li>{href ? <a href={href}>{name}</a> : name}</li>;
-              })}
-            </ul>
-          </div>
-        ))}
+<Base title={info.name} activePage="competition" header={heroPhoto ? 'overlay' : 'solid'} bleed={!!heroPhoto}>
+  {heroPhoto ? (
+    <section class="photo-hero detail-hero">
+      <Image
+        src={heroPhoto}
+        widths={[800, 1280, 1920, 2560]}
+        sizes="100vw"
+        format="webp"
+        quality={72}
+        alt={`The team at ${info.name}`}
+        loading="eager"
+        fetchpriority="high"
+      />
+      <div class="container photo-hero-body">
+        <a class="back-link rise" href="/competition"><span aria-hidden="true">←</span> All competitions</a>
+        <p class="eyebrow eyebrow-gold rise">{eyebrow}</p>
+        <h1 class="photo-hero-title rise rise-2">{info.name}</h1>
+        {info.awards.length > 0 && (
+          <ul class="badge-list awards rise rise-3" aria-label="Awards">
+            {info.awards.map((a) => (
+              <li><span class={`badge badge-${awardType(a)} award`}>{a}</span></li>
+            ))}
+          </ul>
+        )}
       </div>
     </section>
-  )}
-
-  {problems.length > 0 && (
-    <section class="section">
-      <div class="section-head"><h2 class="section-title">赛题</h2></div>
-      <ul class="row-list">
-        {problems.map((p) => <li>{p}</li>)}
-      </ul>
-    </section>
-  )}
-
-  {news.length > 0 && (
-    <section class="section">
-      <div class="section-head"><h2 class="section-title">相关报道</h2></div>
-      <ul class="row-list">
-        {news.map((n) => (
-          <li>
-            <a href={n.url} target="_blank" rel="noopener">{n.title} <span class="ext" aria-hidden="true">↗</span></a>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
-
-  {photos.length > 0 && (
-    <section class="section">
-      <div class="section-head"><h2 class="section-title">照片</h2></div>
-      <ul class="photo-grid">
-        {photos.map((p, i) =>
-          p.image ? (
-            <li>
-              <a href={p.image.src} target="_blank" rel="noopener">
-                <Image
-                  src={p.image}
-                  widths={[480, 800, 1200]}
-                  sizes="(min-width: 900px) 340px, (min-width: 600px) 50vw, 100vw"
-                  format="webp"
-                  quality={78}
-                  alt={`${info.name} 团队照片 ${i + 1}`}
-                  loading="lazy"
-                />
-              </a>
-            </li>
-          ) : (
-            <li>
-              <a href={p.src} target="_blank" rel="noopener">
-                <img src={p.src} alt={`${info.name} 团队照片 ${i + 1}`} loading="lazy" />
-              </a>
-            </li>
-          ),
+  ) : (
+    <div class="plain-intro">
+      <a class="back-link" href="/competition"><span aria-hidden="true">←</span> All competitions</a>
+      <PageIntro eyebrow={eyebrow} title={info.name}>
+        {info.awards.length > 0 && (
+          <ul class="badge-list awards" aria-label="Awards">
+            {info.awards.map((a) => (
+              <li><span class={`badge badge-${awardType(a)} award`}>{a}</span></li>
+            ))}
+          </ul>
         )}
-      </ul>
-    </section>
+      </PageIntro>
+    </div>
   )}
 
-  {!hasBody && <p class="placeholder">详细信息待补充</p>}
+  <div class:list={['container', 'detail-body']}>
+    {info.highlights && <p class="lead highlights">{info.highlights}</p>}
 
-  {info._notes && (
-    <p class="notes"><span class="eyebrow">备注</span> {info._notes}</p>
-  )}
+    {teamRoles.length > 0 && (
+      <section class="section">
+        <div class="section-head"><h2 class="section-title">Team</h2></div>
+        <div class="team-grid">
+          {teamRoles.map((role) => (
+            <div class="team-role">
+              <h3 class="eyebrow">{roleLabels[role]}</h3>
+              <ul class="name-list">
+                {info.team![role]!.map((name) => {
+                  const href = memberHref(name);
+                  return <li>{href ? <a href={href}>{name}</a> : name}</li>;
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    {problems.length > 0 && (
+      <section class="section">
+        <div class="section-head"><h2 class="section-title">Problems</h2></div>
+        <ul class="row-list">
+          {problems.map((p) => <li>{p}</li>)}
+        </ul>
+      </section>
+    )}
+
+    {news.length > 0 && (
+      <section class="section">
+        <div class="section-head"><h2 class="section-title">Coverage</h2></div>
+        <ul class="row-list">
+          {news.map((n) => (
+            <li>
+              <a href={n.url} target="_blank" rel="noopener">{n.title} <span class="ext" aria-hidden="true">↗</span></a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    {photos.length > 0 && (
+      <section class="section">
+        <div class="section-head"><h2 class="section-title">Photographs</h2></div>
+        <ul class="photo-grid">
+          {photos.map((p, i) =>
+            p.image ? (
+              <li>
+                <a href={p.image.src} target="_blank" rel="noopener">
+                  <Image
+                    src={p.image}
+                    widths={[480, 800, 1200]}
+                    sizes="(min-width: 960px) 380px, (min-width: 640px) 50vw, 100vw"
+                    format="webp"
+                    quality={76}
+                    alt={`${info.name}, photograph ${i + 1}`}
+                    loading="lazy"
+                  />
+                </a>
+              </li>
+            ) : (
+              <li>
+                <a href={p.src} target="_blank" rel="noopener">
+                  <img src={p.src} alt={`${info.name}, photograph ${i + 1}`} loading="lazy" />
+                </a>
+              </li>
+            ),
+          )}
+        </ul>
+      </section>
+    )}
+
+    {!hasBody && <p class="placeholder">Details to be added.</p>}
+
+    {info._notes && (
+      <p class="notes"><span class="eyebrow">Note</span> {info._notes}</p>
+    )}
+  </div>
 </Base>
 
 <style>
+  .detail-hero {
+    min-height: min(70svh, 720px);
+  }
+  .plain-intro {
+    display: grid;
+    gap: 1.5rem;
+  }
+  .detail-body {
+    display: grid;
+    gap: clamp(2.5rem, 6vw, 4.5rem);
+  }
+  .highlights {
+    max-width: 44rem;
+  }
   .awards {
     gap: 0.5rem;
   }
   .award {
     font-size: var(--text-sm);
-    padding: 0.2rem 0.7rem;
+    padding: 0.25rem 0.75rem;
   }
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
     gap: 1.5rem 2rem;
   }
   .team-role {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.625rem;
     align-content: start;
   }
   .name-list {
     list-style: none;
     padding: 0;
     display: grid;
-    gap: 0.125rem;
+    gap: 0.25rem;
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    font-size: var(--text-lg);
   }
   .name-list a {
-    color: inherit;
-    text-decoration-color: var(--line-strong);
-  }
-  .name-list a:hover {
-    color: var(--accent);
+    text-decoration-color: var(--line);
   }
   .row-list {
     list-style: none;
@@ -166,16 +213,13 @@ function awardType(award: string): string {
     max-width: var(--measure);
   }
   .row-list li {
-    padding: 0.5rem 0;
-    border-bottom: 1px solid var(--line);
+    padding: 0.625rem 0;
+    border-bottom: 1px solid var(--line-2);
     color: var(--fg-2);
   }
   .row-list a {
     color: var(--fg);
-    text-decoration-color: var(--line-strong);
-  }
-  .row-list a:hover {
-    color: var(--accent);
+    text-decoration-color: var(--line);
   }
   .ext {
     font-family: var(--font-mono);
@@ -185,20 +229,24 @@ function awardType(award: string): string {
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
     gap: 0.75rem;
   }
   .photo-grid a {
     display: block;
     overflow: hidden;
-    border-radius: var(--radius);
-    border: 1px solid var(--line);
-    background: var(--surface-2);
+    border: 1px solid var(--line-2);
+    background: var(--surface);
   }
   .photo-grid img {
     width: 100%;
     aspect-ratio: 3 / 2;
     object-fit: cover;
+    filter: saturate(0.85);
+    transition: filter 0.3s;
+  }
+  .photo-grid a:hover img {
+    filter: saturate(1);
   }
   .notes {
     font-size: var(--text-sm);

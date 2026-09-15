@@ -1,31 +1,31 @@
 ---
 kicker: Join us
-title: 加入我们
-lead: 我们在寻找对高性能计算、系统优化、并行编程有热情的同学。不要求有超算经验，也不限院系与年级。
+title: Join the team
+lead: We are looking for students who care about high-performance computing, systems optimization and parallel programming. No supercomputing experience required, from any department and any year.
 ---
 
 <div class="cards">
 <div class="card">
-<p class="card-tag">我们在寻找</p>
+<p class="card-tag">What we look for</p>
 <ul>
-<li>对高性能计算、系统优化、并行编程有兴趣</li>
-<li>有扎实的编程基础（C/C++、CUDA、Python 等）</li>
-<li>善于学习新技术，不怕啃硬骨头</li>
-<li>有团队合作精神</li>
+<li>Interest in high-performance computing, systems optimization and parallel programming</li>
+<li>A solid programming foundation (C/C++, CUDA, Python or similar)</li>
+<li>Picks up new technology quickly and is not afraid of hard problems</li>
+<li>Works well in a team</li>
 </ul>
 </div>
 <div class="card">
-<p class="card-tag">不需要</p>
+<p class="card-tag">What you do not need</p>
 <ul>
-<li>不要求有超算经验，我们会从零开始培训</li>
-<li>不限院系：计算机、物理、数学、化工、天文均可</li>
-<li>不限年级：大一到研究生均欢迎</li>
+<li>Supercomputing experience. We train from scratch.</li>
+<li>A computer science major. Physics, mathematics, chemical engineering and astronomy students have all been members.</li>
+<li>Seniority. First-years through graduate students are welcome.</li>
 </ul>
 </div>
 </div>
 
-## 如何加入
+## How to join
 
-每年秋季学期招新，请关注清华大学学生超算团队公众号，或直接联系[指导教师](/members)。
+Recruitment happens every autumn semester. Follow the team's WeChat account or contact the [faculty advisors](/members) directly.
 
-即使不在招新季，如果你对超算交叉合作感兴趣，也欢迎随时联系。团队的开源代码见 GitHub [thu-scc](https://github.com/thu-scc)。
+Outside the recruiting season, if you are interested in a research collaboration, reach out any time. The team's open-source code is on GitHub at [thu-scc](https://github.com/thu-scc).

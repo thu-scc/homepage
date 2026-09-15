@@ -1,4 +1,6 @@
 ---
+import '../styles/plex.css';
+import '../styles/fonts.css';
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
@@ -8,51 +10,58 @@ interface Props {
   title?: string;
   description?: string;
   activePage?: string;
+  /** `overlay` floats the header over a photo hero; `solid` is the default sticky bar. */
+  header?: 'solid' | 'overlay';
+  /** Set when the page starts with a full-bleed hero that manages its own spacing. */
+  bleed?: boolean;
 }
 
-const siteName = 'THUSCC · 清华大学学生超算团队';
+const siteName = 'THUSCC · Tsinghua University Student Cluster Competition Team';
 const {
   title,
-  description = '清华大学学生超算团队：让超算技术走出竞赛场，走进科研现场。ASC、ISC、SC 三大国际大学生超算竞赛冠军队伍。',
+  description = 'The Tsinghua University Student Cluster Competition Team: the only team to have won all three major student supercomputing competitions, ASC, ISC and SC.',
   activePage = 'home',
+  header = 'solid',
+  bleed = false,
 } = Astro.props;
 const fullTitle = title ? `${title} · THUSCC` : siteName;
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 ---
 <!doctype html>
-<html lang="zh-CN">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f6f9" />
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#141219" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#22132b" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     {canonical && <link rel="canonical" href={canonical} />}
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin />
-    <script is:inline>
-      (function () {
-        try {
-          var t = localStorage.getItem('thuscc-theme-v2');
-          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
-        } catch (e) {}
-      })();
-    </script>
     <script is:inline src="https://rbt.dang.fan/api/script.js" data-site-id="23af4434c5c1" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main">跳到主要内容</a>
-    <SiteHeader activePage={activePage} />
-    <main id="main" class="container page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader activePage={activePage} variant={header} />
+    <main id="main" class:list={['page', { container: !bleed, 'page-bleed': bleed }]}>
       <slot />
     </main>
     <SiteFooter />
-    <script src="../scripts/theme.ts"></script>
     <script src="../scripts/nav.ts"></script>
   </body>
 </html>
+
+<style is:global>
+  /* A bleeding page lays out its own containers; the hero starts under the overlay header. */
+  .page-bleed {
+    padding-top: 0;
+  }
+  .page-bleed > .container {
+    width: 100%;
+  }
+</style>

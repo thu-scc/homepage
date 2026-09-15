@@ -23,11 +23,11 @@ const count = participationByName[person.name]?.length ?? 0;
     <span class="person-name">{person.name}</span>
     {dept && <span class="person-dept">{dept}</span>}
     {count > 0 && (
-      <span class="person-count num" title={`${count} 次参赛记录`}>{count}</span>
+      <span class="person-count num" title={`${count} competition records`}>{count}</span>
     )}
   </button>
   {person.url && (
-    <a class="person-link" href={person.url} target="_blank" rel="noopener" aria-label={`${person.name} 的个人主页`}>↗</a>
+    <a class="person-link" href={person.url} target="_blank" rel="noopener" aria-label={`${person.name}: personal homepage`}>↗</a>
   )}
 </li>
 

@@ -46,10 +46,10 @@ export const details = detailsJson as Record<string, CompetitionDetail>;
 
 export const roleOrder: TeamRole[] = ['coaches', 'players', 'support', 'training'];
 export const roleLabels: Record<TeamRole, string> = {
-  coaches: '指导教师',
-  players: '上场队员',
-  support: '技术支持',
-  training: '参加训练',
+  coaches: 'Coaches',
+  players: 'Competing team',
+  support: 'Technical support',
+  training: 'Training squad',
 };
 
 export function entriesFor(row: YearRecord, column: string): ResultEntry[] {
@@ -61,6 +61,10 @@ export const championCount = records.reduce(
   (sum, row) =>
     sum + columns.reduce((s, col) => s + entriesFor(row, col).filter((e) => e.type === 'champion').length, 0),
   0,
+);
+
+export const championYears = new Set(
+  records.filter((row) => columns.some((col) => entriesFor(row, col).some((e) => e.type === 'champion'))).map((r) => r.year),
 );
 
 export const firstYear = records[records.length - 1].year;
@@ -108,4 +112,14 @@ export function sortDateOf(id: string, detail: CompetitionDetail): string {
   if (detail.date) return detail.date.slice(0, 7);
   const year = id.match(/\d{2}/)?.[0];
   return year ? `20${year}-00` : '0000-00';
+}
+
+const ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'];
+const TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+
+/** Small integers as English words for running copy, e.g. 19 → "nineteen". */
+export function numberWords(n: number): string {
+  if (n < 20) return ONES[n];
+  if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? `-${ONES[n % 10]}` : '');
+  return String(n);
 }

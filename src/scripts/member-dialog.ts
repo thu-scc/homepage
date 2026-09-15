@@ -27,14 +27,14 @@ if (dataEl && dialog) {
     s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c] as string);
 
   function renderRecords(records: Participation[]): string {
-    if (records.length === 0) return '<p class="dialog-empty">暂无参赛记录</p>';
+    if (records.length === 0) return '<p class="dialog-empty">No competition records yet.</p>';
     const groups = new Map<string, Participation[]>();
     for (const r of records) (groups.get(r.role) ?? groups.set(r.role, []).get(r.role)!).push(r);
     let html = '';
     for (const [role, items] of groups) {
       html += `<section class="dialog-group"><h3 class="dialog-role">${esc(role)} <span class="num">${items.length}</span></h3>`;
       for (const item of items) {
-        const awards = item.awards.length ? `<span class="dialog-comp-awards">${esc(item.awards.join('、'))}</span>` : '';
+        const awards = item.awards.length ? `<span class="dialog-comp-awards">${esc(item.awards.join(', '))}</span>` : '';
         html += `<a class="dialog-comp" href="/competition/${encodeURIComponent(item.id)}"><span class="dialog-comp-name">${esc(item.name)}</span>${awards}</a>`;
       }
       html += '</section>';

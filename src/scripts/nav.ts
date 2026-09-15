@@ -6,7 +6,7 @@ function setOpen(open: boolean) {
   if (!header || !toggle) return;
   header.dataset.open = String(open);
   toggle.setAttribute('aria-expanded', String(open));
-  toggle.setAttribute('aria-label', open ? '关闭菜单' : '打开菜单');
+  toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
 }
 
 toggle?.addEventListener('click', () => setOpen(header?.dataset.open !== 'true'));

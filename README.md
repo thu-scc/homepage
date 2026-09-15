@@ -1,105 +1,108 @@
 # THUSCC Homepage
 
-清华大学学生超算团队官网。基于 [Astro](https://astro.build/) 7 静态站点生成，部署于 Cloudflare Pages。
+Website of the Tsinghua University Student Cluster Competition Team. Built with [Astro](https://astro.build/) 7 as a static site and deployed on Cloudflare Pages.
 
-预览地址：<https://new.sc.team/> 或 <https://scc-homepage.pages.dev/>
+Preview: <https://new.sc.team/> or <https://scc-homepage.pages.dev/>
 
-## 环境要求
+## Requirements
 
-- **Node.js 24**（最低 22.12.0，不可降级：Astro 7 + Vite 7 依赖 Node 22+ 特性）
+- **Node.js 24** (minimum 22.12.0; Astro 7 and Vite 7 need Node 22 features, do not downgrade)
 - **pnpm 11**
 
-推荐用 [mise](https://mise.jdx.dev/) 管理工具链，仓库内的 `mise.toml` 已锁定版本：
+The toolchain is pinned in `mise.toml`; with [mise](https://mise.jdx.dev/) installed:
 
 ```bash
 mise install
 pnpm install
 ```
 
-## 常用命令
+## Commands
 
 ```bash
-pnpm dev                  # 开发服务器，默认 http://localhost:4321
-pnpm build                # 构建到 dist/
-pnpm exec astro preview   # 本地预览 dist/
+pnpm dev                  # dev server at http://localhost:4321
+pnpm build                # static build to dist/
+pnpm exec astro preview   # serve dist/ locally
 ```
 
-构建产物为纯静态 HTML，Cloudflare Pages 直接构建本分支并发布 `dist/`。
+The output is plain static HTML. Cloudflare Pages builds this branch and publishes `dist/`.
 
-## 项目结构
+## Project layout
 
 ```
 src/
-├── styles/global.css        ← 设计系统：颜色/字体/间距 token、基础样式、通用组件、Markdown 排版
-├── layouts/Base.astro       ← 全局 HTML 骨架（head、主题脚本、页头页脚）
+├── styles/
+│   ├── global.css           ← design system: tokens, base styles, shared components, markdown prose
+│   ├── fonts.css            ← Newsreader @font-face
+│   └── plex.css             ← IBM Plex Mono @font-face
+├── layouts/Base.astro       ← HTML shell (head, header, footer)
 ├── components/
-│   ├── SiteHeader.astro     ← 页头与导航（导航项在此维护）
-│   ├── SiteFooter.astro     ← 页脚（含构建时间与 commit）
-│   ├── ThemeToggle.astro    ← 浅色/深色切换
-│   ├── Logo.astro           ← 队徽（单色矢量）
-│   ├── PageIntro.astro      ← 页面标题区（eyebrow / title / lead）
-│   ├── ResultBadge.astro    ← 成绩徽章
-│   └── PersonItem.astro     ← 成员条目
+│   ├── SiteHeader.astro     ← header and navigation (edit navLinks here)
+│   ├── SiteFooter.astro     ← footer with build time and commit
+│   ├── ChampionTimeline.astro ← championship-years strip used on the home and competitions pages
+│   ├── PageIntro.astro      ← page title block (eyebrow / title / lead)
+│   ├── ResultBadge.astro    ← result chip
+│   ├── PersonItem.astro     ← member row
+│   └── Logo.astro           ← the team mark as a flat SVG
 ├── lib/
-│   ├── competitions.ts      ← 竞赛数据类型、统计（冠军数、年数、最新战绩）
-│   └── members.ts           ← 成员数据、拼音 slug、参赛记录反向索引
-├── data/                    ← 📝 结构化数据（事实来源）
-│   ├── competitions.json    ← 历年成绩总表
-│   ├── competition-details.json ← 每届比赛详情（队员、赛题、报道、照片）
-│   ├── members.json         ← 成员名单
-│   └── publications.json    ← 论文列表
-├── content/pages/           ← 📝 Markdown 页面：collaboration / honors / join
-├── assets/competition/<id>/ ← 比赛照片（构建时自动生成多尺寸 WebP）
-├── pages/                   ← 路由
-└── scripts/                 ← 少量原生 TS：主题、导航、成员弹窗
+│   ├── competitions.ts      ← typed competition data, statistics, latest results, number words
+│   └── members.ts           ← typed member data, slugs, person → participation index
+├── data/                    ← structured data, the source of truth
+│   ├── competitions.json    ← results grid by year
+│   ├── competition-details.json ← one entry per event: team, problems, coverage, photos
+│   ├── members.json         ← advisors, current members, alumni
+│   └── publications.json
+├── content/pages/           ← markdown pages: collaboration, honors, join
+├── assets/competition/<id>/ ← photographs (built into responsive WebP)
+├── pages/                   ← routes
+└── scripts/                 ← small vanilla TS: navigation, member dialog
 public/
-├── fonts/                   ← 自托管 IBM Plex Mono（仅拉丁字符子集）
-└── img/                     ← 队徽、favicon
+├── fonts/                   ← self-hosted Newsreader and IBM Plex Mono (latin subsets)
+└── img/                     ← logo and favicon
 ```
 
-## 如何修改内容
+## Editing content
 
-### 添加一届比赛成绩
+### Adding a competition result
 
-1. 在 `src/data/competitions.json` 对应年份的列（`ASC` / `ISC` / `SC` / `其他`）中添加一条记录，带上 `id`（如 `sc26`）。`type` 决定徽章颜色：`champion`、`runner-up`、`linpack`、`eprize`、`special`、`place`、`notHeld`、`absent`。
-2. 在 `src/data/competition-details.json` 中添加同名 `id` 的详情。每个 key 会生成 `/competition/<id>` 页面。
-3. 照片放到 `src/assets/competition/<id>/01.jpg`，并在详情的 `photos` 中按 `/img/competition/<id>/01.jpg` 的形式列出。
+1. Add an entry to the year's column (`ASC`, `ISC`, `SC` or `Other`) in `src/data/competitions.json` with an `id` such as `sc26`. The `type` picks the chip colour: `champion`, `runner-up`, `linpack`, `eprize`, `special`, `place`, `notHeld` or `absent`.
+2. Add the matching key to `src/data/competition-details.json`. Every key becomes a `/competition/<id>` page.
+3. Put photographs in `src/assets/competition/<id>/01.jpg` and list them in `photos` as `/img/competition/<id>/01.jpg`. The first photo becomes the page's opener.
 
-### 添加成员
+### Adding a member
 
-编辑 `src/data/members.json`。姓名必须与 `competition-details.json` 中 `team` 里的写法完全一致，否则参赛记录无法关联。成员页会为每个人生成拼音锚点，如 `/members#zhaijidong`。
+Edit `src/data/members.json`. Names must match the spelling used in the `team` lists of `competition-details.json` exactly, otherwise their competition record will not link up. Two members with the same romanized name are distinguished by class year in parentheses, for example `Yang Zhang (2023)`. Each member gets an anchor such as `/members#jidong-zhai`.
 
-### 编辑 Markdown 页面
+### Editing a markdown page
 
-编辑 `src/content/pages/` 下的 `.md` 文件。frontmatter：
+Edit the file under `src/content/pages/`. Frontmatter:
 
 ```yaml
 ---
-kicker: Join us      # 标题上方的小标签
-title: 加入我们       # 主标题
-lead: 一句话导语
+kicker: Join us        # small label above the title
+title: Join the team
+lead: One-sentence introduction.
 ---
 ```
 
-正文支持 Markdown 与内嵌 HTML。可用的样式类：`.cards` / `.cards-sm`（卡片网格）、`.card`、`.card-tag`、`.card-title`、`.card-desc`、`.card-center`、`.placeholder`（占位提示）。
+The body is Markdown with inline HTML allowed. Available classes: `.cards` / `.cards-sm` (card grid), `.card`, `.card-tag`, `.card-title`, `.card-desc`, `.card-center`, `.placeholder`.
 
-### 添加新页面
+### Adding a page
 
-1. 新建 `src/content/pages/<slug>.md`
-2. 在 `src/components/SiteHeader.astro` 的 `navLinks` 中添加导航项
-3. 如需出现在首页“了解我们”列表，编辑 `src/pages/index.astro` 的 `sections`
+1. Create `src/content/pages/<slug>.md`
+2. Add it to `navLinks` in `src/components/SiteHeader.astro`
+3. Optionally add it to `sections` in `src/pages/index.astro`
 
-## 设计说明
+## Design notes
 
-- **配色**：清华紫为唯一强调色，中性色带轻微紫调；浅色 / 深色主题跟随系统，可手动切换并记忆。
-- **字体**：中文使用系统字体（苹方 / 微软雅黑 / 思源黑体），不加载中文 Web 字体；年份、成绩、编号等使用自托管的 IBM Plex Mono。
-- **布局**：单栏内容区最大 1080px，手机端优先。
+- **Palette**: an aubergine ground with ivory text. Gold is reserved for championships and primary actions; silver, teal, lavender and orange are result-type colours only. Single theme.
+- **Type**: Newsreader (variable, optical sizes) for display and names, the system sans for running text, IBM Plex Mono for years, dates and small labels. Both web fonts are self-hosted latin subsets; nothing loads from third-party font hosts.
+- **Layout**: a 1200 px content column, full-bleed photo openers, phone first.
 
-## 分支说明
+## Branches
 
-| 分支 | 状态 | 说明 |
-|------|------|------|
-| `new-website-refactor` | **活跃开发** | 2026 年重构后的 UI |
-| `new-website-astro` | 上一版 | Astro 版本，重构前的主线 |
-| `new-website` | 冻结 | 纯 HTML/CSS/JS SPA 版本 |
-| `master` | 旧版 | MkDocs 版本，已废弃 |
+| Branch | Status | Notes |
+|--------|--------|-------|
+| `new-website-refactor` | **active** | 2026 redesign (English) |
+| `new-website-astro` | previous | Astro version before the redesign |
+| `new-website` | frozen | plain HTML/CSS/JS SPA |
+| `master` | legacy | MkDocs version, retired |
