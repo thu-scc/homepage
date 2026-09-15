@@ -234,12 +234,18 @@ button {
 
 .page {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: clamp(3rem, 7vw, 5.5rem);
   padding-block: clamp(2rem, 5vw, 4rem) clamp(4rem, 10vw, 7rem);
 }
 
+.page > * {
+  min-width: 0;
+}
+
 .page-intro {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1rem;
   max-width: 44rem;
 }
@@ -273,6 +279,7 @@ button {
 
 .section {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.5rem;
   align-content: start;
 }
@@ -363,6 +370,7 @@ a.section-note:hover {
 
 .photo-hero-body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 1.25rem;
   padding-block: clamp(6rem, 18vh, 10rem) clamp(2.5rem, 6vw, 4rem);
   max-width: 62rem;
