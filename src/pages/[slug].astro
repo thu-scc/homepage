@@ -1,29 +1,20 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages');
-  return pages
-    .filter(page => !['members', 'competition', 'publications'].includes(page.id))
-    .map(page => ({
-      params: { slug: page.id },
-      props: { page },
-    }));
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
 }
 
 const { page } = Astro.props;
 const { Content } = await render(page);
 const { kicker, title, lead } = page.data;
-const slug = page.id;
 ---
-<Base title={`${title || slug} · THUSCC`} activePage={slug}>
-  <section class="sec sec-top">
-    {kicker && <p class="sec-kicker">{kicker}</p>}
-    {title && <h2 class="sec-title">{title}</h2>}
-    {lead && <p class="sec-lead">{lead}</p>}
-    <div class="md-content">
-      <Content />
-    </div>
-  </section>
+<Base title={title ?? page.id} activePage={page.id}>
+  <PageIntro eyebrow={kicker} title={title ?? page.id} lead={lead} />
+  <div class="prose">
+    <Content />
+  </div>
 </Base>

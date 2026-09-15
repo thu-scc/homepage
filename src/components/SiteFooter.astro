@@ -1,0 +1,94 @@
+---
+declare const __BUILD_TIME__: string;
+declare const __COMMIT_HASH__: string;
+
+const buildTime = __BUILD_TIME__;
+const commitHash = __COMMIT_HASH__;
+const commitUrl = commitHash ? `https://github.com/thu-scc/homepage/tree/${commitHash}` : '';
+const year = new Date().getFullYear();
+
+const links = [
+  { href: '/competition', label: '竞赛情况' },
+  { href: '/members', label: '团队成员' },
+  { href: '/collaboration', label: '交叉合作' },
+  { href: '/join', label: '加入我们' },
+  { href: 'https://github.com/thu-scc', label: 'GitHub', external: true },
+];
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="footer-name">清华大学学生超算团队</p>
+      <p class="footer-en">Tsinghua University Student Cluster Competition Team</p>
+    </div>
+    <ul class="footer-links">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a>
+        </li>
+      ))}
+    </ul>
+    <p class="footer-meta">
+      © 2012–{year} THUSCC
+      {commitHash && (
+        <>
+          {' · '}Built {buildTime}{' · '}
+          <a href={commitUrl} target="_blank" rel="noopener">{commitHash}</a>
+        </>
+      )}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line);
+    padding-block: 2.5rem 3rem;
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1.5rem 3rem;
+    align-items: start;
+  }
+  .footer-name {
+    font-weight: 600;
+    color: var(--fg);
+  }
+  .footer-en {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-links a {
+    color: var(--fg-2);
+    text-decoration: none;
+  }
+  .footer-links a:hover {
+    color: var(--accent);
+  }
+  .footer-meta {
+    grid-column: 1 / -1;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+  }
+  .footer-meta a {
+    color: inherit;
+  }
+  @media (max-width: 640px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

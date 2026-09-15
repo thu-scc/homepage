@@ -1,163 +1,211 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Base from '../../layouts/Base.astro';
-import details from '../../data/competition-details.json';
+import PageIntro from '../../components/PageIntro.astro';
+import { details, roleOrder, roleLabels, type CompetitionDetail } from '../../lib/competitions';
+import { memberHref } from '../../lib/members';
 
 export function getStaticPaths() {
-  return Object.entries(details).map(([id, info]) => ({
-    params: { id },
-    props: { id, info },
-  }));
+  return Object.entries(details).map(([id, info]) => ({ params: { id }, props: { id, info } }));
 }
 
-const { id, info } = Astro.props as { id: string; info: any };
-const hasTeam = !!(info.team && (info.team.players?.length || info.team.coaches?.length || info.team.support?.length || info.team.training?.length));
-const hasProblems = !!(info.problems?.length);
-const hasNews = !!(info.news?.length);
-const hasHighlights = !!info.highlights;
-const hasNotes = !!info._notes;
+const { info } = Astro.props as { id: string; info: CompetitionDetail };
+
+// Photos are referenced in the JSON as /img/competition/<id>/NN.jpg and live in src/assets/competition.
+const photoModules = import.meta.glob<ImageMetadata>('/src/assets/competition/**/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default',
+});
+const photos = (info.photos ?? []).map((src) => ({
+  src,
+  image: photoModules[src.replace(/^\/img\//, '/src/assets/')],
+}));
+
+const teamRoles = roleOrder.filter((r) => (info.team?.[r]?.length ?? 0) > 0);
+const problems = info.problems ?? [];
+const news = info.news ?? [];
+const hasBody = teamRoles.length > 0 || problems.length > 0 || news.length > 0 || photos.length > 0;
+const eyebrow = [info.date ?? info.sortDate, info.location].filter(Boolean).join(' · ');
+
+function awardType(award: string): string {
+  if (award.includes('冠军')) return 'champion';
+  if (award.includes('亚军')) return 'runner-up';
+  if (/linpack/i.test(award)) return 'linpack';
+  if (/e-?prize/i.test(award)) return 'eprize';
+  return 'place';
+}
 ---
-<Base title={`${info.name} · THUSCC`} activePage="competition">
-  <section class="sec sec-top">
-    <a href="/competition" class="back-link">
-      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M17 10a.75.75 0 0 1-.75.75H5.612l4.158 3.96a.75.75 0 1 1-1.04 1.08l-5.5-5.25a.75.75 0 0 1 0-1.08l5.5-5.25a.75.75 0 1 1 1.04 1.08L5.612 9.25H16.25A.75.75 0 0 1 17 10Z" clip-rule="evenodd"/></svg>
-      返回竞赛总览
-    </a>
+<Base title={info.name} activePage="competition">
+  <a class="back-link" href="/competition"><span aria-hidden="true">←</span> 返回竞赛总览</a>
 
-    <p class="sec-kicker">{info.date}</p>
-    <h2 class="sec-title">{info.name}</h2>
-    {info.location && <p class="sec-lead">{info.location}</p>}
-
-    <div class="detail-awards">
-      {info.awards.map((a: string) => <span class="detail-award">{a}</span>)}
-    </div>
-
-    {hasHighlights && (
-      <p class="detail-highlights">{info.highlights}</p>
+  <PageIntro eyebrow={eyebrow} title={info.name}>
+    {info.awards.length > 0 && (
+      <ul class="badge-list awards" aria-label="获奖">
+        {info.awards.map((a) => (
+          <li><span class={`badge badge-${awardType(a)} award`}>{a}</span></li>
+        ))}
+      </ul>
     )}
+    {info.highlights && <p class="lead">{info.highlights}</p>}
+  </PageIntro>
 
-    {hasTeam && (
-      <div class="detail-section">
-        <h3 class="detail-heading">团队成员</h3>
-        <div class="team-grid">
-          {info.team.coaches?.length > 0 && (
-            <div class="team-group">
-              <p class="team-role">指导教师</p>
-              <ul class="team-list">{info.team.coaches.map((n: string) => <li>{n}</li>)}</ul>
-            </div>
-          )}
-          {info.team.players?.length > 0 && (
-            <div class="team-group">
-              <p class="team-role">上场队员</p>
-              <ul class="team-list">{info.team.players.map((n: string) => <li>{n}</li>)}</ul>
-            </div>
-          )}
-          {info.team.support?.length > 0 && (
-            <div class="team-group">
-              <p class="team-role">技术支持</p>
-              <ul class="team-list">{info.team.support.map((n: string) => <li>{n}</li>)}</ul>
-            </div>
-          )}
-          {info.team.training?.length > 0 && (
-            <div class="team-group">
-              <p class="team-role">参加训练</p>
-              <ul class="team-list">{info.team.training.map((n: string) => <li>{n}</li>)}</ul>
-            </div>
-          )}
-        </div>
+  {teamRoles.length > 0 && (
+    <section class="section">
+      <div class="section-head"><h2 class="section-title">团队成员</h2></div>
+      <div class="team-grid">
+        {teamRoles.map((role) => (
+          <div class="team-role">
+            <h3 class="eyebrow">{roleLabels[role]}</h3>
+            <ul class="name-list">
+              {info.team![role]!.map((name) => {
+                const href = memberHref(name);
+                return <li>{href ? <a href={href}>{name}</a> : name}</li>;
+              })}
+            </ul>
+          </div>
+        ))}
       </div>
-    )}
+    </section>
+  )}
 
-    {hasProblems && (
-      <div class="detail-section">
-        <h3 class="detail-heading">赛题</h3>
-        <ul class="problems-list">
-          {info.problems.map((p: string) => <li>{p}</li>)}
-        </ul>
-      </div>
-    )}
+  {problems.length > 0 && (
+    <section class="section">
+      <div class="section-head"><h2 class="section-title">赛题</h2></div>
+      <ul class="row-list">
+        {problems.map((p) => <li>{p}</li>)}
+      </ul>
+    </section>
+  )}
 
-    {hasNews && (
-      <div class="detail-section">
-        <h3 class="detail-heading">相关报道</h3>
-        <ul class="news-list">
-          {info.news.map((n: any) => (
-            <li><a href={n.url} target="_blank" rel="noopener">{n.title}
-              <svg viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M6.194 12.753a.75.75 0 0 0 1.06.053L16.5 4.44v2.81a.75.75 0 0 0 1.5 0v-4.5a.75.75 0 0 0-.75-.75h-4.5a.75.75 0 0 0 0 1.5h2.553l-9.056 8.194a.75.75 0 0 0-.053 1.06Z" clip-rule="evenodd"/></svg>
-            </a></li>
-          ))}
-        </ul>
-      </div>
-    )}
+  {news.length > 0 && (
+    <section class="section">
+      <div class="section-head"><h2 class="section-title">相关报道</h2></div>
+      <ul class="row-list">
+        {news.map((n) => (
+          <li>
+            <a href={n.url} target="_blank" rel="noopener">{n.title} <span class="ext" aria-hidden="true">↗</span></a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
 
-    {!hasTeam && !hasProblems && !hasNews && (
-      <div class="detail-placeholder">
-        <div class="placeholder-inner">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="32" height="32"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
-          <p>详细信息待补充</p>
-        </div>
-      </div>
-    )}
+  {photos.length > 0 && (
+    <section class="section">
+      <div class="section-head"><h2 class="section-title">照片</h2></div>
+      <ul class="photo-grid">
+        {photos.map((p, i) =>
+          p.image ? (
+            <li>
+              <a href={p.image.src} target="_blank" rel="noopener">
+                <Image
+                  src={p.image}
+                  widths={[480, 800, 1200]}
+                  sizes="(min-width: 900px) 340px, (min-width: 600px) 50vw, 100vw"
+                  format="webp"
+                  quality={78}
+                  alt={`${info.name} 团队照片 ${i + 1}`}
+                  loading="lazy"
+                />
+              </a>
+            </li>
+          ) : (
+            <li>
+              <a href={p.src} target="_blank" rel="noopener">
+                <img src={p.src} alt={`${info.name} 团队照片 ${i + 1}`} loading="lazy" />
+              </a>
+            </li>
+          ),
+        )}
+      </ul>
+    </section>
+  )}
 
-    {hasNotes && (
-      <p class="detail-notes">⚠️ {info._notes}</p>
-    )}
+  {!hasBody && <p class="placeholder">详细信息待补充</p>}
 
-    {info.photos?.length > 0 && (
-      <div class="detail-section">
-        <h3 class="detail-heading">照片</h3>
-        <div class="photos-grid">
-          {info.photos.map((src: string) => (
-            <a href={src} target="_blank" class="photo-link">
-              <img src={src} alt={`${info.name} 团队照片`} class="comp-photo" loading="lazy" />
-            </a>
-          ))}
-        </div>
-      </div>
-    )}
-  </section>
+  {info._notes && (
+    <p class="notes"><span class="eyebrow">备注</span> {info._notes}</p>
+  )}
 </Base>
 
 <style>
-  .back-link { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 0.78rem; color: var(--accent-light); text-decoration: none; margin-bottom: 3vh; opacity: 0.8; transition: opacity 0.2s; }
-  .back-link:hover { opacity: 1; }
-  .detail-awards { display: flex; flex-wrap: wrap; gap: 10px; margin: 2vh 0 3vh; }
-  .detail-award { display: inline-block; padding: 6px 14px; border-radius: 6px; font-size: 0.9rem; font-weight: 600; background: var(--gold-bg); color: var(--gold-color); border: 1px solid rgba(255,200,0,0.2); }
-  .detail-highlights { font-family: var(--serif-zh); font-size: 0.92rem; opacity: 0.75; line-height: 1.7; margin-bottom: 4vh; max-width: 680px; }
-  .detail-section { margin-bottom: 4vh; }
-  .detail-heading { font-family: var(--serif-zh); font-weight: 600; font-size: 1.15rem; margin-bottom: 1.5vh; }
-  .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); gap: 16px; }
-  .team-group { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 16px; }
-  .team-role { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; margin-bottom: 8px; }
-  .team-list { list-style: none; padding: 0; }
-  .team-list li { font-size: 0.9rem; padding: 3px 0; }
-  .problems-list { list-style: none; padding: 0; }
-  .problems-list li { font-size: 0.88rem; padding: 6px 0; border-bottom: 1px solid rgba(var(--fg-rgb), 0.04); opacity: 0.82; }
-  .problems-list li:last-child { border-bottom: none; }
-  .news-list { list-style: none; padding: 0; }
-  .news-list li { padding: 8px 0; border-bottom: 1px solid rgba(var(--fg-rgb), 0.04); }
-  .news-list li:last-child { border-bottom: none; }
-  .news-list a { color: var(--link-color); text-decoration: none; font-size: 0.88rem; display: inline-flex; align-items: center; gap: 6px; max-width: 100%; overflow-wrap: anywhere; }
-  .news-list a:hover { text-decoration: underline; }
-  .news-list svg { flex-shrink: 0; opacity: 0.6; }
-  .detail-placeholder { margin-top: 5vh; padding: 48px 24px; border: 1px dashed rgba(var(--fg-rgb), 0.12); border-radius: 12px; text-align: center; }
-  .placeholder-inner { display: flex; flex-direction: column; align-items: center; gap: 12px; opacity: 0.45; }
-  .detail-notes { font-family: var(--mono); font-size: 0.75rem; opacity: 0.6; margin-top: 3vh; padding: 12px; background: rgba(var(--fg-rgb), 0.03); border-radius: 6px; overflow-wrap: anywhere; }
-  .photos-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 16px; }
-  .photo-link { display: block; border-radius: 8px; overflow: hidden; border: 1px solid var(--card-border); transition: border-color 0.2s, transform 0.15s; }
-  .photo-link:hover { border-color: var(--accent-light); transform: translateY(-2px); }
-  .comp-photo { width: 100%; display: block; }
-
-  @media (max-width: 767px) {
-    .detail-awards { gap: 8px; }
-    .detail-award { font-size: 0.82rem; padding: 5px 10px; }
-    .team-grid, .photos-grid { gap: 12px; }
-    .team-group { padding: 14px; }
-    .news-list a { align-items: flex-start; }
-    .news-list svg { margin-top: 0.2em; }
-    .detail-placeholder { padding: 36px 18px; }
+  .awards {
+    gap: 0.5rem;
   }
-
-  @media (min-width: 1440px) {
-    .photos-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .award {
+    font-size: var(--text-sm);
+    padding: 0.2rem 0.7rem;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: 1.5rem 2rem;
+  }
+  .team-role {
+    display: grid;
+    gap: 0.5rem;
+    align-content: start;
+  }
+  .name-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.125rem;
+  }
+  .name-list a {
+    color: inherit;
+    text-decoration-color: var(--line-strong);
+  }
+  .name-list a:hover {
+    color: var(--accent);
+  }
+  .row-list {
+    list-style: none;
+    padding: 0;
+    max-width: var(--measure);
+  }
+  .row-list li {
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--fg-2);
+  }
+  .row-list a {
+    color: var(--fg);
+    text-decoration-color: var(--line-strong);
+  }
+  .row-list a:hover {
+    color: var(--accent);
+  }
+  .ext {
+    font-family: var(--font-mono);
+    color: var(--fg-3);
+  }
+  .photo-grid {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+    gap: 0.75rem;
+  }
+  .photo-grid a {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+  }
+  .photo-grid img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+  .notes {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    max-width: var(--measure);
+  }
+  .notes .eyebrow {
+    margin-right: 0.5rem;
   }
 </style>

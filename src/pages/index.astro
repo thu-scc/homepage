@@ -1,40 +1,186 @@
 ---
 import Base from '../layouts/Base.astro';
-import DiabloLogo from '../components/DiabloLogo.astro';
-import data from '../data/competitions.json';
+import Logo from '../components/Logo.astro';
+import ResultBadge from '../components/ResultBadge.astro';
+import { championCount, yearsOfHistory, grandSlamYears, recentResults } from '../lib/competitions';
+import { memberCount, alumniGroups } from '../lib/members';
 
-const { competitions, grandSlamYears, records } = data;
-const years = records[0].year - records[records.length - 1].year + 1;
-const champions = records.reduce((sum, row) => {
-  return sum + competitions.reduce((s, comp) => {
-    return s + ((row as any)[comp] || []).filter((i: any) => i.type === 'champion').length;
-  }, 0);
-}, 0);
-const grandSlams = grandSlamYears.length;
+const recent = recentResults(4);
+const earliestGrade = alumniGroups[alumniGroups.length - 1]?.grade ?? '2008 级';
+
+const sections = [
+  { href: '/competition', title: '竞赛情况', desc: 'ASC、ISC、SC 三大国际赛事的历年成绩，以及每届比赛的队员、赛题与报道。' },
+  { href: '/members', title: '团队成员', desc: `${earliestGrade}至今的指导教师、在队成员与毕业成员，附每个人的参赛记录。` },
+  { href: '/publications', title: '学术发表', desc: 'SC 学生超算竞赛论文复现挑战相关的论文与技术报告。' },
+  { href: '/collaboration', title: '交叉合作', desc: '与天格计划、化工系 LEB 等科研团队的合作项目，以超算技术服务科研一线。' },
+  { href: '/honors', title: '荣誉徽章', desc: '团队与个人获得的荣誉。' },
+  { href: '/join', title: '加入我们', desc: '每年秋季学期招新，不限院系与年级，从零开始培训。' },
+];
 ---
 <Base activePage="home">
   <section class="hero">
-    <DiabloLogo size="hero" />
-    <p class="hero-kicker">Tsinghua Student Cluster Competition Team</p>
-    <h1 class="hero-title">清华大学<br>学生超算团队</h1>
-    <p class="hero-sub">让超算技术走出竞赛场，走进科研现场。<br>用高性能计算、AI 系统和分布式架构，为科研团队解决真实的计算瓶颈。</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="n">{champions}</span><span class="l">国际赛事冠军</span></div>
-      <div class="hero-stat"><span class="n">{years}</span><span class="l">年竞赛历程</span></div>
-      <div class="hero-stat"><span class="n">100+</span><span class="l">历届队员</span></div>
-      <div class="hero-stat"><span class="n">{grandSlams}</span><span class="l">次三大赛事满贯</span></div>
+    <div class="hero-text">
+      <p class="eyebrow">Tsinghua University Student Cluster Competition Team</p>
+      <h1 class="hero-title">清华大学<br />学生超算团队</h1>
+      <p class="lead">
+        让超算技术走出竞赛场，走进科研现场。我们用高性能计算、AI 系统和分布式架构，为科研团队解决真实的计算瓶颈。
+      </p>
+      <dl class="facts hero-facts">
+        <div class="fact"><dt>国际赛事冠军</dt><dd>{championCount}</dd></div>
+        <div class="fact"><dt>年竞赛历程</dt><dd>{yearsOfHistory}</dd></div>
+        <div class="fact"><dt>历届队员</dt><dd>{memberCount}</dd></div>
+        <div class="fact"><dt>三大赛事大满贯</dt><dd>{grandSlamYears.length}</dd></div>
+      </dl>
     </div>
+    <Logo class="hero-mark" strokeWidth={1.25} />
   </section>
-  <section class="sec">
-    <p class="sec-kicker">Explore</p>
-    <h2 class="sec-title">了解我们</h2>
-    <div class="cards">
-      <a class="card" href="/collaboration"><p class="card-tag">Cross-disciplinary</p><h3 class="card-title">交叉合作</h3><p class="card-desc">天格计划 · 化工系 LEB · 以超算技术服务科研一线</p></a>
-      <a class="card" href="/competition"><p class="card-tag">Competition</p><h3 class="card-title">竞赛情况</h3><p class="card-desc">ASC · ISC · SC 三大国际赛事，全球唯一满贯队伍</p></a>
-      <a class="card" href="/publications"><p class="card-tag">Research</p><h3 class="card-title">学术发表</h3><p class="card-desc">论文与技术报告</p></a>
-      <a class="card" href="/members"><p class="card-tag">People</p><h3 class="card-title">团队成员</h3><p class="card-desc">2008 级至今，百余位队员</p></a>
-      <a class="card" href="/honors"><p class="card-tag">Honors</p><h3 class="card-title">荣誉徽章</h3><p class="card-desc">团队与个人荣誉</p></a>
-      <a class="card" href="/join"><p class="card-tag">Join us</p><h3 class="card-title">加入我们</h3><p class="card-desc">欢迎热爱计算的你</p></a>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">最新战绩</h2>
+      <a class="section-note" href="/competition">查看历年成绩</a>
+    </div>
+    <ol class="ledger">
+      {recent.map((r) => (
+        <li>
+          <a class="ledger-row" href={`/competition/${r.id}`}>
+            <span class="ledger-year num">{r.year}</span>
+            <span class="ledger-name">{r.name}</span>
+            <ul class="badge-list ledger-awards">
+              {r.entries.map((e) => (
+                <li><ResultBadge entry={e} link={false} /></li>
+              ))}
+            </ul>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">了解我们</h2>
+    </div>
+    <ul class="link-list">
+      {sections.map((s) => (
+        <li>
+          <a href={s.href}>
+            <span class="link-title">{s.title}</span>
+            <span class="link-desc">{s.desc}</span>
+            <span class="link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="cta">
+    <div>
+      <h2 class="cta-title">科研团队遇到计算瓶颈？</h2>
+      <p class="cta-desc">数值模拟加速、大规模数据处理、AI 推理优化、分布式系统设计，欢迎联系我们。</p>
+    </div>
+    <div class="cta-actions">
+      <a class="btn btn-primary" href="/collaboration">了解交叉合作</a>
+      <a class="btn" href="/join">加入团队</a>
     </div>
   </section>
 </Base>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5rem);
+    padding-top: clamp(0.5rem, 3vw, 2.5rem);
+  }
+  .hero-text {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 40rem;
+  }
+  .hero-title {
+    font-size: var(--text-display);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .hero-facts {
+    margin-top: 0.75rem;
+  }
+  .hero-mark {
+    width: clamp(120px, 18vw, 200px);
+    color: var(--accent);
+  }
+
+  .ledger {
+    list-style: none;
+    padding: 0;
+  }
+  .ledger-row {
+    display: grid;
+    grid-template-columns: 4.5rem minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0.5rem 1rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none;
+  }
+  .ledger-year {
+    font-size: var(--text-sm);
+    color: var(--fg-3);
+  }
+  .ledger-name {
+    font-weight: 600;
+  }
+  .ledger-row:hover .ledger-name {
+    color: var(--accent);
+  }
+  .ledger-awards {
+    justify-content: flex-end;
+  }
+
+  .cta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-lg);
+  }
+  .cta-title {
+    font-size: var(--text-lg);
+  }
+  .cta-desc {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    max-width: 44ch;
+  }
+  .cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 720px) {
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-mark {
+      display: none;
+    }
+  }
+  @media (max-width: 560px) {
+    .ledger-row {
+      grid-template-columns: 4rem minmax(0, 1fr);
+    }
+    .ledger-awards {
+      grid-column: 2;
+      justify-content: flex-start;
+    }
+  }
+</style>

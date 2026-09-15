@@ -1,0 +1,192 @@
+---
+import Logo from './Logo.astro';
+import ThemeToggle from './ThemeToggle.astro';
+
+interface Props {
+  activePage?: string;
+}
+const { activePage = 'home' } = Astro.props;
+
+const navLinks = [
+  { href: '/', page: 'home', label: '首页' },
+  { href: '/competition', page: 'competition', label: '竞赛情况' },
+  { href: '/members', page: 'members', label: '团队成员' },
+  { href: '/publications', page: 'publications', label: '学术发表' },
+  { href: '/collaboration', page: 'collaboration', label: '交叉合作' },
+  { href: '/honors', page: 'honors', label: '荣誉徽章' },
+  { href: '/join', page: 'join', label: '加入我们' },
+];
+---
+<header class="site-header" data-site-header>
+  <div class="container header-inner">
+    <a href="/" class="brand" aria-label="THUSCC 首页">
+      <Logo class="brand-mark" />
+      <span class="brand-name">THUSCC</span>
+    </a>
+
+    <nav class="site-nav" id="site-nav" aria-label="主导航">
+      <ul>
+        {navLinks.map((l) => (
+          <li>
+            <a href={l.href} aria-current={activePage === l.page ? 'page' : undefined}>{l.label}</a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <ThemeToggle />
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="打开菜单"
+        data-nav-toggle
+      >
+        <svg class="icon icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+        <svg class="icon icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true">
+          <path d="M6 6l12 12M18 6L6 18" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--bg);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: var(--header-h);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    color: var(--fg);
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+  .brand-mark {
+    width: 20px;
+    height: 24px;
+    color: var(--accent);
+  }
+  .brand-name {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    font-size: var(--text-base);
+    letter-spacing: 0.04em;
+  }
+  .site-nav {
+    margin-left: auto;
+  }
+  .site-nav ul {
+    display: flex;
+    gap: clamp(0.875rem, 1.6vw, 1.5rem);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .site-nav a {
+    display: block;
+    padding-block: 0.25rem;
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .site-nav a:hover {
+    color: var(--fg);
+  }
+  .site-nav a[aria-current="page"] {
+    color: var(--fg);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.55em;
+    text-decoration-color: var(--accent);
+  }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex-shrink: 0;
+  }
+  .nav-toggle {
+    display: none;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    padding: 0;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: var(--fg-2);
+    cursor: pointer;
+  }
+  .nav-toggle:hover {
+    color: var(--fg);
+    background: var(--surface-2);
+  }
+  .nav-toggle .icon {
+    width: 20px;
+    height: 20px;
+  }
+  .nav-toggle .icon-close,
+  .nav-toggle[aria-expanded="true"] .icon-open {
+    display: none;
+  }
+  .nav-toggle[aria-expanded="true"] .icon-close {
+    display: block;
+  }
+
+  @media (max-width: 899px) {
+    .header-actions {
+      margin-left: auto;
+    }
+    .nav-toggle {
+      display: grid;
+    }
+    .site-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      margin: 0;
+      padding: 0.5rem var(--gutter) 1rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .site-header[data-open="true"] .site-nav {
+      display: block;
+    }
+    .site-nav ul {
+      flex-direction: column;
+      gap: 0;
+    }
+    .site-nav li + li {
+      border-top: 1px solid var(--line);
+    }
+    .site-nav a {
+      padding-block: 0.75rem;
+      font-size: var(--text-base);
+    }
+    .site-nav a[aria-current="page"] {
+      text-decoration: none;
+      color: var(--accent);
+    }
+  }
+</style>

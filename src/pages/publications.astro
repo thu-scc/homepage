@@ -1,51 +1,88 @@
 ---
 import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
 import publications from '../data/publications.json';
 ---
-<Base title="学术发表 · THUSCC" activePage="publications">
-  <section class="sec sec-top">
-    <p class="sec-kicker">Publications</p>
-    <h2 class="sec-title">学术发表</h2>
-    <p class="sec-lead">团队相关论文与技术报告。均发表于 SC Student Cluster Competition 论文复现挑战。</p>
+<Base title="学术发表" activePage="publications">
+  <PageIntro
+    eyebrow="Publications"
+    title="学术发表"
+    lead="团队相关论文与技术报告，均发表于 SC 学生超算竞赛的论文复现挑战（Reproducibility Challenge）。"
+  />
 
-    <ol class="pub-list">
-      {publications.map(pub => (
-        <li class="pub-item">
-          <div class="pub-title">
-            <a href={pub.url} target="_blank" rel="noopener">{pub.title}</a>
-          </div>
-          <div class="pub-authors">{pub.authors.join(', ')}</div>
-          <div class="pub-meta">
-            <span class="pub-venue">{pub.venueShort}</span>
-            <span class="pub-year">{pub.year}</span>
-            {pub.competition && <span class="pub-comp">{pub.competition} Reproducibility Challenge</span>}
-            {pub.doi && <a class="pub-doi" href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener">DOI</a>}
-          </div>
-        </li>
-      ))}
-    </ol>
-  </section>
+  <ol class="pub-list">
+    {publications.map((pub, i) => (
+      <li class="pub">
+        <span class="pub-index num" aria-hidden="true">[{i + 1}]</span>
+        <div class="pub-body">
+          <a class="pub-title" href={pub.url} target="_blank" rel="noopener">{pub.title}</a>
+          <p class="pub-authors">{pub.authors.join('、')}</p>
+          <p class="pub-meta">
+            <span class="mono">{pub.venueShort}</span>
+            <span class="num">{pub.year}</span>
+            {pub.competition && <span>{pub.competition} Reproducibility Challenge</span>}
+            {pub.doi && (
+              <a class="mono" href={`https://doi.org/${pub.doi}`} target="_blank" rel="noopener">doi:{pub.doi}</a>
+            )}
+          </p>
+        </div>
+      </li>
+    ))}
+  </ol>
 </Base>
 
 <style>
-  .pub-list { list-style: none; padding: 0; counter-reset: pub; }
-  .pub-item { margin-bottom: 28px; padding: 20px 24px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; position: relative; }
-  .pub-item::before { counter-increment: pub; content: "[" counter(pub) "]"; position: absolute; top: 20px; left: -8px; font-family: var(--mono); font-size: 0.7rem; opacity: 0.4; display: none; }
-  .pub-title { margin-bottom: 8px; }
-  .pub-title a { font-family: var(--serif-zh); font-weight: 600; font-size: 0.95rem; line-height: 1.5; color: var(--fg); text-decoration: none; transition: color 0.2s; overflow-wrap: anywhere; }
-  .pub-title a:hover { color: var(--accent-light); }
-  .pub-authors { font-size: 0.82rem; opacity: 0.7; margin-bottom: 10px; line-height: 1.6; overflow-wrap: anywhere; }
-  .pub-meta { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-  .pub-venue { font-family: var(--mono); font-size: 0.72rem; font-weight: 600; opacity: 0.8; }
-  .pub-year { font-family: var(--mono); font-size: 0.72rem; opacity: 0.5; }
-  .pub-comp { font-family: var(--mono); font-size: 0.68rem; padding: 2px 8px; border-radius: 4px; background: rgba(var(--fg-rgb), 0.04); opacity: 0.6; }
-  .pub-doi { font-family: var(--mono); font-size: 0.68rem; padding: 2px 8px; border-radius: 4px; background: var(--accent-dim); color: var(--accent-light); text-decoration: none; transition: background 0.2s; }
-  .pub-doi:hover { background: rgba(130,49,142,0.2); }
-
+  .pub-list {
+    list-style: none;
+    padding: 0;
+    max-width: 52rem;
+  }
+  .pub {
+    display: grid;
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .pub-index {
+    font-size: var(--text-sm);
+    color: var(--fg-3);
+    padding-top: 0.2rem;
+  }
+  .pub-body {
+    display: grid;
+    gap: 0.375rem;
+  }
+  .pub-title {
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--fg);
+    text-decoration-color: var(--line-strong);
+  }
+  .pub-title:hover {
+    color: var(--accent);
+  }
+  .pub-authors {
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+  }
+  .pub-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+  }
+  .pub-meta a {
+    color: var(--fg-3);
+  }
+  .pub-meta a:hover {
+    color: var(--accent);
+  }
   @media (max-width: 480px) {
-    .pub-item { padding: 16px; }
-    .pub-title a { font-size: 0.88rem; }
-    .pub-meta { gap: 6px; }
-    .pub-comp { max-width: 100%; overflow-wrap: anywhere; }
+    .pub {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
   }
 </style>

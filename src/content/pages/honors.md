@@ -1,7 +1,7 @@
 ---
-kicker: Honors & Awards
+kicker: Honors
 title: 荣誉徽章
-lead: 团队与个人荣誉。
+lead: 团队与个人获得的荣誉。
 ---
 
 ## 团队荣誉
@@ -21,7 +21,4 @@ lead: 团队与个人荣誉。
 
 ## 个人荣誉
 
-<div class="placeholder">
-<p class="mono">COMING SOON</p>
-<p style="margin-top:10px;font-size:0.88rem;opacity:0.6;">内容整理中，欢迎补充</p>
-</div>
+<p class="placeholder">内容整理中，欢迎补充</p>

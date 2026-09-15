@@ -1,7 +1,7 @@
 ---
-kicker: Cross-disciplinary Collaboration
+kicker: Collaboration
 title: 交叉合作
-lead: 我们相信，超算技术的价值不止于竞赛场——当它与真实的科学问题结合，才能产生最大的影响力。
+lead: 超算技术的价值不止于竞赛场。当它与真实的科学问题结合，才能产生最大的影响力。
 ---
 
 <div class="cards">
@@ -27,11 +27,9 @@ lead: 我们相信，超算技术的价值不止于竞赛场——当它与真�
 </div>
 </div>
 
----
-
 ## 合作邀请
 
-如果你的科研团队有计算瓶颈——无论是数值模拟加速、大规模数据处理、AI 推理优化，还是分布式系统设计——欢迎联系我们。
+如果你的科研团队有计算瓶颈，无论是数值模拟加速、大规模数据处理、AI 推理优化，还是分布式系统设计，欢迎[联系我们](/join)。
 
 <div class="cards cards-sm">
 <div class="card card-center"><h3 class="card-title">HPC 优化</h3><p class="card-desc">CPU/GPU/MPI<br>算法加速</p></div>

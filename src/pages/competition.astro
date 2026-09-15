@@ -1,80 +1,76 @@
 ---
 import Base from '../layouts/Base.astro';
-import data from '../data/competitions.json';
+import PageIntro from '../components/PageIntro.astro';
+import ResultBadge from '../components/ResultBadge.astro';
+import {
+  columns,
+  grandSlamYears,
+  records,
+  entriesFor,
+  championCount,
+  yearsOfHistory,
+  type ResultType,
+} from '../lib/competitions';
 
-const { competitions, grandSlamYears, records } = data;
-
-// Compute stats from data
-const years = records[0].year - records[records.length - 1].year + 1;
-const champions = records.reduce((sum, row) => {
-  return sum + competitions.reduce((s, comp) => {
-    return s + ((row as any)[comp] || []).filter((i: any) => i.type === 'champion').length;
-  }, 0);
-}, 0);
-const grandSlams = grandSlamYears.length;
+const legend: { type: ResultType; label: string }[] = [
+  { type: 'champion', label: '冠军' },
+  { type: 'runner-up', label: '亚军' },
+  { type: 'linpack', label: 'LINPACK' },
+  { type: 'eprize', label: 'E-Prize' },
+  { type: 'special', label: '特别奖' },
+  { type: 'place', label: '其他名次' },
+];
 ---
-<Base title="竞赛情况 · THUSCC" activePage="competition">
-  <section class="sec sec-top">
-    <p class="sec-kicker">Competition Record</p>
-    <h2 class="sec-title">竞赛情况</h2>
-    <p class="sec-lead">全球唯一在 ASC、ISC、SC 三大国际大学生超算竞赛中均获得过冠军的队伍。</p>
+<Base title="竞赛情况" activePage="competition">
+  <PageIntro
+    eyebrow="Competition record"
+    title="竞赛情况"
+    lead="ASC、ISC、SC 是三大国际大学生超算竞赛：参赛队在严格的功耗限制下自行搭建集群，运行基准测试与真实的科学应用。清华是全球唯一在三项赛事中都夺得过冠军的队伍。"
+  />
 
-    <div class="stats-row">
-      <div class="stat-item"><span class="n">{champions}</span><span class="l">国际赛事冠军</span></div>
-      <div class="stat-item"><span class="n">{years}</span><span class="l">年竞赛历程</span></div>
-      <div class="stat-item"><span class="n">{grandSlams}</span><span class="l">次三大赛事满贯</span></div>
+  <dl class="facts">
+    <div class="fact"><dt>国际赛事冠军</dt><dd>{championCount}</dd></div>
+    <div class="fact"><dt>年竞赛历程</dt><dd>{yearsOfHistory}</dd></div>
+    <div class="fact"><dt>三大赛事大满贯</dt><dd>{grandSlamYears.join(' · ')}</dd></div>
+  </dl>
+
+  <section class="section">
+    <div class="section-head">
+      <h2 class="section-title">历年成绩</h2>
+      <ul class="badge-list legend" aria-label="图例">
+        {legend.map((l) => (
+          <li><span class={`badge badge-${l.type}`}>{l.label}</span></li>
+        ))}
+      </ul>
     </div>
 
-    <h3 class="comp-section-title">完整成绩</h3>
-    <p class="comp-legend">
-      <span class="badge badge-champion">冠军</span>
-      <span class="badge badge-runner-up">亚军</span>
-      <span class="badge badge-linpack">LINPACK</span>
-      <span class="badge badge-eprize">E-Prize</span>
-      <span class="badge badge-special">特别奖</span>
-    </p>
-
-    <div class="comp-table-wrap">
-      <table class="comp-table">
+    <div class="table-wrap results-table">
+      <table class="table">
         <thead>
           <tr>
-            <th class="col-year">Year</th>
-            {competitions.map(c => <th>{c}</th>)}
+            <th scope="col">年份</th>
+            {columns.map((c) => <th scope="col">{c}</th>)}
           </tr>
         </thead>
         <tbody>
-          {records.map(row => {
-            const isGrandSlam = grandSlamYears.includes(row.year);
+          {records.map((row) => {
+            const slam = grandSlamYears.includes(row.year);
             return (
-              <tr class={isGrandSlam ? 'row-grandslam' : ''}>
-                <td class="col-year">
-                  <span class="year-num">{row.year}</span>
-                  {isGrandSlam && (
-                    <span class="grandslam-icon" title="三大赛事大满贯">
-                      <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16"><path fill-rule="evenodd" d="M10 1c-1.828 0-3.623.149-5.371.435a.75.75 0 0 0-.629.74v.387c-.827.157-1.642.345-2.445.564a.75.75 0 0 0-.552.698 5 5 0 0 0 4.503 5.152 6 6 0 0 0 2.946 1.822A1.51 1.51 0 0 1 7.5 11.268v.732H6a.75.75 0 0 0-.75.75v1.5h-.75a.75.75 0 0 0-.75.75v2.25c0 .414.336.75.75.75h11a.75.75 0 0 0 .75-.75V15a.75.75 0 0 0-.75-.75h-.75v-1.5a.75.75 0 0 0-.75-.75h-1.5v-.732a1.51 1.51 0 0 1-.952-.47 6 6 0 0 0 2.946-1.822 5 5 0 0 0 4.503-5.152.75.75 0 0 0-.552-.698A31 31 0 0 0 16 2.562v-.388a.75.75 0 0 0-.629-.74A33 33 0 0 0 10 1M2.525 4.422a29 29 0 0 1 1.975-.478v2.2a4.5 4.5 0 0 0 1.735 3.55 3.5 3.5 0 0 1-3.71-5.272m14.95 0a3.5 3.5 0 0 1-3.71 5.272 4.5 4.5 0 0 0 1.735-3.55v-2.2c.68.127 1.338.282 1.975.478" clip-rule="evenodd"/></svg>
-                    </span>
-                  )}
-                </td>
-                {competitions.map(comp => {
-                  const items = (row as any)[comp] || [];
+              <tr class:list={{ 'row-slam': slam }}>
+                <th scope="row" class="year-cell">
+                  <span class="num">{row.year}</span>
+                  {slam && <span class="slam-tag">大满贯</span>}
+                </th>
+                {columns.map((col) => {
+                  const entries = entriesFor(row, col);
                   return (
                     <td>
-                      {items.length === 0 ? null : (
-                        <div class="cell-badges">
-                          {items.map((item: any) => {
-                            const badgeClass = `badge badge-${item.type}`;
-                            const hasLink = item.id && item.type !== 'absent';
-                            return hasLink ? (
-                              <a href={`/competition/${item.id}`} class={badgeClass} title="点击查看详情">
-                                {item.label}{item.note && <span class="badge-note">({item.note})</span>}
-                              </a>
-                            ) : (
-                              <span class={badgeClass}>
-                                {item.label}{item.note && <span class="badge-note">({item.note})</span>}
-                              </span>
-                            );
-                          })}
-                        </div>
+                      {entries.length > 0 && (
+                        <ul class="badge-list">
+                          {entries.map((e) => (
+                            <li><ResultBadge entry={e} /></li>
+                          ))}
+                        </ul>
                       )}
                     </td>
                   );
@@ -85,188 +81,117 @@ const grandSlams = grandSlamYears.length;
         </tbody>
       </table>
     </div>
+
+    <ol class="results-list">
+      {records.map((row) => {
+        const slam = grandSlamYears.includes(row.year);
+        const filled = columns.filter((c) => entriesFor(row, c).length > 0);
+        return (
+          <li class:list={['year-block', { 'row-slam': slam }]}>
+            <h3 class="year-heading">
+              <span class="num">{row.year}</span>
+              {slam && <span class="slam-tag">大满贯</span>}
+            </h3>
+            {filled.length > 0 ? (
+              <dl class="year-results">
+                {filled.map((c) => (
+                  <div class="year-result">
+                    <dt class="mono">{c}</dt>
+                    <dd>
+                      <ul class="badge-list">
+                        {entriesFor(row, c).map((e) => (
+                          <li><ResultBadge entry={e} /></li>
+                        ))}
+                      </ul>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            ) : (
+              <p class="section-note">无参赛记录</p>
+            )}
+          </li>
+        );
+      })}
+    </ol>
   </section>
 </Base>
 
 <style>
-  .comp-section-title {
-    font-family: var(--serif-zh);
+  .legend {
+    gap: 0.375rem;
+  }
+  .year-cell {
+    font-size: var(--text-sm);
     font-weight: 600;
-    font-size: clamp(1.2rem, 2vw, 1.5rem);
-    margin: 5vh 0 1.5vh;
-  }
-  .comp-legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-bottom: 3vh;
-    opacity: 0.8;
-  }
-  .comp-table-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin: 0 calc(-1 * min(var(--page-gutter), 20px));
-    padding: 0 min(var(--page-gutter), 20px) 6px;
-    overscroll-behavior-inline: contain;
-  }
-  .comp-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-    min-width: 640px;
-  }
-  .comp-table th {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    opacity: 0.6;
-    text-align: left;
-    padding: 12px 14px;
-    border-bottom: 2px solid rgba(var(--fg-rgb), 0.12);
+    color: var(--fg);
+    text-transform: none;
+    letter-spacing: 0;
     white-space: nowrap;
+    width: 1%;
   }
-  .comp-table td {
-    padding: 12px 14px;
-    border-bottom: 1px solid rgba(var(--fg-rgb), 0.05);
-    vertical-align: top;
+  .row-slam th,
+  .row-slam td {
+    background: color-mix(in srgb, var(--gold-soft) 55%, transparent);
   }
-  .comp-table tr:hover td {
-    background: rgba(var(--fg-rgb), 0.02);
-  }
-  .col-year {
-    width: 100px;
-    white-space: nowrap;
-  }
-  .year-num {
-    font-family: var(--mono);
-    font-weight: 600;
-    font-size: 0.9rem;
-  }
-
-  /* Grand Slam row */
-  .row-grandslam {
-    background: linear-gradient(90deg, rgba(255,200,0,0.06) 0%, transparent 100%);
-  }
-  .row-grandslam td {
-    border-bottom-color: rgba(255,200,0,0.15);
-  }
-  .grandslam-icon {
-    display: inline-flex;
-    align-items: center;
-    margin-left: 6px;
-    color: var(--gold-color);
-    vertical-align: middle;
-    line-height: 0;
-  }
-
-  /* Badges */
-  .badge {
+  .slam-tag {
     display: inline-block;
-    padding: 3px 9px;
-    border-radius: 5px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: transform 0.15s, box-shadow 0.15s;
-  }
-  a.badge:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  }
-  .badge-note {
-    font-weight: 400;
-    opacity: 0.7;
-    margin-left: 2px;
-    font-size: 0.68rem;
-  }
-  .cell-badges {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
+    margin-left: 0.5rem;
+    padding: 0 0.375rem;
+    border: 1px solid var(--gold-line);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--gold);
+    vertical-align: 0.1em;
   }
 
-  /* Badge types */
-  .badge-champion {
-    background: var(--gold-bg);
-    color: var(--gold-color);
-    border: 1px solid rgba(255,200,0,0.2);
+  .results-list {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
   }
-  .badge-runner-up {
-    background: rgba(192,192,192,0.12);
-    color: rgba(var(--fg-rgb), 0.75);
-    border: 1px solid rgba(192,192,192,0.25);
+  .year-block {
+    display: grid;
+    gap: 0.5rem;
+    padding: 0.875rem 0;
+    border-bottom: 1px solid var(--line);
   }
-  .badge-linpack {
-    background: rgba(80,200,255,0.1);
-    color: #4db8d4;
-    border: 1px solid rgba(80,200,255,0.2);
+  .year-block.row-slam {
+    padding-inline: 0.75rem;
+    border-radius: var(--radius);
+    border-bottom: 0;
   }
-  [data-theme="light"] .badge-linpack {
-    color: #1a7a94;
+  .year-heading {
+    font-size: var(--text-base);
   }
-  .badge-eprize {
-    background: rgba(160,80,255,0.1);
-    color: #a855c8;
-    border: 1px solid rgba(160,80,255,0.2);
+  .year-results {
+    display: grid;
+    gap: 0.5rem;
   }
-  .badge-special {
-    background: rgba(255,140,50,0.1);
-    color: #d4843a;
-    border: 1px solid rgba(255,140,50,0.2);
+  .year-result {
+    display: grid;
+    grid-template-columns: 3.5rem minmax(0, 1fr);
+    gap: 0.5rem;
+    align-items: baseline;
   }
-  [data-theme="light"] .badge-special {
-    color: #9a5520;
-  }
-  .badge-place {
-    background: rgba(var(--fg-rgb), 0.04);
-    color: rgba(var(--fg-rgb), 0.65);
-    border: 1px solid rgba(var(--fg-rgb), 0.08);
-  }
-  .badge-notHeld {
-    background: transparent;
-    color: rgba(var(--fg-rgb), 0.3);
-    border: 1px dashed rgba(var(--fg-rgb), 0.1);
-    font-weight: 400;
-    font-style: italic;
+  .year-result dt {
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+    letter-spacing: 0.04em;
   }
 
-  @media (max-width: 768px) {
-    .comp-legend { gap: 6px; }
-    .comp-table {
-      font-size: 0.8rem;
-      min-width: 600px;
-    }
-    .comp-table th, .comp-table td {
-      padding: 10px 8px;
-    }
-    .badge {
-      font-size: 0.7rem;
-      padding: 2px 6px;
+  @media (max-width: 720px) {
+    .results-table {
+      display: none;
     }
   }
-  @media (max-width: 480px) {
-    .comp-table-wrap {
-      margin-inline: calc(-1 * var(--page-gutter));
-      padding-inline: var(--page-gutter);
+  @media (min-width: 721px) {
+    .results-list {
+      display: none;
     }
-    .comp-table {
-      min-width: 560px;
-      font-size: 0.76rem;
-    }
-    .col-year {
-      width: 76px;
-    }
-    .badge-note {
-      display: block;
-      margin-left: 0;
-      margin-top: 1px;
-    }
-  }
-  .click-hint {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    opacity: 0.5;
   }
 </style>
