@@ -22,8 +22,10 @@ export const advisors = {
 export const activeGroups = membersJson.active as GradeGroup[];
 export const alumniGroups = membersJson.alumni as GradeGroup[];
 
-export const memberCount =
-  activeGroups.reduce((n, g) => n + g.members.length, 0) + alumniGroups.reduce((n, g) => n + g.members.length, 0);
+export const activeCount = activeGroups.reduce((n, g) => n + g.members.length, 0);
+export const alumniCount = alumniGroups.reduce((n, g) => n + g.members.length, 0);
+export const memberCount = activeCount + alumniCount;
+export const earliestClass = alumniGroups[alumniGroups.length - 1]?.grade.replace('Class of ', '') ?? '2008';
 
 /** URL-safe slug, e.g. "Jidong Zhai" → "jidong-zhai". */
 export function toSlug(name: string): string {

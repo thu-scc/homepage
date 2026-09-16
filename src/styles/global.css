@@ -200,6 +200,18 @@ button {
   animation-delay: 0.24s;
 }
 
+/* Sections below the fold fade up once as they enter; static without JS or with reduced motion. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-ready [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -207,6 +219,10 @@ button {
     transition: none !important;
     animation: none !important;
     scroll-behavior: auto !important;
+  }
+  .reveal-ready [data-reveal] {
+    opacity: 1;
+    transform: none;
   }
 }
 
@@ -223,7 +239,7 @@ button {
 .page {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: clamp(3rem, 7vw, 5.5rem);
+  gap: clamp(4rem, 9vw, 7.5rem);
   padding-block: clamp(2rem, 5vw, 4rem) clamp(4rem, 10vw, 7rem);
 }
 
@@ -622,11 +638,12 @@ a.badge-champion:hover {
   height: 100%;
   object-fit: cover;
   filter: saturate(0.85);
-  transition: filter 0.3s;
+  transition: filter 0.4s, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .photo-card:hover img {
   filter: saturate(1);
+  transform: scale(1.03);
 }
 
 .photo-card .body {
@@ -669,6 +686,171 @@ a.badge-champion:hover {
   .photo-card:first-child .frame {
     aspect-ratio: 3 / 2;
   }
+}
+
+/* Icon grid: two columns of icon + heading + sentence, no boxes */
+.icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+  gap: 2.5rem 4rem;
+  list-style: none;
+  padding: 0;
+}
+
+.icon-grid li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.5rem 1.25rem;
+  align-items: start;
+}
+
+.icon-grid .icon {
+  color: var(--gold);
+  margin-top: 0.15rem;
+}
+
+.icon-grid h3 {
+  font-size: var(--text-xl);
+}
+
+.icon-grid p {
+  grid-column: 2;
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+/* Steps rail: a real sequence, icons on a hairline rail, no step numbers */
+.steps {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 0;
+  max-width: 52rem;
+}
+
+.steps li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 3rem minmax(0, 1fr);
+  gap: 0.25rem 1.5rem;
+  padding-block: 1.5rem;
+}
+
+.steps li + li::before {
+  content: "";
+  position: absolute;
+  left: 1.5rem;
+  top: -1.5rem;
+  height: 3rem;
+  border-left: 1px solid var(--line);
+}
+
+.steps .icon {
+  grid-row: 1 / span 2;
+  color: var(--gold);
+  margin-top: 0.1rem;
+  justify-self: center;
+}
+
+.steps h3 {
+  font-size: var(--text-xl);
+}
+
+.steps p {
+  color: var(--fg-2);
+  text-wrap: pretty;
+}
+
+/* People block: advisors as a name row, no boxes */
+.people-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1.5rem 3rem;
+  list-style: none;
+  padding: 0;
+}
+
+.people-row li {
+  display: grid;
+  gap: 0.125rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.people-row .name {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-size: var(--text-xl);
+  font-weight: 600;
+}
+
+.people-row .role {
+  font-size: var(--text-sm);
+  color: var(--fg-2);
+}
+
+.people-row a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  justify-self: start;
+  margin-top: 0.5rem;
+  font-size: var(--text-sm);
+  color: var(--fg-2);
+  text-decoration: none;
+}
+
+.people-row a:hover {
+  color: var(--gold-2);
+}
+
+/* FAQ: native disclosure, hairline separated, plus/minus toggle */
+.faq {
+  max-width: 52rem;
+  border-top: 1px solid var(--line);
+}
+
+.faq details {
+  border-bottom: 1px solid var(--line);
+}
+
+.faq summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.125rem 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary:hover {
+  color: var(--gold-2);
+}
+
+.faq summary .icon {
+  color: var(--fg-3);
+}
+
+.faq details[open] summary .icon-plus,
+.faq details:not([open]) summary .icon-minus {
+  display: none;
+}
+
+.faq details > p {
+  padding: 0 0 1.25rem;
+  max-width: var(--measure);
+  color: var(--fg-2);
+  text-wrap: pretty;
 }
 
 /* Cards: used by raw HTML in markdown content. Blocks with a top rule and space, no boxes. */
@@ -741,6 +923,14 @@ a.badge-champion:hover {
 
 .btn:active {
   transform: translateY(1px);
+}
+
+.btn .icon {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover .icon {
+  transform: translateX(2px);
 }
 
 .btn-gold {

@@ -4,7 +4,11 @@ import type { ImageMetadata } from 'astro';
 import Base from '../layouts/Base.astro';
 import ChampionTimeline from '../components/ChampionTimeline.astro';
 import ResultBadge from '../components/ResultBadge.astro';
+import Icon from '../components/Icon.astro';
+import faq from '../data/faq.json';
+import publications from '../data/publications.json';
 import { championCount, yearsOfHistory, grandSlamYears, recentResults, details, numberWords } from '../lib/competitions';
+import { advisors, activeCount, alumniCount, earliestClass, memberCount } from '../lib/members';
 
 const photoModules = import.meta.glob<ImageMetadata>('/src/assets/competition/**/*.{jpg,jpeg,png,webp}', {
   eager: true,
@@ -23,6 +27,52 @@ const stories = recentResults(20)
   .filter((r) => r.id !== hero?.id && details[r.id]?.photos?.length)
   .slice(0, 3)
   .map((r) => ({ ...r, detail: details[r.id], image: photoFor(details[r.id].photos![0]) }));
+
+const work = [
+  {
+    icon: 'trophy',
+    title: 'Compete',
+    text: 'A team of six races ASC, ISC and SC every season, the three major student cluster competitions, against universities from around the world.',
+  },
+  {
+    icon: 'chalkboard-teacher',
+    title: 'Train',
+    text: 'New members join each autumn with no prerequisites and learn systems, parallel programming and hardware from the members who competed before them.',
+  },
+  {
+    icon: 'flask',
+    title: 'Research',
+    text: 'We work with research groups on real computational problems, from gamma-ray burst detection for the GRID satellites to mining genomic databases.',
+  },
+  {
+    icon: 'github-logo',
+    title: 'Publish and share',
+    text: `${publications.length} papers from the SC Reproducibility Challenge, and the team's tooling and write-ups in the open on GitHub.`,
+  },
+];
+
+const steps = [
+  {
+    icon: 'calendar-dots',
+    title: 'Prepare for months',
+    text: 'Once the applications are announced, members study the codes, tune them on the team’s own hardware and rehearse the run plan.',
+  },
+  {
+    icon: 'hard-drives',
+    title: 'Build the cluster',
+    text: 'On site the team assembles its nodes within a fixed power budget. Going over it costs points, so every watt is planned.',
+  },
+  {
+    icon: 'timer',
+    title: 'Run for days',
+    text: 'Benchmarks first, then the scientific applications, including a secret application revealed on the competition floor.',
+  },
+  {
+    icon: 'presentation-chart',
+    title: 'Present and defend',
+    text: 'Judges interview the team and score the results, the presentation and how the work was documented.',
+  },
+];
 ---
 <Base activePage="home" header="overlay" bleed>
   <section class="photo-hero">
@@ -39,9 +89,7 @@ const stories = recentResults(20)
       />
     )}
     <div class="container photo-hero-body">
-      {heroDetail && (
-        <p class="eyebrow rise">{heroDetail.name}{heroPlace ? `, ${heroPlace}` : ''}</p>
-      )}
+      {heroDetail && <p class="eyebrow rise">{heroDetail.name}{heroPlace ? `, ${heroPlace}` : ''}</p>}
       <h1 class="photo-hero-title rise rise-2">
         <em>{numberWords(yearsOfHistory)}</em> years, <em>{numberWords(championCount)}</em> championships, <em>{numberWords(grandSlamYears.length)}</em> grand slams.
       </h1>
@@ -49,13 +97,44 @@ const stories = recentResults(20)
         The only student team to have won all three major supercomputing competitions: ASC, ISC and SC.
       </p>
       <div class="hero-actions rise rise-3">
-        <a class="btn btn-gold" href="/competition">See the record</a>
+        <a class="btn btn-gold" href="/competition">See the record <Icon name="arrow-right" size={18} /></a>
         <a class="btn" href="/join">Join the team</a>
       </div>
     </div>
   </section>
 
-  <section class="container section">
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">What the team does</h2>
+    </div>
+    <ul class="icon-grid">
+      {work.map((w) => (
+        <li>
+          <Icon name={w.icon} size={28} />
+          <h3>{w.title}</h3>
+          <p>{w.text}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">How a competition works</h2>
+      <p class="section-note">The format is the same at ASC, ISC and SC.</p>
+    </div>
+    <ol class="steps">
+      {steps.map((s) => (
+        <li>
+          <Icon name={s.icon} size={26} />
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="container section" data-reveal>
     <div class="section-head">
       <h2 class="section-title">Championship years</h2>
     </div>
@@ -65,7 +144,7 @@ const stories = recentResults(20)
     </p>
   </section>
 
-  <section class="container section">
+  <section class="container section" data-reveal>
     <div class="section-head">
       <h2 class="section-title">Recent competitions</h2>
     </div>
@@ -99,14 +178,51 @@ const stories = recentResults(20)
     </div>
   </section>
 
-  <section class="container duo">
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">People</h2>
+      <p class="section-note">{activeCount} current members and {alumniCount} alumni since the class of {earliestClass}.</p>
+    </div>
+    <ul class="people-row">
+      {advisors.current.map((p) => (
+        <li>
+          <span class="name">{p.name}</span>
+          <span class="role">{p.title ? `${p.title}, faculty advisor` : 'Faculty advisor'}</span>
+          {p.url && (
+            <a href={p.url} target="_blank" rel="noopener">Homepage <Icon name="arrow-up-right" size={16} /></a>
+          )}
+        </li>
+      ))}
+    </ul>
+    <a class="btn" href="/members">Meet all {memberCount} members <Icon name="arrow-right" size={18} /></a>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">Questions we get asked</h2>
+    </div>
+    <div class="faq">
+      {faq.map((item) => (
+        <details>
+          <summary>
+            <span>{item.q}</span>
+            <Icon name="plus" size={20} class="icon-plus" />
+            <Icon name="minus" size={20} class="icon-minus" />
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="container duo" data-reveal>
     <div class="duo-item">
       <h2 class="duo-title">Research collaboration</h2>
       <p class="duo-desc">
         We work with research groups on numerical simulation, large-scale data processing, AI inference and distributed
         systems, from the GRID gamma-ray satellites to genomics.
       </p>
-      <a class="btn btn-gold" href="/collaboration">Work with us</a>
+      <a class="btn btn-gold" href="/collaboration">Work with us <Icon name="arrow-right" size={18} /></a>
     </div>
     <div class="duo-item">
       <h2 class="duo-title">New members every autumn</h2>
@@ -122,6 +238,9 @@ const stories = recentResults(20)
 <style>
   .hero-lead {
     max-width: 38rem;
+  }
+  .section > .btn {
+    justify-self: start;
   }
   .duo {
     display: grid;

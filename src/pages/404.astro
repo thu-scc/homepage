@@ -1,0 +1,34 @@
+---
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+---
+<Base title="Page not found" activePage="">
+  <section class="notfound">
+    <h1 class="page-title">There is no page here.</h1>
+    <p class="lead">The address may be out of date. Member profiles now live at <code>/members</code> and every competition at <code>/competition</code>.</p>
+    <div class="actions">
+      <a class="btn btn-gold" href="/">Back to the front page <Icon name="arrow-right" size={18} /></a>
+      <a class="btn" href="/competition">See the record</a>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .notfound {
+    display: grid;
+    gap: 1.25rem;
+    max-width: 44rem;
+    padding-block: clamp(2rem, 8vw, 6rem) 0;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+  }
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.9em;
+    color: var(--fg);
+  }
+</style>

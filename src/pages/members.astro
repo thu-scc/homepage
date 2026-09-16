@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import PageIntro from '../components/PageIntro.astro';
 import PersonItem from '../components/PersonItem.astro';
+import Icon from '../components/Icon.astro';
 import { advisors, activeGroups, alumniGroups, participationByName, slugByName, memberCount } from '../lib/members';
 
 const memberData = JSON.stringify({ participation: participationByName, slugs: slugByName }).replace(/</g, '\\u003c');
@@ -51,9 +52,7 @@ const memberData = JSON.stringify({ participation: participationByName, slugs: s
     <div class="dialog-inner">
       <form method="dialog" class="dialog-close-form">
         <button class="dialog-close" aria-label="Close">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
-            <path d="M6 6l12 12M18 6L6 18" />
-          </svg>
+          <Icon name="x" size={22} />
         </button>
       </form>
       <header class="dialog-head">
@@ -132,10 +131,6 @@ const memberData = JSON.stringify({ participation: participationByName, slugs: s
   .dialog-close:hover {
     border-color: var(--line);
     color: var(--fg);
-  }
-  .dialog-close svg {
-    width: 20px;
-    height: 20px;
   }
   .dialog-head {
     display: grid;

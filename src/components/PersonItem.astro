@@ -1,5 +1,6 @@
 ---
 import { participationByName, slugByName, type Person } from '../lib/members';
+import Icon from './Icon.astro';
 
 interface Props {
   person: Person;
@@ -27,7 +28,7 @@ const count = participationByName[person.name]?.length ?? 0;
     )}
   </button>
   {person.url && (
-    <a class="person-link" href={person.url} target="_blank" rel="noopener" aria-label={`${person.name}: personal homepage`}>↗</a>
+    <a class="person-link" href={person.url} target="_blank" rel="noopener" aria-label={`${person.name}: personal homepage`}><Icon name="arrow-up-right" size={16} /></a>
   )}
 </li>
 
@@ -69,9 +70,8 @@ const count = participationByName[person.name]?.length ?? 0;
     color: var(--accent);
   }
   .person-link {
+    display: inline-flex;
     padding: 0.25rem 0.375rem;
-    font-family: var(--font-mono);
-    font-size: var(--text-sm);
     color: var(--fg-3);
     text-decoration: none;
   }

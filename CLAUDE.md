@@ -32,7 +32,7 @@ Stale wrangler remnants: `pnpm preview`, `pnpm deploy`, and `pnpm generate-types
 
 ### Rendering model
 
-Fully static (`output: 'static'`), no client framework, single dark theme (no theme toggle). Client code is two small vanilla TypeScript files in `src/scripts/`: `nav.ts` (loaded by the layout) and `member-dialog.ts` (members page only, reads its data from a JSON `<script>` block rendered at build time). `Base.astro` also loads a site-wide analytics script (`rbt.dang.fan`); keep it when reworking the layout.
+Fully static (`output: 'static'`), no client framework, single dark theme (no theme toggle). Client code is three small vanilla TypeScript files in `src/scripts/`: `nav.ts` and `reveal.ts` (loaded by the layout; `reveal.ts` fades in `[data-reveal]` sections once via IntersectionObserver and does nothing under reduced motion) and `member-dialog.ts` (members page only, reads its data from a JSON `<script>` block rendered at build time). `Base.astro` also loads a site-wide analytics script (`rbt.dang.fan`); keep it when reworking the layout.
 
 `Base.astro` takes `header="overlay"` and `bleed` for pages that open with a full-bleed photo (`.photo-hero`); those pages wrap each later section in `.container` themselves. Other pages get the sticky solid header and a contained `main`.
 
@@ -47,13 +47,14 @@ Fully static (`output: 'static'`), no client framework, single dark theme (no th
 - `competition-details.json`: object keyed by id (`sc18`, `asc25`, ...). Every key becomes a page. Fields: `name`, `date`, `location`, `awards[]`, `team` {coaches, players, support, training}, `problems[]`, `news[]` {title, url}, `photos[]`, `highlights`, `sortDate` (YYYY-MM, used for ordering when `date` is imprecise), `_notes` (rendered as a remark).
 - `members.json`: `advisors` {current[] with name/title/url, former[] as plain names}, `active[]` and `alumni[]` grouped by `grade` ("Class of 2023"). Member fields: `name`, `dept?`, `url?`.
 - Names must match character-for-character between `members.json` and the team lists in `competition-details.json`; that match drives the participation count on each person row, the dialog contents, and the name links on competition detail pages.
-- The home page opener is the most recent championship that has photographs; the three "From the floor" cards are the next most recent events with photographs. Both are derived, not configured.
+- The home page opener is the most recent championship that has photographs; the three "Recent competitions" cards are the next most recent events with photographs. Both are derived, not configured. The "What the team does" and "How a competition works" copy lives in `index.astro`; the FAQ is `src/data/faq.json`.
 - Photos live in `src/assets/competition/<id>/NN.jpg` but are referenced in the JSON as `/img/competition/<id>/NN.jpg`; pages map the path with `import.meta.glob` and render `<Image>` (responsive WebP). A photo missing from `src/assets` falls back to a plain `<img>` pointing at the JSON path.
 
 ### Styling
 
 - `src/styles/global.css` is the design system: tokens (colors, type scale, spacing) as CSS custom properties on `:root`, base styles, layout primitives (`.container`, `.page`, `.page-intro`, `.section`, `.section-head`, `.photo-hero`), shared components (`.timeline`, `.facts`, `.badge-*`, `.table`, `.photo-card`, `.cards`, `.link-list`, `.btn`, `.back-link`, `.placeholder`) and `.prose`. Page-specific styles are scoped `<style>` blocks in each page; component styles live in the component.
 - Fonts are self-hosted latin subsets in `public/fonts` (OFL, see `public/fonts/LICENSE.md`): Newsreader variable (`fonts.css`) for display and names with `font-optical-sizing: auto`, IBM Plex Mono (`plex.css`) for years, dates and small uppercase labels. Running text is the system sans. Nothing loads from third-party font hosts; the audience includes mainland China where Google Fonts is unreliable.
+- Icons are Phosphor Light, inlined at build time by `Icon.astro` from `@phosphor-icons/core` (`<Icon name="trophy" size={20} />`; an unknown name fails the build). Never hand-draw icon paths or use text glyphs like arrows; the only hand-authored SVG is the team mark in `Logo.astro`.
 - Passing `class` to a component only works with scoped styles if the component spreads `...rest` onto its root element (see `Logo.astro`); otherwise Astro's scoped attribute is dropped and the rule silently fails to match.
 - Build time and commit hash come from `vite.define` in `astro.config.mjs` and are emitted as `<meta name="build">` in `Base.astro`.
 
@@ -73,8 +74,10 @@ The site follows the "Chronicle" direction chosen by the owner from three canvas
 - No middle dots or dashes as separators in visible copy; use commas, line breaks or parentheses. Dates are spelled out ("15 November 2018") via `formatDate`.
 - Square corners everywhere (`--radius` tokens are 0). Shadows are tinted to the ground.
 - Photographs are the hero: every page that has one opens with it under an overlay header and a bottom scrim. Hero copy is at most an event line, a two-line headline, a subtext under 20 words and two buttons.
-- One entrance animation (`.rise`) on hero content plus hover and press transitions; nothing else moves. No gradients other than photo scrims, no blur, no glass.
+- Motion is limited to the hero entrance (`.rise`), a one-time 12px fade-up of below-the-fold sections (`data-reveal`), hover transitions and press feedback. No gradients other than photo scrims, no blur, no glass, no looping animation.
 - No boxed cards. Markdown `.cards` render as rule-topped blocks; equal-card rows are avoided (recent competitions use one featured story plus two).
 - The build hash lives in a `<meta name="build">` tag, not in the footer.
 - URLs are stable: `/`, `/competition` (rows anchored as `#y2018`), `/competition/<id>`, `/members` with `#given-family` deep links, `/publications`, `/collaboration`, `/honors`, `/join`.
 - Phone width is a first-class target; the competition table renders as a stacked list below 720px.
+- Home page sections each use a different layout family (photo hero, icon grid, steps rail, timeline, featured photo trio, name row, FAQ disclosure, two-column call to action). Do not add a section that repeats one of these families.
+- `src/pages/404.astro` is the not-found page; keep it when adding routes.

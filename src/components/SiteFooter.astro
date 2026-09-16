@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 const links = [
   { href: '/competition', label: 'Competitions' },
   { href: '/members', label: 'Members' },
@@ -18,7 +20,10 @@ const year = new Date().getFullYear();
     <ul class="footer-links">
       {links.map((l) => (
         <li>
-          <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>{l.label}</a>
+          <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>
+            {l.external && <Icon name="github-logo" size={16} />}
+            {l.label}
+          </a>
         </li>
       ))}
     </ul>
@@ -59,6 +64,9 @@ const year = new Date().getFullYear();
     padding: 0;
   }
   .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     color: var(--fg-2);
     text-decoration: none;
   }
