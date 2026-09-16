@@ -10,15 +10,15 @@
 :root {
   color-scheme: dark;
 
-  --bg: #22132b;
-  --bg-deep: #170c1d;
-  --surface: #2b1a35;
-  --surface-2: #362341;
-  --fg: #f1eae6;
-  --fg-2: #cdbfd3;
-  --fg-3: #93839c;
-  --line: #46364f;
-  --line-2: #33243c;
+  --bg: #3a2647;
+  --bg-deep: #2c1b36;
+  --surface: #45304f;
+  --surface-2: #513b5c;
+  --fg: #f4eee9;
+  --fg-2: #d8ccde;
+  --fg-3: #ac9eb4;
+  --line: #644f6d;
+  --line-2: #55405f;
 
   --gold: #d9b25a;
   --gold-2: #f0d48a;
@@ -37,7 +37,7 @@
   --orange-soft: rgba(230, 168, 112, 0.12);
   --orange-line: rgba(230, 168, 112, 0.4);
 
-  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 24px 48px -24px rgba(0, 0, 0, 0.7);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 24px 48px -24px rgba(0, 0, 0, 0.6);
 
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -361,9 +361,9 @@ a.section-note:hover {
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(34, 19, 43, 0.6) 0%,
-    rgba(34, 19, 43, 0.08) 30%,
-    rgba(34, 19, 43, 0.4) 62%,
+    rgba(58, 38, 71, 0.55) 0%,
+    rgba(58, 38, 71, 0.06) 30%,
+    rgba(58, 38, 71, 0.45) 62%,
     var(--bg) 100%
   );
 }
