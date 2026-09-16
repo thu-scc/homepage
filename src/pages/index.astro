@@ -107,9 +107,9 @@ const steps = [
     <div class="section-head">
       <h2 class="section-title">What the team does</h2>
     </div>
-    <ul class="icon-grid">
-      {work.map((w) => (
-        <li>
+    <ul class="icon-grid stagger">
+      {work.map((w, i) => (
+        <li style={`--i:${i}`}>
           <Icon name={w.icon} size={28} />
           <h3>{w.title}</h3>
           <p>{w.text}</p>
@@ -123,9 +123,9 @@ const steps = [
       <h2 class="section-title">How a competition works</h2>
       <p class="section-note">The format is the same at ASC, ISC and SC.</p>
     </div>
-    <ol class="steps">
-      {steps.map((s) => (
-        <li>
+    <ol class="steps stagger">
+      {steps.map((s, i) => (
+        <li style={`--i:${i}`}>
           <Icon name={s.icon} size={26} />
           <h3>{s.title}</h3>
           <p>{s.text}</p>
@@ -148,10 +148,10 @@ const steps = [
     <div class="section-head">
       <h2 class="section-title">Recent competitions</h2>
     </div>
-    <div class="photo-cards">
+    <div class="photo-cards stagger">
       {stories.map((s, i) => (
-        <a class="photo-card" href={`/competition/${s.id}`}>
-          <div class="frame">
+        <a class="photo-card" href={`/competition/${s.id}`} style={`--i:${i}`}>
+          <div class="frame" transition:name={`photo-${s.id}`}>
             {s.image && (
               <Image
                 src={s.image}
@@ -183,9 +183,9 @@ const steps = [
       <h2 class="section-title">People</h2>
       <p class="section-note">{activeCount} current members and {alumniCount} alumni since the class of {earliestClass}.</p>
     </div>
-    <ul class="people-row">
-      {advisors.current.map((p) => (
-        <li>
+    <ul class="people-row stagger">
+      {advisors.current.map((p, i) => (
+        <li style={`--i:${i}`}>
           <span class="name">{p.name}</span>
           <span class="role">{p.title ? `${p.title}, faculty advisor` : 'Faculty advisor'}</span>
           {p.url && (
@@ -201,9 +201,9 @@ const steps = [
     <div class="section-head">
       <h2 class="section-title">Questions we get asked</h2>
     </div>
-    <div class="faq">
-      {faq.map((item) => (
-        <details>
+    <div class="faq stagger">
+      {faq.map((item, i) => (
+        <details style={`--i:${i}`}>
           <summary>
             <span>{item.q}</span>
             <Icon name="plus" size={20} class="icon-plus" />

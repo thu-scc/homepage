@@ -2,6 +2,7 @@
 import '../styles/plex.css';
 import '../styles/fonts.css';
 import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 
@@ -44,6 +45,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <meta property="og:type" content="website" />
     {canonical && <link rel="canonical" href={canonical} />}
     {buildInfo && <meta name="build" content={buildInfo} />}
+    <ClientRouter />
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin />

@@ -11,7 +11,7 @@ export function getStaticPaths() {
   return Object.entries(details).map(([id, info]) => ({ params: { id }, props: { id, info } }));
 }
 
-const { info } = Astro.props as { id: string; info: CompetitionDetail };
+const { id, info } = Astro.props as { id: string; info: CompetitionDetail };
 
 // Photos are referenced in the JSON as /img/competition/<id>/NN.jpg and live in src/assets/competition.
 const photoModules = import.meta.glob<ImageMetadata>('/src/assets/competition/**/*.{jpg,jpeg,png,webp}', {
@@ -34,7 +34,7 @@ const awardType = (award: string) => (award.toLowerCase().includes('champion') ?
 ---
 <Base title={info.name} activePage="competition" header={heroPhoto ? 'overlay' : 'solid'} bleed={!!heroPhoto}>
   {heroPhoto ? (
-    <section class="photo-hero detail-hero">
+    <section class="photo-hero detail-hero" transition:name={`photo-${id}`}>
       <Image
         src={heroPhoto}
         widths={[800, 1280, 1920, 2560]}
@@ -77,7 +77,7 @@ const awardType = (award: string) => (award.toLowerCase().includes('champion') ?
     {info.highlights && <p class="lead highlights">{info.highlights}</p>}
 
     {teamRoles.length > 0 && (
-      <section class="section">
+      <section class="section" data-reveal>
         <div class="section-head"><h2 class="section-title">Team</h2></div>
         <div class="team-grid">
           {teamRoles.map((role) => (
@@ -96,7 +96,7 @@ const awardType = (award: string) => (award.toLowerCase().includes('champion') ?
     )}
 
     {problems.length > 0 && (
-      <section class="section">
+      <section class="section" data-reveal>
         <div class="section-head"><h2 class="section-title">Problems</h2></div>
         <ul class="row-list">
           {problems.map((p) => <li>{p}</li>)}
@@ -105,7 +105,7 @@ const awardType = (award: string) => (award.toLowerCase().includes('champion') ?
     )}
 
     {news.length > 0 && (
-      <section class="section">
+      <section class="section" data-reveal>
         <div class="section-head"><h2 class="section-title">Coverage</h2></div>
         <ul class="row-list">
           {news.map((n) => (
@@ -118,12 +118,12 @@ const awardType = (award: string) => (award.toLowerCase().includes('champion') ?
     )}
 
     {photos.length > 0 && (
-      <section class="section">
+      <section class="section" data-reveal>
         <div class="section-head"><h2 class="section-title">Photographs</h2></div>
-        <ul class="photo-grid">
+        <ul class="photo-grid stagger">
           {photos.map((p, i) =>
             p.image ? (
-              <li>
+              <li style={`--i:${i}`}>
                 <a href={p.image.src} target="_blank" rel="noopener">
                   <Image
                     src={p.image}

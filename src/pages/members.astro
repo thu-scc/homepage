@@ -105,6 +105,38 @@ const memberData = JSON.stringify({ participation: participationByName, slugs: s
   .member-dialog::backdrop {
     background: rgba(30, 18, 38, 0.6);
   }
+  /* Enter and exit transitions where supported (@starting-style, allow-discrete). */
+  .member-dialog,
+  .member-dialog::backdrop {
+    transition:
+      opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+      overlay 0.25s allow-discrete,
+      display 0.25s allow-discrete;
+  }
+  .member-dialog {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  .member-dialog[open] {
+    opacity: 1;
+    transform: none;
+  }
+  .member-dialog::backdrop {
+    opacity: 0;
+  }
+  .member-dialog[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    .member-dialog[open] {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    .member-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
   .dialog-inner {
     display: grid;
     grid-template-rows: auto minmax(0, 1fr);

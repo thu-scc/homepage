@@ -8,10 +8,17 @@ interface Participation {
   sortDate: string;
 }
 
-const dataEl = document.getElementById('member-data');
-const dialog = document.getElementById('member-dialog') as HTMLDialogElement | null;
+let hashListener: (() => void) | undefined;
 
-if (dataEl && dialog) {
+function init() {
+  if (hashListener) {
+    window.removeEventListener('hashchange', hashListener);
+    hashListener = undefined;
+  }
+  const dataEl = document.getElementById('member-data');
+  const dialog = document.getElementById('member-dialog') as HTMLDialogElement | null;
+  if (!dataEl || !dialog) return;
+
   const { participation, slugs } = JSON.parse(dataEl.textContent || '{}') as {
     participation: Record<string, Participation[]>;
     slugs: Record<string, string>;
@@ -87,5 +94,8 @@ if (dataEl && dialog) {
   }
 
   openFromHash();
+  hashListener = openFromHash;
   window.addEventListener('hashchange', openFromHash);
 }
+
+document.addEventListener('astro:page-load', init);

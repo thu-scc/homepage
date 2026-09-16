@@ -27,8 +27,8 @@ const navLinks = [
 
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
       <ul>
-        {navLinks.map((l) => (
-          <li>
+        {navLinks.map((l, i) => (
+          <li style={`--i:${i}`}>
             <a href={l.href} aria-current={activePage === l.page ? 'page' : undefined}>{l.label}</a>
           </li>
         ))}
@@ -63,6 +63,27 @@ const navLinks = [
     right: 0;
     background: transparent;
     border-bottom: 0;
+  }
+  /* Where the browser supports scroll-driven animation, the overlay header
+     stays fixed and becomes solid over the first 320px of scrolling. */
+  @supports (animation-timeline: scroll()) {
+    .site-header.is-overlay {
+      position: fixed;
+      border-bottom: 1px solid transparent;
+      animation: header-solid linear both;
+      animation-timeline: scroll(root);
+      animation-range: 0 320px;
+    }
+    @keyframes header-solid {
+      from {
+        background: transparent;
+        border-bottom-color: transparent;
+      }
+      to {
+        background: var(--bg);
+        border-bottom-color: var(--line-2);
+      }
+    }
   }
   .header-inner {
     display: flex;
@@ -178,6 +199,10 @@ const navLinks = [
     }
     .site-header[data-open="true"] .site-nav {
       display: block;
+    }
+    .site-header[data-open="true"] .site-nav li {
+      animation: rise 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-delay: calc(var(--i, 0) * 40ms);
     }
     .site-header.is-overlay[data-open="true"] {
       background: var(--bg);

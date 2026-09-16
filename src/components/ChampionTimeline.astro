@@ -9,7 +9,7 @@ const { link = true } = Astro.props;
 const years = Array.from({ length: latestYear - firstYear + 1 }, (_, i) => firstYear + i);
 ---
 <ol class="timeline" aria-label="Championship years">
-  {years.map((y) => {
+  {years.map((y, i) => {
     const champion = championYears.has(y);
     const slam = grandSlamYears.includes(y);
     const label = `${y}${champion ? ': championship' : ''}${slam ? ', grand slam' : ''}`;
@@ -20,7 +20,7 @@ const years = Array.from({ length: latestYear - firstYear + 1 }, (_, i) => first
       </>
     );
     return (
-      <li class:list={{ 'is-champion': champion, 'is-slam': slam }}>
+      <li class:list={{ 'is-champion': champion, 'is-slam': slam }} style={`--i:${i}`}>
         {link ? <a href={`/competition#y${y}`} aria-label={label}>{inner}</a> : inner}
       </li>
     );

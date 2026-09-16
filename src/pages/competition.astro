@@ -18,15 +18,17 @@ import {
     lead="Three major student supercomputing competitions, one strict power cap, real scientific applications. Tsinghua is the only team to have won all three."
   />
 
-  <dl class="facts">
-    <div class="fact"><dt>Championships</dt><dd>{championCount}</dd></div>
-    <div class="fact"><dt>Years competing</dt><dd>{yearsOfHistory}</dd></div>
+  <dl class="facts" data-reveal>
+    <div class="fact"><dt>Championships</dt><dd data-count={championCount}>{championCount}</dd></div>
+    <div class="fact"><dt>Years competing</dt><dd data-count={yearsOfHistory}>{yearsOfHistory}</dd></div>
     <div class="fact"><dt>Grand slam years</dt><dd>{grandSlamYears.join(', ')}</dd></div>
   </dl>
 
-  <ChampionTimeline link={true} />
+  <div data-reveal>
+    <ChampionTimeline link={true} />
+  </div>
 
-  <section class="section">
+  <section class="section" data-reveal>
     <div class="section-head">
       <h2 class="section-title">Results by year</h2>
       <p class="section-note">Select a result for that event's team, problems and photographs.</p>
