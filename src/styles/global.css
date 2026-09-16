@@ -1,9 +1,8 @@
 /* ==========================================================================
    THUSCC design system · Chronicle
-   Plum and gold in two renderings. Dark: a plum ground, ivory text, gold for
-   both the interactive accent and championship markers. Light: a
-   violet-tinted ivory ground, plum ink, Tsinghua purple as the interactive
-   accent, and gold kept for championship markers only. Newsreader (an
+   Plum and gold in two renderings. Dark: a plum ground, ivory text, one gold.
+   Light: a violet-tinted ivory ground, plum ink, and gold in three tiers so
+   fills stay bright while small text stays legible. Newsreader (an
    editorial serif with optical sizes) for display, system sans for running
    text, IBM Plex Mono for years, dates and codes. Corners are square.
    Font faces are declared in fonts.css (generated) and plex.css.
@@ -16,7 +15,8 @@
    Light lives on bare :root, dark is declared twice: for the unstamped system
    case and for the explicit choice. Edit both dark blocks together.
    Two accent families: --accent* is interactive (buttons, links, icons,
-   active states); --gold* marks a championship and nothing else. */
+   active states; fill, strong and text tiers); --gold* marks a championship
+   and nothing else. */
 :root {
   color-scheme: light;
 
@@ -30,12 +30,17 @@
   --line: #d9d0e0;
   --line-2: #e6dfeb;
 
-  /* Interactive accent: Tsinghua purple in light. */
-  --accent: #6b1f78;
-  --accent-2: #4f1259;
-  --accent-soft: rgba(107, 31, 120, 0.1);
-  --accent-line: rgba(107, 31, 120, 0.45);
-  --on-accent: #ffffff;
+  /* Interactive accent, gold in three tiers so it stays golden and legible:
+     --accent fills (buttons, pressed states), --accent-strong for icons, rings
+     and large emphasis, --accent-text for small text. */
+  --accent: #d9b25a;
+  --accent-2: #c9a24a;
+  --accent-strong: #a8842a;
+  --accent-text: #8a6a12;
+  --accent-text-2: #6e5410;
+  --accent-soft: rgba(217, 178, 90, 0.18);
+  --accent-line: rgba(168, 132, 42, 0.5);
+  --on-accent: #2a1a33;
 
   /* Championship marker: a bright gold fill with dark ink on top. */
   --gold: #d9b25a;
@@ -45,7 +50,7 @@
 
   --scrim-rgb: 246, 243, 248;
   --backdrop: rgba(42, 26, 51, 0.45);
-  --selection: rgba(107, 31, 120, 0.18);
+  --selection: rgba(217, 178, 90, 0.35);
   --shadow: 0 1px 2px rgba(42, 26, 51, 0.08), 0 24px 48px -24px rgba(42, 26, 51, 0.3);
 
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
@@ -86,6 +91,9 @@
   /* Interactive accent and championship marker are the same gold in dark. */
   --accent: #d9b25a;
   --accent-2: #f0d48a;
+  --accent-strong: #d9b25a;
+  --accent-text: #d9b25a;
+  --accent-text-2: #f0d48a;
   --accent-soft: rgba(217, 178, 90, 0.14);
   --accent-line: rgba(217, 178, 90, 0.5);
   --on-accent: #2c1b36;
@@ -118,6 +126,9 @@
   /* Interactive accent and championship marker are the same gold in dark. */
   --accent: #d9b25a;
   --accent-2: #f0d48a;
+  --accent-strong: #d9b25a;
+  --accent-text: #d9b25a;
+  --accent-text-2: #f0d48a;
   --accent-soft: rgba(217, 178, 90, 0.14);
   --accent-line: rgba(217, 178, 90, 0.5);
   --on-accent: #2c1b36;
@@ -202,7 +213,7 @@ a {
 }
 
 a:hover {
-  color: var(--accent-2);
+  color: var(--accent-text-2);
   text-decoration-color: currentColor;
 }
 
@@ -212,7 +223,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-strong);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -409,7 +420,7 @@ button {
   font-size: var(--text-sm);
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .page-title {
@@ -454,7 +465,7 @@ button {
 }
 
 a.section-note {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .subhead {
@@ -526,7 +537,7 @@ a.section-note {
 
 .photo-hero-title em {
   font-style: normal;
-  color: var(--accent);
+  color: var(--accent-strong);
 }
 
 .hero-actions {
@@ -606,7 +617,7 @@ a.section-note {
 }
 
 .timeline a:hover .year {
-  color: var(--accent-2);
+  color: var(--accent-text-2);
 }
 
 .timeline-caption {
@@ -815,7 +826,7 @@ a.badge-champion:hover {
 }
 
 .photo-card:hover .title {
-  color: var(--accent-2);
+  color: var(--accent-text-2);
 }
 
 .photo-card .desc {
@@ -855,7 +866,7 @@ a.badge-champion:hover {
 }
 
 .icon-grid .icon {
-  color: var(--accent);
+  color: var(--accent-strong);
   margin-top: 0.15rem;
 }
 
@@ -897,7 +908,7 @@ a.badge-champion:hover {
 
 .steps .icon {
   grid-row: 1 / span 2;
-  color: var(--accent);
+  color: var(--accent-strong);
   margin-top: 0.1rem;
   justify-self: center;
 }
@@ -951,7 +962,7 @@ a.badge-champion:hover {
 }
 
 .people-row a:hover {
-  color: var(--accent-2);
+  color: var(--accent-text-2);
 }
 
 /* FAQ: native disclosure, hairline separated, plus/minus toggle */
@@ -984,7 +995,7 @@ a.badge-champion:hover {
 }
 
 .faq summary:hover {
-  color: var(--accent-2);
+  color: var(--accent-text-2);
 }
 
 .faq summary .icon {
@@ -1119,7 +1130,7 @@ a.badge-champion:hover {
 }
 
 .back-link:hover {
-  color: var(--accent-2);
+  color: var(--accent-text-2);
 }
 
 /* Empty state */
@@ -1188,7 +1199,7 @@ a.badge-champion:hover {
 
 .prose blockquote {
   padding-left: 1.25rem;
-  border-left: 2px solid var(--accent);
+  border-left: 2px solid var(--accent-strong);
   font-family: var(--font-serif);
   font-size: var(--text-lg);
 }
