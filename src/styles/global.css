@@ -1,8 +1,9 @@
 /* ==========================================================================
    THUSCC design system · Chronicle
-   Plum and gold in two renderings: a plum ground with ivory text, or a
-   violet-tinted ivory ground with plum ink and a deeper gold. Gold is the
-   single accent (championships and the primary action). Newsreader (an
+   Plum and gold in two renderings. Dark: a plum ground, ivory text, gold for
+   both the interactive accent and championship markers. Light: a
+   violet-tinted ivory ground, plum ink, Tsinghua purple as the interactive
+   accent, and gold kept for championship markers only. Newsreader (an
    editorial serif with optical sizes) for display, system sans for running
    text, IBM Plex Mono for years, dates and codes. Corners are square.
    Font faces are declared in fonts.css (generated) and plex.css.
@@ -13,7 +14,9 @@
    applied before first paint by an inline script in Base.astro); the default
    "system" state stamps nothing and follows prefers-color-scheme.
    Light lives on bare :root, dark is declared twice: for the unstamped system
-   case and for the explicit choice. Edit both dark blocks together. */
+   case and for the explicit choice. Edit both dark blocks together.
+   Two accent families: --accent* is interactive (buttons, links, icons,
+   active states); --gold* marks a championship and nothing else. */
 :root {
   color-scheme: light;
 
@@ -27,15 +30,22 @@
   --line: #d9d0e0;
   --line-2: #e6dfeb;
 
-  --gold: #7f6115;
-  --gold-2: #5f4809;
-  --gold-soft: rgba(127, 97, 21, 0.12);
-  --gold-line: rgba(127, 97, 21, 0.5);
-  --on-gold: #ffffff;
+  /* Interactive accent: Tsinghua purple in light. */
+  --accent: #6b1f78;
+  --accent-2: #4f1259;
+  --accent-soft: rgba(107, 31, 120, 0.1);
+  --accent-line: rgba(107, 31, 120, 0.45);
+  --on-accent: #ffffff;
+
+  /* Championship marker: a bright gold fill with dark ink on top. */
+  --gold: #d9b25a;
+  --gold-ink: #5a4306;
+  --gold-soft: #f3e4ad;
+  --gold-line: #b8901f;
 
   --scrim-rgb: 246, 243, 248;
   --backdrop: rgba(42, 26, 51, 0.45);
-  --selection: rgba(127, 97, 21, 0.22);
+  --selection: rgba(107, 31, 120, 0.18);
   --shadow: 0 1px 2px rgba(42, 26, 51, 0.08), 0 24px 48px -24px rgba(42, 26, 51, 0.3);
 
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
@@ -73,11 +83,17 @@
   --line: #644f6d;
   --line-2: #55405f;
 
+  /* Interactive accent and championship marker are the same gold in dark. */
+  --accent: #d9b25a;
+  --accent-2: #f0d48a;
+  --accent-soft: rgba(217, 178, 90, 0.14);
+  --accent-line: rgba(217, 178, 90, 0.5);
+  --on-accent: #2c1b36;
+
   --gold: #d9b25a;
-  --gold-2: #f0d48a;
+  --gold-ink: #d9b25a;
   --gold-soft: rgba(217, 178, 90, 0.14);
   --gold-line: rgba(217, 178, 90, 0.5);
-  --on-gold: #2c1b36;
 
   --scrim-rgb: 58, 38, 71;
   --backdrop: rgba(30, 18, 38, 0.6);
@@ -99,11 +115,17 @@
   --line: #644f6d;
   --line-2: #55405f;
 
+  /* Interactive accent and championship marker are the same gold in dark. */
+  --accent: #d9b25a;
+  --accent-2: #f0d48a;
+  --accent-soft: rgba(217, 178, 90, 0.14);
+  --accent-line: rgba(217, 178, 90, 0.5);
+  --on-accent: #2c1b36;
+
   --gold: #d9b25a;
-  --gold-2: #f0d48a;
+  --gold-ink: #d9b25a;
   --gold-soft: rgba(217, 178, 90, 0.14);
   --gold-line: rgba(217, 178, 90, 0.5);
-  --on-gold: #2c1b36;
 
   --scrim-rgb: 58, 38, 71;
   --backdrop: rgba(30, 18, 38, 0.6);
@@ -175,12 +197,12 @@ a {
   text-decoration: underline;
   text-decoration-thickness: 1px;
   text-underline-offset: 0.22em;
-  text-decoration-color: var(--gold-line);
+  text-decoration-color: var(--accent-line);
   transition: color 0.2s, text-decoration-color 0.2s;
 }
 
 a:hover {
-  color: var(--gold-2);
+  color: var(--accent-2);
   text-decoration-color: currentColor;
 }
 
@@ -190,7 +212,7 @@ button {
 }
 
 :focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 2px;
 }
@@ -228,8 +250,8 @@ button {
   left: var(--gutter);
   transform: translateY(-150%);
   padding: 0.5rem 0.75rem;
-  background: var(--gold);
-  color: var(--on-gold);
+  background: var(--accent);
+  color: var(--on-accent);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   font-size: var(--text-sm);
   z-index: 100;
@@ -387,7 +409,7 @@ button {
   font-size: var(--text-sm);
   font-weight: 500;
   letter-spacing: 0.02em;
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .page-title {
@@ -432,7 +454,7 @@ button {
 }
 
 a.section-note {
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .subhead {
@@ -504,7 +526,7 @@ a.section-note {
 
 .photo-hero-title em {
   font-style: normal;
-  color: var(--gold);
+  color: var(--accent);
 }
 
 .hero-actions {
@@ -571,6 +593,7 @@ a.section-note {
   height: 15px;
   margin-top: 0;
   background: var(--gold);
+  box-shadow: 0 0 0 1px var(--gold-line);
 }
 
 .timeline .is-champion .year {
@@ -578,12 +601,12 @@ a.section-note {
 }
 
 .timeline .is-slam .dot {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--gold-line);
   outline-offset: 3px;
 }
 
 .timeline a:hover .year {
-  color: var(--gold-2);
+  color: var(--accent-2);
 }
 
 .timeline-caption {
@@ -663,13 +686,13 @@ a.badge:hover {
 .badge-champion {
   background: var(--gold-soft);
   border-color: var(--gold-line);
-  color: var(--gold);
+  color: var(--gold-ink);
   font-weight: 600;
 }
 
 a.badge-champion:hover {
-  color: var(--gold-2);
-  border-color: var(--gold);
+  color: var(--gold-ink);
+  border-color: var(--gold-ink);
 }
 
 .badge-notHeld,
@@ -792,7 +815,7 @@ a.badge-champion:hover {
 }
 
 .photo-card:hover .title {
-  color: var(--gold-2);
+  color: var(--accent-2);
 }
 
 .photo-card .desc {
@@ -832,7 +855,7 @@ a.badge-champion:hover {
 }
 
 .icon-grid .icon {
-  color: var(--gold);
+  color: var(--accent);
   margin-top: 0.15rem;
 }
 
@@ -874,7 +897,7 @@ a.badge-champion:hover {
 
 .steps .icon {
   grid-row: 1 / span 2;
-  color: var(--gold);
+  color: var(--accent);
   margin-top: 0.1rem;
   justify-self: center;
 }
@@ -928,7 +951,7 @@ a.badge-champion:hover {
 }
 
 .people-row a:hover {
-  color: var(--gold-2);
+  color: var(--accent-2);
 }
 
 /* FAQ: native disclosure, hairline separated, plus/minus toggle */
@@ -961,7 +984,7 @@ a.badge-champion:hover {
 }
 
 .faq summary:hover {
-  color: var(--gold-2);
+  color: var(--accent-2);
 }
 
 .faq summary .icon {
@@ -1072,16 +1095,16 @@ a.badge-champion:hover {
   transform: translateX(2px);
 }
 
-.btn-gold {
-  background: var(--gold);
-  border-color: var(--gold);
-  color: var(--on-gold);
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
 }
 
-.btn-gold:hover {
-  background: var(--gold-2);
-  border-color: var(--gold-2);
-  color: var(--on-gold);
+.btn-primary:hover {
+  background: var(--accent-2);
+  border-color: var(--accent-2);
+  color: var(--on-accent);
 }
 
 /* Back link */
@@ -1096,7 +1119,7 @@ a.badge-champion:hover {
 }
 
 .back-link:hover {
-  color: var(--gold-2);
+  color: var(--accent-2);
 }
 
 /* Empty state */
@@ -1165,7 +1188,7 @@ a.badge-champion:hover {
 
 .prose blockquote {
   padding-left: 1.25rem;
-  border-left: 2px solid var(--gold);
+  border-left: 2px solid var(--accent);
   font-family: var(--font-serif);
   font-size: var(--text-lg);
 }

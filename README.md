@@ -94,7 +94,7 @@ The body is Markdown with inline HTML allowed. Available classes: `.cards` / `.c
 
 ## Design notes
 
-- **Palette**: plum and gold. Dark renders a plum ground with ivory text; light renders a violet-tinted ivory ground with plum ink. Gold is the single accent, reserved for championships and primary actions. The theme follows the system by default, with a light/dark choice in the header.
+- **Palette**: plum and gold. Dark renders a plum ground with ivory text and gold as the accent. Light renders a violet-tinted ivory ground with plum ink and Tsinghua purple as the accent. In both, a bright gold is reserved for championships. The theme follows the system by default, with a light/dark choice in the header.
 - **Type**: Newsreader (variable, optical sizes) for display and names, the system sans for running text, IBM Plex Mono for years, dates and small labels. Both web fonts are self-hosted latin subsets; nothing loads from third-party font hosts.
 - **Layout**: a 1200 px content column, full-bleed photo openers, phone first.
 
