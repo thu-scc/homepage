@@ -38,8 +38,9 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="color-scheme" content="dark" />
-    <meta name="theme-color" content="#3a2647" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f3f8" data-default="#f6f3f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#3a2647" data-default="#3a2647" media="(prefers-color-scheme: dark)" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -48,6 +49,14 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <ClientRouter />
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('thuscc-theme-v2');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
     <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin />
     <script is:inline src="https://rbt.dang.fan/api/script.js" data-site-id="23af4434c5c1" defer></script>
   </head>
@@ -60,6 +69,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <SiteFooter />
     <script src="../scripts/nav.ts"></script>
     <script src="../scripts/reveal.ts"></script>
+    <script src="../scripts/theme.ts"></script>
   </body>
 </html>
 

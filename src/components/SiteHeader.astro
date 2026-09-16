@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   activePage?: string;
@@ -35,17 +36,20 @@ const navLinks = [
       </ul>
     </nav>
 
-    <button
-      type="button"
-      class="nav-toggle"
-      aria-expanded="false"
-      aria-controls="site-nav"
-      aria-label="Open menu"
-      data-nav-toggle
-    >
-      <Icon name="list" size={24} class="icon-open" />
-      <Icon name="x" size={24} class="icon-close" />
-    </button>
+    <div class="header-actions">
+      <ThemeToggle />
+      <button
+        type="button"
+        class="nav-toggle"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Open menu"
+        data-nav-toggle
+      >
+        <Icon name="list" size={24} class="icon-open" />
+        <Icon name="x" size={24} class="icon-close" />
+      </button>
+    </div>
   </div>
 </header>
 
@@ -152,12 +156,17 @@ const navLinks = [
     text-underline-offset: 0.6em;
     text-decoration-color: var(--gold);
   }
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-shrink: 0;
+  }
   .nav-toggle {
     display: none;
     place-items: center;
     width: 40px;
     height: 40px;
-    margin-left: auto;
     padding: 0;
     border: 1px solid transparent;
     border-radius: var(--radius-sm);
@@ -182,6 +191,9 @@ const navLinks = [
     }
   }
   @media (max-width: 899px) {
+    .header-actions {
+      margin-left: auto;
+    }
     .nav-toggle {
       display: grid;
     }

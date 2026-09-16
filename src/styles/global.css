@@ -1,31 +1,42 @@
 /* ==========================================================================
    THUSCC design system · Chronicle
-   One committed visual world: plum ground, ivory text, gold as the single
-   accent (championships and the primary action), Newsreader (an editorial
-   serif with optical sizes) for display, system sans for running text, IBM
-   Plex Mono for years, dates and codes. Corners are square everywhere.
+   Plum and gold in two renderings: a plum ground with ivory text, or a
+   violet-tinted ivory ground with plum ink and a deeper gold. Gold is the
+   single accent (championships and the primary action). Newsreader (an
+   editorial serif with optical sizes) for display, system sans for running
+   text, IBM Plex Mono for years, dates and codes. Corners are square.
    Font faces are declared in fonts.css (generated) and plex.css.
    ========================================================================== */
 
+/* Theme tokens. The viewer has three states: an explicit choice stamps
+   data-theme="light" or "dark" on <html> (stored under thuscc-theme-v2 and
+   applied before first paint by an inline script in Base.astro); the default
+   "system" state stamps nothing and follows prefers-color-scheme.
+   Light lives on bare :root, dark is declared twice: for the unstamped system
+   case and for the explicit choice. Edit both dark blocks together. */
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
-  --bg: #3a2647;
-  --bg-deep: #2c1b36;
-  --surface: #45304f;
-  --surface-2: #513b5c;
-  --fg: #f4eee9;
-  --fg-2: #d8ccde;
-  --fg-3: #ac9eb4;
-  --line: #644f6d;
-  --line-2: #55405f;
+  --bg: #f6f3f8;
+  --bg-deep: #ece7f0;
+  --surface: #ffffff;
+  --surface-2: #ede8f1;
+  --fg: #2a1a33;
+  --fg-2: #5a4a66;
+  --fg-3: #6f6179;
+  --line: #d9d0e0;
+  --line-2: #e6dfeb;
 
-  --gold: #d9b25a;
-  --gold-2: #f0d48a;
-  --gold-soft: rgba(217, 178, 90, 0.14);
-  --gold-line: rgba(217, 178, 90, 0.5);
+  --gold: #7f6115;
+  --gold-2: #5f4809;
+  --gold-soft: rgba(127, 97, 21, 0.12);
+  --gold-line: rgba(127, 97, 21, 0.5);
+  --on-gold: #ffffff;
 
-  --shadow: 0 1px 2px rgba(24, 12, 32, 0.35), 0 24px 48px -24px rgba(24, 12, 32, 0.75);
+  --scrim-rgb: 246, 243, 248;
+  --backdrop: rgba(42, 26, 51, 0.45);
+  --selection: rgba(127, 97, 21, 0.22);
+  --shadow: 0 1px 2px rgba(42, 26, 51, 0.08), 0 24px 48px -24px rgba(42, 26, 51, 0.3);
 
   --font-serif: "Newsreader", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
   --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -46,6 +57,58 @@
   --header-h: 72px;
   --radius-sm: 0;
   --radius: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+  color-scheme: dark;
+
+  --bg: #3a2647;
+  --bg-deep: #2c1b36;
+  --surface: #45304f;
+  --surface-2: #513b5c;
+  --fg: #f4eee9;
+  --fg-2: #d8ccde;
+  --fg-3: #ac9eb4;
+  --line: #644f6d;
+  --line-2: #55405f;
+
+  --gold: #d9b25a;
+  --gold-2: #f0d48a;
+  --gold-soft: rgba(217, 178, 90, 0.14);
+  --gold-line: rgba(217, 178, 90, 0.5);
+  --on-gold: #2c1b36;
+
+  --scrim-rgb: 58, 38, 71;
+  --backdrop: rgba(30, 18, 38, 0.6);
+  --selection: rgba(217, 178, 90, 0.35);
+  --shadow: 0 1px 2px rgba(24, 12, 32, 0.35), 0 24px 48px -24px rgba(24, 12, 32, 0.75);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #3a2647;
+  --bg-deep: #2c1b36;
+  --surface: #45304f;
+  --surface-2: #513b5c;
+  --fg: #f4eee9;
+  --fg-2: #d8ccde;
+  --fg-3: #ac9eb4;
+  --line: #644f6d;
+  --line-2: #55405f;
+
+  --gold: #d9b25a;
+  --gold-2: #f0d48a;
+  --gold-soft: rgba(217, 178, 90, 0.14);
+  --gold-line: rgba(217, 178, 90, 0.5);
+  --on-gold: #2c1b36;
+
+  --scrim-rgb: 58, 38, 71;
+  --backdrop: rgba(30, 18, 38, 0.6);
+  --selection: rgba(217, 178, 90, 0.35);
+  --shadow: 0 1px 2px rgba(24, 12, 32, 0.35), 0 24px 48px -24px rgba(24, 12, 32, 0.75);
 }
 
 /* --------------------------------------------------------------------------
@@ -133,7 +196,7 @@ button {
 }
 
 ::selection {
-  background: rgba(217, 178, 90, 0.35);
+  background: var(--selection);
 }
 
 .serif {
@@ -166,7 +229,7 @@ button {
   transform: translateY(-150%);
   padding: 0.5rem 0.75rem;
   background: var(--gold);
-  color: var(--bg-deep);
+  color: var(--on-gold);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
   font-size: var(--text-sm);
   z-index: 100;
@@ -417,9 +480,9 @@ a.section-note {
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(58, 38, 71, 0.55) 0%,
-    rgba(58, 38, 71, 0.06) 30%,
-    rgba(58, 38, 71, 0.45) 62%,
+    rgba(var(--scrim-rgb), 0.55) 0%,
+    rgba(var(--scrim-rgb), 0.08) 30%,
+    rgba(var(--scrim-rgb), 0.5) 62%,
     var(--bg) 100%
   );
 }
@@ -1012,13 +1075,13 @@ a.badge-champion:hover {
 .btn-gold {
   background: var(--gold);
   border-color: var(--gold);
-  color: var(--bg-deep);
+  color: var(--on-gold);
 }
 
 .btn-gold:hover {
   background: var(--gold-2);
   border-color: var(--gold-2);
-  color: var(--bg-deep);
+  color: var(--on-gold);
 }
 
 /* Back link */
