@@ -45,6 +45,17 @@ const awardType = (award: string) => (award.toLowerCase().includes('champion') ?
         loading="eager"
         fetchpriority="high"
       />
+      <Image
+        src={heroPhoto}
+        widths={[800, 1280, 1920]}
+        sizes="100vw"
+        format="webp"
+        quality={40}
+        alt=""
+        class="hero-blur"
+        aria-hidden="true"
+        loading="eager"
+      />
       <div class="container photo-hero-body">
         <a class="back-link rise" href="/competition"><Icon name="arrow-left" size={16} /> All competitions</a>
         <p class="eyebrow rise">{eyebrow}</p>

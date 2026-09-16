@@ -35,7 +35,7 @@
      and large emphasis, --accent-text for small text. */
   --accent: #d9b25a;
   --accent-2: #c9a24a;
-  --accent-strong: #a8842a;
+  --accent-strong: #9a7a1e;
   --accent-text: #8a6a12;
   --accent-text-2: #6e5410;
   --accent-soft: rgba(217, 178, 90, 0.18);
@@ -49,6 +49,13 @@
   --gold-line: #b8901f;
 
   --scrim-rgb: 246, 243, 248;
+  --scrim-top: 0.45;
+  --scrim-upper: 0.22;
+  --scrim-knee: 48%;
+  --scrim-low: 0.86;
+  --on-photo-label: var(--fg);
+  --hero-glow: 0 1px 14px rgba(246, 243, 248, 0.75);
+  --blur-brightness: 1.15;
   --backdrop: rgba(42, 26, 51, 0.45);
   --selection: rgba(217, 178, 90, 0.35);
   --shadow: 0 1px 2px rgba(42, 26, 51, 0.08), 0 24px 48px -24px rgba(42, 26, 51, 0.3);
@@ -104,6 +111,13 @@
   --gold-line: rgba(217, 178, 90, 0.5);
 
   --scrim-rgb: 58, 38, 71;
+  --scrim-top: 0.55;
+  --scrim-upper: 0.08;
+  --scrim-knee: 62%;
+  --scrim-low: 0.5;
+  --on-photo-label: var(--accent-text);
+  --hero-glow: 0 1px 14px rgba(58, 38, 71, 0.5);
+  --blur-brightness: 0.8;
   --backdrop: rgba(30, 18, 38, 0.6);
   --selection: rgba(217, 178, 90, 0.35);
   --shadow: 0 1px 2px rgba(24, 12, 32, 0.35), 0 24px 48px -24px rgba(24, 12, 32, 0.75);
@@ -139,6 +153,13 @@
   --gold-line: rgba(217, 178, 90, 0.5);
 
   --scrim-rgb: 58, 38, 71;
+  --scrim-top: 0.55;
+  --scrim-upper: 0.08;
+  --scrim-knee: 62%;
+  --scrim-low: 0.5;
+  --on-photo-label: var(--accent-text);
+  --hero-glow: 0 1px 14px rgba(58, 38, 71, 0.5);
+  --blur-brightness: 0.8;
   --backdrop: rgba(30, 18, 38, 0.6);
   --selection: rgba(217, 178, 90, 0.35);
   --shadow: 0 1px 2px rgba(24, 12, 32, 0.35), 0 24px 48px -24px rgba(24, 12, 32, 0.75);
@@ -354,7 +375,7 @@ button {
   }
 }
 
-.photo-hero img {
+.photo-hero img:not(.hero-blur) {
   animation: settle 1.8s cubic-bezier(0.16, 1, 0.3, 1) both;
   transform-origin: center;
 }
@@ -506,6 +527,15 @@ a.section-note {
   filter: saturate(0.82) contrast(1.04);
 }
 
+/* A blurred copy of the opener, masked so the top stays sharp and the text
+   area reads. A filtered layer is rasterised once, so scrolling stays cheap. */
+.photo-hero img.hero-blur {
+  filter: blur(18px) saturate(0.7) brightness(var(--blur-brightness));
+  transform: scale(1.06);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 18%, #000 52%);
+  mask-image: linear-gradient(to bottom, transparent 18%, #000 52%);
+}
+
 .photo-hero::after {
   content: "";
   position: absolute;
@@ -513,9 +543,9 @@ a.section-note {
   z-index: -1;
   background: linear-gradient(
     180deg,
-    rgba(var(--scrim-rgb), 0.55) 0%,
-    rgba(var(--scrim-rgb), 0.08) 30%,
-    rgba(var(--scrim-rgb), 0.5) 62%,
+    rgba(var(--scrim-rgb), var(--scrim-top)) 0%,
+    rgba(var(--scrim-rgb), var(--scrim-upper)) 30%,
+    rgba(var(--scrim-rgb), var(--scrim-low)) var(--scrim-knee),
     var(--bg) 100%
   );
 }
@@ -533,6 +563,17 @@ a.section-note {
   font-weight: 700;
   line-height: 1.02;
   letter-spacing: -0.02em;
+  text-shadow: var(--hero-glow);
+}
+
+/* The event line sits on the photograph: plum ink in light, gold in dark. */
+.photo-hero .eyebrow {
+  color: var(--on-photo-label);
+  text-shadow: var(--hero-glow);
+}
+
+.photo-hero .lead {
+  text-shadow: var(--hero-glow);
 }
 
 .photo-hero-title em {

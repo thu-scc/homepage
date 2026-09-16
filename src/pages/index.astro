@@ -77,16 +77,29 @@ const steps = [
 <Base activePage="home" header="overlay" bleed>
   <section class="photo-hero">
     {heroImage && (
-      <Image
-        src={heroImage}
-        widths={[800, 1280, 1920, 2560]}
-        sizes="100vw"
-        format="webp"
-        quality={72}
-        alt={heroDetail ? `The team on stage at ${heroDetail.name}` : 'The team'}
-        loading="eager"
-        fetchpriority="high"
-      />
+      <>
+        <Image
+          src={heroImage}
+          widths={[800, 1280, 1920, 2560]}
+          sizes="100vw"
+          format="webp"
+          quality={72}
+          alt={heroDetail ? `The team on stage at ${heroDetail.name}` : 'The team'}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <Image
+          src={heroImage}
+          widths={[800, 1280, 1920]}
+          sizes="100vw"
+          format="webp"
+          quality={40}
+          alt=""
+          class="hero-blur"
+          aria-hidden="true"
+          loading="eager"
+        />
+      </>
     )}
     <div class="container photo-hero-body">
       {heroDetail && <p class="eyebrow rise">{heroDetail.name}{heroPlace ? `, ${heroPlace}` : ''}</p>}
