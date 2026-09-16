@@ -975,8 +975,7 @@ a.badge-champion:hover {
 .people-row li {
   display: grid;
   gap: 0.125rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--line);
+  align-content: start;
 }
 
 .people-row .name {
@@ -1009,7 +1008,6 @@ a.badge-champion:hover {
 /* FAQ: native disclosure, hairline separated, plus/minus toggle */
 .faq {
   max-width: 52rem;
-  border-top: 1px solid var(--line);
 }
 
 .faq details {
@@ -1194,8 +1192,6 @@ a.badge-champion:hover {
   font-size: var(--text-2xl);
   font-weight: 600;
   margin-top: 3.5rem;
-  padding-bottom: 0.75rem;
-  border-bottom: 1px solid var(--line);
 }
 
 .prose > h3 {
@@ -1289,5 +1285,9 @@ a.badge-champion:hover {
 
 .prose .cards + h2,
 .prose .cards + h3 {
-  margin-top: 3.5rem;
+  margin-top: 4rem;
+}
+
+.prose > h2 + .cards {
+  margin-top: 1.5rem;
 }
