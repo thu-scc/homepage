@@ -55,7 +55,7 @@ Fully static (`output: 'static'`), no client framework, single dark theme (no th
 - `src/styles/global.css` is the design system: tokens (colors, type scale, spacing) as CSS custom properties on `:root`, base styles, layout primitives (`.container`, `.page`, `.page-intro`, `.section`, `.section-head`, `.photo-hero`), shared components (`.timeline`, `.facts`, `.badge-*`, `.table`, `.photo-card`, `.cards`, `.link-list`, `.btn`, `.back-link`, `.placeholder`) and `.prose`. Page-specific styles are scoped `<style>` blocks in each page; component styles live in the component.
 - Fonts are self-hosted latin subsets in `public/fonts` (OFL, see `public/fonts/LICENSE.md`): Newsreader variable (`fonts.css`) for display and names with `font-optical-sizing: auto`, IBM Plex Mono (`plex.css`) for years, dates and small uppercase labels. Running text is the system sans. Nothing loads from third-party font hosts; the audience includes mainland China where Google Fonts is unreliable.
 - Passing `class` to a component only works with scoped styles if the component spreads `...rest` onto its root element (see `Logo.astro`); otherwise Astro's scoped attribute is dropped and the rule silently fails to match.
-- Footer build time and commit hash come from `vite.define` in `astro.config.mjs`.
+- Build time and commit hash come from `vite.define` in `astro.config.mjs` and are emitted as `<meta name="build">` in `Base.astro`.
 
 ### Common edits
 
@@ -65,12 +65,16 @@ Fully static (`output: 'static'`), no client framework, single dark theme (no th
 
 ## Design rules
 
-The site follows the "Chronicle" direction chosen by the owner from three canvas sketches on 2026-09-15: photo-led, people and story first, one committed dark world. Keep it that way:
+The site follows the "Chronicle" direction chosen by the owner from three canvas sketches on 2026-09-15, then audited against the `design-taste-frontend` skill in `.agents/skills/` (the owner's "taste-skill"). Run that skill's pre-flight checklist before shipping visual changes. The rules that came out of it:
 
-- Aubergine ground (`--bg`), ivory text, and gold (`--gold`) reserved for championships and the one primary action per page. Silver, teal, lavender and orange are result-type colors only, never decoration.
-- Newsreader carries the personality: page titles, section titles, names and paper titles. Do not add another display face.
-- Photographs are the hero: every page that has one opens with it under an overlay header and a bottom scrim.
-- One entrance animation (`.rise`) on hero content; nothing else moves. No gradients other than photo scrims, no blur, no glass.
-- Cards are for genuinely equal sets (markdown pages); lists with hairline separators are the default elsewhere.
+- Plum ground (`--bg`), ivory text, and gold (`--gold`) as the single accent: championship chips and the one primary action per page. Every other result is a neutral outline; do not add per-result-type colours back.
+- Newsreader carries the personality: page titles, section titles, names and paper titles. It is justified because the site is a publication-style record; do not add another display face.
+- At most one small label per page (the home hero's event line, a detail page's date and place). No uppercase mono eyebrows above section titles, no all-caps class or role labels.
+- No middle dots or dashes as separators in visible copy; use commas, line breaks or parentheses. Dates are spelled out ("15 November 2018") via `formatDate`.
+- Square corners everywhere (`--radius` tokens are 0). Shadows are tinted to the ground.
+- Photographs are the hero: every page that has one opens with it under an overlay header and a bottom scrim. Hero copy is at most an event line, a two-line headline, a subtext under 20 words and two buttons.
+- One entrance animation (`.rise`) on hero content plus hover and press transitions; nothing else moves. No gradients other than photo scrims, no blur, no glass.
+- No boxed cards. Markdown `.cards` render as rule-topped blocks; equal-card rows are avoided (recent competitions use one featured story plus two).
+- The build hash lives in a `<meta name="build">` tag, not in the footer.
 - URLs are stable: `/`, `/competition` (rows anchored as `#y2018`), `/competition/<id>`, `/members` with `#given-family` deep links, `/publications`, `/collaboration`, `/honors`, `/join`.
 - Phone width is a first-class target; the competition table renders as a stacked list below 720px.
