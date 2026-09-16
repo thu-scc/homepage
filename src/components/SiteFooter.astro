@@ -1,12 +1,4 @@
 ---
-declare const __BUILD_TIME__: string;
-declare const __COMMIT_HASH__: string;
-
-const buildTime = __BUILD_TIME__;
-const commitHash = __COMMIT_HASH__;
-const commitUrl = commitHash ? `https://github.com/thu-scc/homepage/tree/${commitHash}` : '';
-const year = new Date().getFullYear();
-
 const links = [
   { href: '/competition', label: 'Competitions' },
   { href: '/members', label: 'Members' },
@@ -15,12 +7,13 @@ const links = [
   { href: '/join', label: 'Join' },
   { href: 'https://github.com/thu-scc', label: 'GitHub', external: true },
 ];
+const year = new Date().getFullYear();
 ---
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-brand">
       <p class="footer-name">Tsinghua University Student Cluster Competition Team</p>
-      <p class="footer-en">Department of Computer Science and Technology · Beijing</p>
+      <p class="footer-sub">Department of Computer Science and Technology, Beijing</p>
     </div>
     <ul class="footer-links">
       {links.map((l) => (
@@ -29,15 +22,7 @@ const links = [
         </li>
       ))}
     </ul>
-    <p class="footer-meta">
-      © 2012–{year} THUSCC
-      {commitHash && (
-        <>
-          {' · '}Built {buildTime}{' · '}
-          <a href={commitUrl} target="_blank" rel="noopener">{commitHash}</a>
-        </>
-      )}
-    </p>
+    <p class="footer-meta">Copyright 2012-{year} THUSCC</p>
   </div>
 </footer>
 
@@ -51,7 +36,7 @@ const links = [
   }
   .footer-inner {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: 1.5rem 3rem;
     align-items: start;
   }
@@ -62,10 +47,7 @@ const links = [
     font-size: var(--text-lg);
     color: var(--fg);
   }
-  .footer-en {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.08em;
+  .footer-sub {
     color: var(--fg-3);
   }
   .footer-links {
@@ -77,9 +59,6 @@ const links = [
     padding: 0;
   }
   .footer-links a {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.08em;
     color: var(--fg-2);
     text-decoration: none;
   }
@@ -91,9 +70,6 @@ const links = [
     font-family: var(--font-mono);
     font-size: var(--text-xs);
     color: var(--fg-3);
-  }
-  .footer-meta a {
-    color: inherit;
   }
   @media (max-width: 640px) {
     .footer-inner {

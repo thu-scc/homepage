@@ -4,15 +4,7 @@ import type { ImageMetadata } from 'astro';
 import Base from '../layouts/Base.astro';
 import ChampionTimeline from '../components/ChampionTimeline.astro';
 import ResultBadge from '../components/ResultBadge.astro';
-import {
-  championCount,
-  yearsOfHistory,
-  grandSlamYears,
-  recentResults,
-  details,
-  numberWords,
-} from '../lib/competitions';
-import { memberCount, alumniGroups } from '../lib/members';
+import { championCount, yearsOfHistory, grandSlamYears, recentResults, details, numberWords } from '../lib/competitions';
 
 const photoModules = import.meta.glob<ImageMetadata>('/src/assets/competition/**/*.{jpg,jpeg,png,webp}', {
   eager: true,
@@ -20,27 +12,17 @@ const photoModules = import.meta.glob<ImageMetadata>('/src/assets/competition/**
 });
 const photoFor = (publicPath: string) => photoModules[publicPath.replace(/^\/img\//, '/src/assets/')];
 
-// The opener is the most recent championship that has a photo.
+// The opener is the most recent championship that has a photograph.
 const hero = recentResults(20).find((r) => r.entries.some((e) => e.type === 'champion') && details[r.id]?.photos?.length);
 const heroDetail = hero ? details[hero.id] : undefined;
 const heroImage = heroDetail?.photos?.[0] ? photoFor(heroDetail.photos[0]) : undefined;
+const heroPlace = heroDetail?.location?.split(',').slice(-2).map((s) => s.trim()).join(', ');
 
-// Three recent competitions with photographs, the opener excluded.
+// Three recent events with photographs, the opener excluded; the first is featured.
 const stories = recentResults(20)
   .filter((r) => r.id !== hero?.id && details[r.id]?.photos?.length)
   .slice(0, 3)
   .map((r) => ({ ...r, detail: details[r.id], image: photoFor(details[r.id].photos![0]) }));
-
-const earliestClass = alumniGroups[alumniGroups.length - 1]?.grade.replace('Class of ', '') ?? '2008';
-
-const sections = [
-  { href: '/competition', title: 'Competitions', desc: 'Every result since 2012 across ASC, ISC and SC, with the team, problems and coverage for each event.' },
-  { href: '/members', title: 'Members', desc: `Faculty advisors, current members and alumni from the class of ${earliestClass} onward, each with their competition record.` },
-  { href: '/publications', title: 'Publications', desc: 'Papers and technical reports from the SC Reproducibility Challenge.' },
-  { href: '/collaboration', title: 'Collaboration', desc: 'Research projects with the GRID satellite program and the Department of Chemical Engineering.' },
-  { href: '/honors', title: 'Honors', desc: 'Awards to the team and its members.' },
-  { href: '/join', title: 'Join the team', desc: 'Recruiting every autumn. Any department, any year, no prior experience needed.' },
-];
 ---
 <Base activePage="home" header="overlay" bleed>
   <section class="photo-hero">
@@ -51,50 +33,51 @@ const sections = [
         sizes="100vw"
         format="webp"
         quality={72}
-        alt={heroDetail ? `The team at ${heroDetail.name}` : 'The team'}
+        alt={heroDetail ? `The team on stage at ${heroDetail.name}` : 'The team'}
         loading="eager"
         fetchpriority="high"
       />
     )}
     <div class="container photo-hero-body">
       {heroDetail && (
-        <p class="eyebrow eyebrow-gold rise">
-          {[heroDetail.name, heroDetail.location?.split(',')[0], ...heroDetail.awards].filter(Boolean).join(' · ')}
-        </p>
+        <p class="eyebrow rise">{heroDetail.name}{heroPlace ? `, ${heroPlace}` : ''}</p>
       )}
       <h1 class="photo-hero-title rise rise-2">
         <em>{numberWords(yearsOfHistory)}</em> years, <em>{numberWords(championCount)}</em> championships, <em>{numberWords(grandSlamYears.length)}</em> grand slams.
       </h1>
       <p class="lead hero-lead rise rise-3">
-        The Tsinghua University Student Cluster Competition Team is the only team to have won all three major
-        student supercomputing competitions: ASC, ISC and SC. We take supercomputing beyond the competition
-        floor and into real research.
+        The only student team to have won all three major supercomputing competitions: ASC, ISC and SC.
       </p>
+      <div class="hero-actions rise rise-3">
+        <a class="btn btn-gold" href="/competition">See the record</a>
+        <a class="btn" href="/join">Join the team</a>
+      </div>
     </div>
   </section>
 
   <section class="container section">
     <div class="section-head">
       <h2 class="section-title">Championship years</h2>
-      <p class="section-note"><span class="key key-gold"></span> Championship <span class="key key-ring"></span> Grand slam</p>
     </div>
     <ChampionTimeline />
+    <p class="timeline-caption">
+      Gold marks a year with at least one championship. A ring marks a grand slam, when the team won ASC, ISC and SC in the same year.
+    </p>
   </section>
 
   <section class="container section">
     <div class="section-head">
-      <h2 class="section-title">From the floor</h2>
-      <a class="section-note" href="/competition">All results</a>
+      <h2 class="section-title">Recent competitions</h2>
     </div>
     <div class="photo-cards">
-      {stories.map((s) => (
+      {stories.map((s, i) => (
         <a class="photo-card" href={`/competition/${s.id}`}>
           <div class="frame">
             {s.image && (
               <Image
                 src={s.image}
-                widths={[480, 800, 1200]}
-                sizes="(min-width: 960px) 380px, (min-width: 640px) 50vw, 100vw"
+                widths={[480, 800, 1200, 1600]}
+                sizes={i === 0 ? '(min-width: 1240px) 700px, (min-width: 720px) 60vw, 100vw' : '(min-width: 1240px) 440px, (min-width: 720px) 40vw, 100vw'}
                 format="webp"
                 quality={74}
                 alt={`The team at ${s.name}`}
@@ -109,73 +92,36 @@ const sections = [
               ))}
             </ul>
             <span class="title">{s.name}</span>
-            {s.detail.highlights && <span class="desc">{s.detail.highlights}</span>}
+            {i === 0 && s.detail.highlights && <span class="desc">{s.detail.highlights}</span>}
           </div>
         </a>
       ))}
     </div>
   </section>
 
-  <section class="container section">
-    <div class="section-head">
-      <h2 class="section-title">Around the site</h2>
-      <p class="section-note">{memberCount} members since {earliestClass}</p>
-    </div>
-    <ul class="link-list">
-      {sections.map((s) => (
-        <li>
-          <a href={s.href}>
-            <span class="link-title">{s.title}</span>
-            <span class="link-desc">{s.desc}</span>
-            <span class="link-arrow" aria-hidden="true">→</span>
-          </a>
-        </li>
-      ))}
-    </ul>
-  </section>
-
   <section class="container duo">
     <div class="duo-item">
-      <h2 class="duo-title">Hitting a computational wall?</h2>
+      <h2 class="duo-title">Research collaboration</h2>
       <p class="duo-desc">
-        We work with research groups on numerical simulation, large-scale data processing, AI inference and
-        distributed systems, from the GRID gamma-ray satellites to genomics.
+        We work with research groups on numerical simulation, large-scale data processing, AI inference and distributed
+        systems, from the GRID gamma-ray satellites to genomics.
       </p>
       <a class="btn btn-gold" href="/collaboration">Work with us</a>
     </div>
     <div class="duo-item">
-      <h2 class="duo-title">Want to build the next cluster?</h2>
+      <h2 class="duo-title">New members every autumn</h2>
       <p class="duo-desc">
-        We recruit every autumn semester and train new members from scratch. Physics, mathematics and chemical
-        engineering students have all competed for the team.
+        We recruit each autumn semester and train from scratch. Physics, mathematics and chemical engineering students
+        have all competed for the team.
       </p>
-      <a class="btn" href="/join">How to join</a>
+      <a class="btn" href="/join">Join the team</a>
     </div>
   </section>
 </Base>
 
 <style>
   .hero-lead {
-    max-width: 44rem;
-  }
-  .key {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 0 0.35rem 0 0.75rem;
-    border-radius: 50%;
-    vertical-align: -1px;
-    background: var(--gold);
-  }
-  .key:first-child {
-    margin-left: 0;
-  }
-  .key-ring {
-    background: var(--gold);
-    outline: 2px solid var(--gold);
-    outline-offset: 2px;
-    width: 8px;
-    height: 8px;
+    max-width: 38rem;
   }
   .duo {
     display: grid;

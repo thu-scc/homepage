@@ -123,3 +123,14 @@ export function numberWords(n: number): string {
   if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? `-${ONES[n % 10]}` : '');
   return String(n);
 }
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+/** "2018-11-15" → "15 November 2018", "2018-11" → "November 2018", "2018" → "2018". */
+export function formatDate(iso: string | undefined): string | undefined {
+  if (!iso) return undefined;
+  const [y, m, d] = iso.split('-');
+  if (!m) return y;
+  const month = MONTHS[Number(m) - 1] ?? m;
+  return d ? `${Number(d)} ${month} ${y}` : `${month} ${y}`;
+}

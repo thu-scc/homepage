@@ -10,10 +10,10 @@ export async function getStaticPaths() {
 
 const { page } = Astro.props;
 const { Content } = await render(page);
-const { kicker, title, lead } = page.data;
+const { title, lead } = page.data;
 ---
 <Base title={title ?? page.id} activePage={page.id}>
-  <PageIntro eyebrow={kicker} title={title ?? page.id} lead={lead} />
+  <PageIntro title={title ?? page.id} lead={lead} />
   <div class="prose">
     <Content />
   </div>

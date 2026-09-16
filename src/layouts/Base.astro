@@ -25,6 +25,9 @@ const {
   bleed = false,
 } = Astro.props;
 const fullTitle = title ? `${title} · THUSCC` : siteName;
+declare const __BUILD_TIME__: string;
+declare const __COMMIT_HASH__: string;
+const buildInfo = [__COMMIT_HASH__, __BUILD_TIME__].filter(Boolean).join(' ');
 const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 ---
 <!doctype html>
@@ -40,6 +43,7 @@ const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : un
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     {canonical && <link rel="canonical" href={canonical} />}
+    {buildInfo && <meta name="build" content={buildInfo} />}
     <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
     <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin />

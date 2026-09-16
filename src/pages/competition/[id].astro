@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import Base from '../../layouts/Base.astro';
 import PageIntro from '../../components/PageIntro.astro';
-import { details, roleOrder, roleLabels, type CompetitionDetail } from '../../lib/competitions';
+import { details, roleOrder, roleLabels, formatDate, type CompetitionDetail } from '../../lib/competitions';
 import { memberHref } from '../../lib/members';
 
 export function getStaticPaths() {
@@ -27,17 +27,9 @@ const teamRoles = roleOrder.filter((r) => (info.team?.[r]?.length ?? 0) > 0);
 const problems = info.problems ?? [];
 const news = info.news ?? [];
 const hasBody = teamRoles.length > 0 || problems.length > 0 || news.length > 0 || photos.length > 0;
-const eyebrow = [info.date ?? info.sortDate, info.location].filter(Boolean).join(' · ');
+const eyebrow = [formatDate(info.date ?? info.sortDate), info.location].filter(Boolean).join(', ');
 
-function awardType(award: string): string {
-  const a = award.toLowerCase();
-  if (a.includes('champion')) return 'champion';
-  if (a.includes('runner-up')) return 'runner-up';
-  if (a.includes('linpack')) return 'linpack';
-  if (a.includes('e-prize') || a.includes('eprize')) return 'eprize';
-  if (a.includes('prize') || a.includes('award')) return 'special';
-  return 'place';
-}
+const awardType = (award: string) => (award.toLowerCase().includes('champion') ? 'champion' : 'place');
 ---
 <Base title={info.name} activePage="competition" header={heroPhoto ? 'overlay' : 'solid'} bleed={!!heroPhoto}>
   {heroPhoto ? (
@@ -54,7 +46,7 @@ function awardType(award: string): string {
       />
       <div class="container photo-hero-body">
         <a class="back-link rise" href="/competition"><span aria-hidden="true">←</span> All competitions</a>
-        <p class="eyebrow eyebrow-gold rise">{eyebrow}</p>
+        <p class="eyebrow rise">{eyebrow}</p>
         <h1 class="photo-hero-title rise rise-2">{info.name}</h1>
         {info.awards.length > 0 && (
           <ul class="badge-list awards rise rise-3" aria-label="Awards">
@@ -89,7 +81,7 @@ function awardType(award: string): string {
         <div class="team-grid">
           {teamRoles.map((role) => (
             <div class="team-role">
-              <h3 class="eyebrow">{roleLabels[role]}</h3>
+              <h3 class="role-title">{roleLabels[role]}</h3>
               <ul class="name-list">
                 {info.team![role]!.map((name) => {
                   const href = memberHref(name);
@@ -157,9 +149,7 @@ function awardType(award: string): string {
 
     {!hasBody && <p class="placeholder">Details to be added.</p>}
 
-    {info._notes && (
-      <p class="notes"><span class="eyebrow">Note</span> {info._notes}</p>
-    )}
+    {info._notes && <p class="notes"><strong>Note.</strong> {info._notes}</p>}
   </div>
 </Base>
 
@@ -195,6 +185,12 @@ function awardType(award: string): string {
     display: grid;
     gap: 0.625rem;
     align-content: start;
+  }
+  .role-title {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: 500;
+    color: var(--fg-3);
   }
   .name-list {
     list-style: none;
@@ -254,7 +250,8 @@ function awardType(award: string): string {
     color: var(--fg-2);
     max-width: var(--measure);
   }
-  .notes .eyebrow {
-    margin-right: 0.5rem;
+  .notes strong {
+    color: var(--fg);
+    font-weight: 600;
   }
 </style>

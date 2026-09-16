@@ -14,12 +14,12 @@ const href =
   href ? (
     <a href={href} class={className}>
       {entry.label}
-      {entry.note && <span class="badge-note">· {entry.note}</span>}
+      {entry.note && <span class="badge-note">({entry.note})</span>}
     </a>
   ) : (
     <span class={className}>
       {entry.label}
-      {entry.note && <span class="badge-note">· {entry.note}</span>}
+      {entry.note && <span class="badge-note">({entry.note})</span>}
     </span>
   )
 }
