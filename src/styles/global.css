@@ -530,10 +530,10 @@ a.section-note {
 /* A blurred copy of the opener, masked so the top stays sharp and the text
    area reads. A filtered layer is rasterised once, so scrolling stays cheap. */
 .photo-hero img.hero-blur {
-  filter: blur(18px) saturate(0.7) brightness(var(--blur-brightness));
-  transform: scale(1.06);
-  -webkit-mask-image: linear-gradient(to bottom, transparent 18%, #000 52%);
-  mask-image: linear-gradient(to bottom, transparent 18%, #000 52%);
+  filter: blur(9px) saturate(0.75) brightness(var(--blur-brightness));
+  transform: scale(1.04);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 6%, rgba(0, 0, 0, 0.3) 32%, rgba(0, 0, 0, 0.75) 55%, #000 78%);
+  mask-image: linear-gradient(to bottom, transparent 6%, rgba(0, 0, 0, 0.3) 32%, rgba(0, 0, 0, 0.75) 55%, #000 78%);
 }
 
 .photo-hero::after {
