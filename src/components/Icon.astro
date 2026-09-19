@@ -1,0 +1,48 @@
+---
+/**
+ * Inline Phosphor icon (Light weight), served from @phosphor-icons/core.
+ * Usage: <Icon name="trophy" size={20} />
+ * The SVGs use currentColor, so icons take the text colour of their parent.
+ */
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+  /** Accessible label; omit for decorative icons (rendered aria-hidden). */
+  label?: string;
+  [key: `data-${string}`]: string | undefined;
+}
+// `rest` carries the parent's scoped-style attribute so a passed `class` can be styled by the parent.
+const { name, size = 20, class: className, label, ...rest } = Astro.props;
+const restAttrs = Object.entries(rest)
+  .filter(([, v]) => v !== undefined && v !== false)
+  .map(([k, v]) => (v === true || v === '' ? k : `${k}="${String(v).replace(/"/g, '&quot;')}"`))
+  .join(' ');
+
+const icons = import.meta.glob<string>('/node_modules/@phosphor-icons/core/assets/light/*-light.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const raw = icons[`/node_modules/@phosphor-icons/core/assets/light/${name}-light.svg`];
+if (!raw) throw new Error(`Unknown Phosphor icon: ${name}`);
+
+const svg = raw
+  .replace(/<svg([^>]*)>/, (_m, attrs: string) => {
+    const kept = attrs
+      .replace(/\s(width|height|class|aria-hidden|role|aria-label)="[^"]*"/g, '')
+      .trim();
+    const a11y = label ? `role="img" aria-label="${label}"` : 'aria-hidden="true"';
+    const cls = className ? `class="icon ${className}"` : 'class="icon"';
+    return `<svg ${kept} width="${size}" height="${size}" ${cls} ${a11y} focusable="false" ${restAttrs}>`;
+  });
+---
+<Fragment set:html={svg} />
+
+<style is:global>
+  .icon {
+    display: inline-block;
+    flex-shrink: 0;
+    vertical-align: -0.15em;
+  }
+</style>

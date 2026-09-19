@@ -1,0 +1,25 @@
+---
+import type { ResultEntry } from '../lib/competitions';
+
+interface Props {
+  entry: ResultEntry;
+  link?: boolean;
+}
+const { entry, link = true } = Astro.props;
+const className = `badge badge-${entry.type}`;
+const href =
+  link && entry.id && entry.type !== 'absent' && entry.type !== 'notHeld' ? `/competition/${entry.id}` : undefined;
+---
+{
+  href ? (
+    <a href={href} class={className}>
+      {entry.label}
+      {entry.note && <span class="badge-note">({entry.note})</span>}
+    </a>
+  ) : (
+    <span class={className}>
+      {entry.label}
+      {entry.note && <span class="badge-note">({entry.note})</span>}
+    </span>
+  )
+}

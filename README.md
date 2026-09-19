@@ -1,136 +1,108 @@
 # THUSCC Homepage
 
-清华大学学生超算团队官网。基于 [Astro](https://astro.build/) 7 静态站点生成。
+Website of the Tsinghua University Student Cluster Competition Team. Built with [Astro](https://astro.build/) 7 as a static site and deployed on Cloudflare Pages.
 
-## 环境要求
+Preview: <https://new.sc.team/> or <https://scc-homepage.pages.dev/>
 
-- **Node.js >= 22.12.0**（必须，不接受降级。项目使用 Astro 7 + Vite 7，依赖 Node 22+ 特性）
-- **pnpm**（包管理器）
+## Requirements
 
-```bash
-node --version   # 确认 >= 22.12.0
-pnpm --version   # 确认已安装
-```
+- **Node.js 24** (minimum 22.12.0; Astro 7 and Vite 7 need Node 22 features, do not downgrade)
+- **pnpm 11**
 
-## 预览
-
-当前部署预览地址：<https://new.sc.team/> 或 <https://scc-homepage.pages.dev/>
-
-## 快速开始
+The toolchain is pinned in `mise.toml`; with [mise](https://mise.jdx.dev/) installed:
 
 ```bash
+mise install
 pnpm install
-pnpm dev          # 启动开发服务器（默认 localhost:4321）
-pnpm build        # 构建到 dist/
-pnpm preview      # 预览构建产物
 ```
 
-## 项目结构
+## Commands
 
-```
-├── src/
-│   ├── layouts/
-│   │   └── Base.astro          ← 全局布局（head、CSS 变量、nav/footer slot）
-│   ├── components/
-│   │   ├── Nav.astro           ← 导航栏
-│   │   ├── Footer.astro        ← 页脚
-│   │   └── DiabloLogo.astro    ← Diablo logo（nav 小版 + hero 大版）
-│   ├── pages/
-│   │   ├── index.astro         ← 首页
-│   │   └── [slug].astro        ← 内容页动态路由
-│   ├── content/
-│   │   └── pages/              ← 📝 页面内容（Markdown）
-│   │       ├── collaboration.md
-│   │       ├── competition.md
-│   │       ├── publications.md
-│   │       ├── members.md
-│   │       ├── honors.md
-│   │       └── join.md
-│   ├── content.config.ts       ← Content Collection schema + loader
-│   └── scripts/
-│       ├── theme.ts            ← Dark/Light/Auto 主题切换
-│       ├── webgl.ts            ← WebGL 双背景 shader
-│       └── nav-toggle.ts       ← 移动端导航展开
-├── public/
-│   ├── CNAME                   ← GitHub Pages 自定义域名
-│   └── img/                    ← 静态图片资源
-├── .nvmrc                      ← Node 版本锁定（24）
-├── astro.config.mjs
-├── package.json
-└── tsconfig.json
+```bash
+pnpm dev                  # dev server at http://localhost:4321
+pnpm build                # static build to dist/
+pnpm exec astro preview   # serve dist/ locally
 ```
 
-## 如何修改内容
+The output is plain static HTML. Cloudflare Pages builds this branch and publishes `dist/`.
 
-### 编辑已有页面
+## Project layout
 
-编辑 `src/content/pages/` 下对应的 `.md` 文件。支持完整 Markdown + 内嵌 HTML。
+```
+src/
+├── styles/
+│   ├── global.css           ← design system: tokens, base styles, shared components, markdown prose
+│   ├── fonts.css            ← Newsreader @font-face
+│   └── plex.css             ← IBM Plex Mono @font-face
+├── layouts/Base.astro       ← HTML shell (head, header, footer)
+├── components/
+│   ├── SiteHeader.astro     ← header and navigation (edit navLinks here)
+│   ├── SiteFooter.astro     ← footer with build time and commit
+│   ├── ChampionTimeline.astro ← championship-years strip used on the home and competitions pages
+│   ├── PageIntro.astro      ← page title block (eyebrow / title / lead)
+│   ├── ResultBadge.astro    ← result chip
+│   ├── PersonItem.astro     ← member row
+│   └── Logo.astro           ← the team mark as a flat SVG
+├── lib/
+│   ├── competitions.ts      ← typed competition data, statistics, latest results, number words
+│   └── members.ts           ← typed member data, slugs, person → participation index
+├── data/                    ← structured data, the source of truth
+│   ├── competitions.json    ← results grid by year
+│   ├── competition-details.json ← one entry per event: team, problems, coverage, photos
+│   ├── members.json         ← advisors, current members, alumni
+│   └── publications.json
+├── content/pages/           ← markdown pages: collaboration, honors, join
+├── assets/competition/<id>/ ← photographs (built into responsive WebP)
+├── pages/                   ← routes
+└── scripts/                 ← small vanilla TS: navigation, member dialog
+public/
+├── fonts/                   ← self-hosted Newsreader and IBM Plex Mono (latin subsets)
+└── img/                     ← logo and favicon
+```
 
-每个文件开头的 frontmatter：
+## Editing content
+
+### Adding a competition result
+
+1. Add an entry to the year's column (`ASC`, `ISC`, `SC` or `Other`) in `src/data/competitions.json` with an `id` such as `sc26`. The `type` picks the chip colour: `champion`, `runner-up`, `linpack`, `eprize`, `special`, `place`, `notHeld` or `absent`.
+2. Add the matching key to `src/data/competition-details.json`. Every key becomes a `/competition/<id>` page.
+3. Put photographs in `src/assets/competition/<id>/01.jpg` and list them in `photos` as `/img/competition/<id>/01.jpg`. The first photo becomes the page's opener.
+
+### Adding a member
+
+Edit `src/data/members.json`. Names must match the spelling used in the `team` lists of `competition-details.json` exactly, otherwise their competition record will not link up. Two members with the same romanized name are distinguished by class year in parentheses, for example `Yang Zhang (2023)`. Each member gets an anchor such as `/members#jidong-zhai`.
+
+### Editing a markdown page
+
+Edit the file under `src/content/pages/`. Frontmatter:
 
 ```yaml
 ---
-kicker: Competition Record    # 页面顶部英文小标签
-title: 竞赛情况              # 主标题
-lead: 全球唯一...            # 导语
+kicker: Join us        # small label above the title
+title: Join the team
+lead: One-sentence introduction.
 ---
 ```
 
-### 可用的 CSS 组件
+The body is Markdown with inline HTML allowed. Available classes: `.cards` / `.cards-sm` (card grid), `.card`, `.card-tag`, `.card-title`, `.card-desc`, `.card-center`, `.placeholder`.
 
-在 Markdown 中直接内嵌 HTML 使用：
+### Adding a page
 
-| 类名 | 用途 |
-|------|------|
-| `.cards` | 卡片网格容器 |
-| `.cards-sm` | 小卡片网格 |
-| `.card` | 单个卡片 |
-| `.card-tag` | 卡片标签 |
-| `.card-title` | 卡片标题 |
-| `.card-desc` | 卡片描述 |
-| `.stats-row` | 统计数字行 |
-| `.stat-item` + `.n` + `.l` | 统计项 |
-| `.members-grid` | 成员列表 |
-| `.grade-title` | 年级标题 |
-| `.gold` | 冠军金色徽章 |
-| `.table-wrap` + `table.dt` | 数据表格 |
+1. Create `src/content/pages/<slug>.md`
+2. Add it to `navLinks` in `src/components/SiteHeader.astro`
+3. Optionally add it to `sections` in `src/pages/index.astro`
 
-### 添加新页面
+## Design notes
 
-1. 在 `src/content/pages/` 下新建 `xxx.md`（写好 frontmatter）
-2. 在 `src/components/Nav.astro` 的 `links` 数组中添加导航项
-3. 如需在首页卡片中显示，编辑 `src/pages/index.astro`
+- **Palette**: plum and gold. Dark renders a plum ground with ivory text; light renders a violet-tinted ivory ground with plum ink. Gold is the accent in both, bright for fills and darker for small text in light so it stays legible, and championships always get a gold marker. The theme follows the system by default, with a light/dark choice in the header.
+- **Type**: Newsreader (variable, optical sizes) for display and names, the system sans for running text, IBM Plex Mono for years, dates and small labels. Both web fonts are self-hosted latin subsets; nothing loads from third-party font hosts.
+- **Layout**: a 1200 px content column, full-bleed photo openers, phone first.
 
-### 修改首页
+## Branches
 
-直接编辑 `src/pages/index.astro`。
-
-## 部署
-
-构建产物为纯静态 HTML，部署到 GitHub Pages / Vercel / Cloudflare Pages 均可。
-
-```bash
-pnpm build
-# dist/ 即为部署目录
-```
-
-GitHub Pages：配置 GitHub Actions 运行 `pnpm build`，部署 `dist/` 目录。
-
-## 技术栈
-
-- **框架**: [Astro](https://astro.build/) 7 — 静态站点生成，Content Layer API
-- **语言**: TypeScript
-- **包管理**: pnpm
-- **运行时**: Node.js 24 LTS（最低要求 22.12.0，不可降级）
-- **WebGL 背景**: 双 shader 实时渲染（暗色全息 + 浅色银色涡流）
-- **主题**: Dark / Light / Auto，localStorage 持久化
-- **字体**: Playfair Display + Noto Serif SC + Noto Sans SC + IBM Plex Mono
-- **配色**: 靛蓝瓷（Indigo Porcelain）+ 紫色强调色
-
-## 分支说明
-
-| 分支 | 状态 | 说明 |
-|------|------|------|
-| `new-website-astro` | **活跃开发** | Astro 版本，当前主线 |
-| `new-website` | 冻结 | 纯 HTML/CSS/JS SPA 版本，不再维护 |
-| `master` | 旧版 | MkDocs 版本，已废弃 |
+| Branch | Status | Notes |
+|--------|--------|-------|
+| `new-website-refactor` | **active** | 2026 redesign (English) |
+| `new-website-astro` | previous | Astro version before the redesign |
+| `new-website` | frozen | plain HTML/CSS/JS SPA |
+| `master` | legacy | MkDocs version, retired |

@@ -1,37 +1,64 @@
-// Theme System
-const THEMES = ['dark', 'light', 'auto'] as const;
-const ICONS: Record<string, string> = {
-  dark: '<path d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"/>',
-  light: '<circle cx="12" cy="12" r="4.5"/><path d="M12 2.25v1.5m0 16.5v1.5m-9.75-9.75h1.5m16.5 0h1.5m-2.636-7.114-1.06 1.06m-11.668 11.668-1.06 1.06m14.788 0-1.06-1.06M6.166 6.166l-1.06-1.06"/>',
-  auto: '<path d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25A2.25 2.25 0 0 1 5.25 3h13.5A2.25 2.25 0 0 1 21 5.25Z"/>'
-};
-const LABELS: Record<string, string> = { dark: 'Dark', light: 'Light', auto: 'Auto' };
-let currentThemeIdx = 0;
+// Colour theme: system (default), light or dark. An explicit choice is stored
+// under thuscc-theme-v2 and stamped on <html> as data-theme; "system" removes
+// the attribute so the CSS follows prefers-color-scheme. The <head> inline
+// script applies the stored choice before first paint; this file handles the
+// control, keeps the choice across client-side page transitions (which reset
+// the root element's attributes) and updates the browser chrome colour.
+type Mode = 'system' | 'light' | 'dark';
+const KEY = 'thuscc-theme-v2';
+const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
 
-function getSystemTheme(): string {
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+function stored(): Mode {
+  try {
+    const v = localStorage.getItem(KEY);
+    return v === 'light' || v === 'dark' ? v : 'system';
+  } catch {
+    return 'system';
+  }
 }
 
-function applyTheme(mode: string) {
-  const resolved = mode === 'auto' ? getSystemTheme() : mode;
-  document.documentElement.setAttribute('data-theme', resolved);
-  const icon = document.getElementById('themeIcon');
-  const label = document.getElementById('themeLabel');
-  if (icon) icon.innerHTML = ICONS[mode];
-  if (label) label.textContent = LABELS[mode];
-  localStorage.setItem('thuscc-theme', mode);
+function resolved(mode: Mode): 'light' | 'dark' {
+  return mode === 'system' ? (systemDark.matches ? 'dark' : 'light') : mode;
 }
 
-// Init
-const saved = localStorage.getItem('thuscc-theme');
-if (saved && THEMES.includes(saved as any)) currentThemeIdx = THEMES.indexOf(saved as any);
-applyTheme(THEMES[currentThemeIdx]);
+function syncChrome(mode: Mode) {
+  const color = resolved(mode) === 'dark' ? '#3a2647' : '#f6f3f8';
+  document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]').forEach((m) => {
+    if (mode === 'system') m.content = m.dataset.default ?? m.content;
+    else m.content = color;
+  });
+}
 
-document.getElementById('themeBtn')?.addEventListener('click', () => {
-  currentThemeIdx = (currentThemeIdx + 1) % THEMES.length;
-  applyTheme(THEMES[currentThemeIdx]);
+function syncButtons(mode: Mode) {
+  document.querySelectorAll<HTMLButtonElement>('[data-theme-set]').forEach((b) => {
+    b.setAttribute('aria-pressed', String(b.dataset.themeSet === mode));
+  });
+}
+
+function apply(mode: Mode) {
+  const root = document.documentElement;
+  if (mode === 'system') root.removeAttribute('data-theme');
+  else root.setAttribute('data-theme', mode);
+  syncChrome(mode);
+  syncButtons(mode);
+}
+
+document.addEventListener('click', (e) => {
+  if (!(e.target instanceof Element)) return;
+  const button = e.target.closest<HTMLElement>('[data-theme-set]');
+  if (!button) return;
+  const mode = (button.dataset.themeSet as Mode) ?? 'system';
+  try {
+    if (mode === 'system') localStorage.removeItem(KEY);
+    else localStorage.setItem(KEY, mode);
+  } catch {}
+  apply(mode);
 });
 
-window.matchMedia('(prefers-color-scheme: light)').addEventListener('change', () => {
-  if (THEMES[currentThemeIdx] === 'auto') applyTheme('auto');
+// The swap replaces <html> attributes; put the choice back before the new page paints.
+document.addEventListener('astro:after-swap', () => apply(stored()));
+document.addEventListener('astro:page-load', () => {
+  syncButtons(stored());
+  syncChrome(stored());
 });
+systemDark.addEventListener('change', () => syncChrome(stored()));

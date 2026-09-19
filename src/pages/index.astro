@@ -1,40 +1,280 @@
 ---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
 import Base from '../layouts/Base.astro';
-import DiabloLogo from '../components/DiabloLogo.astro';
-import data from '../data/competitions.json';
+import ChampionTimeline from '../components/ChampionTimeline.astro';
+import ResultBadge from '../components/ResultBadge.astro';
+import Icon from '../components/Icon.astro';
+import faq from '../data/faq.json';
+import publications from '../data/publications.json';
+import { championCount, yearsOfHistory, grandSlamYears, recentResults, details, numberWords } from '../lib/competitions';
+import { advisors, activeCount, alumniCount, earliestClass, memberCount } from '../lib/members';
 
-const { competitions, grandSlamYears, records } = data;
-const years = records[0].year - records[records.length - 1].year + 1;
-const champions = records.reduce((sum, row) => {
-  return sum + competitions.reduce((s, comp) => {
-    return s + ((row as any)[comp] || []).filter((i: any) => i.type === 'champion').length;
-  }, 0);
-}, 0);
-const grandSlams = grandSlamYears.length;
+const photoModules = import.meta.glob<ImageMetadata>('/src/assets/competition/**/*.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default',
+});
+const photoFor = (publicPath: string) => photoModules[publicPath.replace(/^\/img\//, '/src/assets/')];
+
+// The opener is the most recent championship that has a photograph.
+const hero = recentResults(20).find((r) => r.entries.some((e) => e.type === 'champion') && details[r.id]?.photos?.length);
+const heroDetail = hero ? details[hero.id] : undefined;
+const heroImage = heroDetail?.photos?.[0] ? photoFor(heroDetail.photos[0]) : undefined;
+const heroPlace = heroDetail?.location?.split(',').slice(-2).map((s) => s.trim()).join(', ');
+
+// Three recent events with photographs, the opener excluded; the first is featured.
+const stories = recentResults(20)
+  .filter((r) => r.id !== hero?.id && details[r.id]?.photos?.length)
+  .slice(0, 3)
+  .map((r) => ({ ...r, detail: details[r.id], image: photoFor(details[r.id].photos![0]) }));
+
+const work = [
+  {
+    icon: 'trophy',
+    title: 'Compete',
+    text: 'A team of six races ASC, ISC and SC every season, the three major student cluster competitions, against universities from around the world.',
+  },
+  {
+    icon: 'chalkboard-teacher',
+    title: 'Train',
+    text: 'New members join each autumn with no prerequisites and learn systems, parallel programming and hardware from the members who competed before them.',
+  },
+  {
+    icon: 'flask',
+    title: 'Research',
+    text: 'We work with research groups on real computational problems, from gamma-ray burst detection for the GRID satellites to mining genomic databases.',
+  },
+  {
+    icon: 'github-logo',
+    title: 'Publish and share',
+    text: `${publications.length} papers from the SC Reproducibility Challenge, and the team's tooling and write-ups in the open on GitHub.`,
+  },
+];
+
+const steps = [
+  {
+    icon: 'calendar-dots',
+    title: 'Prepare for months',
+    text: 'Once the applications are announced, members study the codes, tune them on the team’s own hardware and rehearse the run plan.',
+  },
+  {
+    icon: 'hard-drives',
+    title: 'Build the cluster',
+    text: 'On site the team assembles its nodes within a fixed power budget. Going over it costs points, so every watt is planned.',
+  },
+  {
+    icon: 'timer',
+    title: 'Run for days',
+    text: 'Benchmarks first, then the scientific applications, including a secret application revealed on the competition floor.',
+  },
+  {
+    icon: 'presentation-chart',
+    title: 'Present and defend',
+    text: 'Judges interview the team and score the results, the presentation and how the work was documented.',
+  },
+];
 ---
-<Base activePage="home">
-  <section class="hero">
-    <DiabloLogo size="hero" />
-    <p class="hero-kicker">Tsinghua Student Cluster Competition Team</p>
-    <h1 class="hero-title">清华大学<br>学生超算团队</h1>
-    <p class="hero-sub">让超算技术走出竞赛场，走进科研现场。<br>用高性能计算、AI 系统和分布式架构，为科研团队解决真实的计算瓶颈。</p>
-    <div class="hero-stats">
-      <div class="hero-stat"><span class="n">{champions}</span><span class="l">国际赛事冠军</span></div>
-      <div class="hero-stat"><span class="n">{years}</span><span class="l">年竞赛历程</span></div>
-      <div class="hero-stat"><span class="n">100+</span><span class="l">历届队员</span></div>
-      <div class="hero-stat"><span class="n">{grandSlams}</span><span class="l">次三大赛事满贯</span></div>
+<Base activePage="home" header="overlay" bleed>
+  <section class="photo-hero">
+    {heroImage && (
+      <>
+        <Image
+          src={heroImage}
+          widths={[800, 1280, 1920, 2560]}
+          sizes="100vw"
+          format="webp"
+          quality={72}
+          alt={heroDetail ? `The team on stage at ${heroDetail.name}` : 'The team'}
+          loading="eager"
+          fetchpriority="high"
+        />
+        <Image
+          src={heroImage}
+          widths={[800, 1280, 1920]}
+          sizes="100vw"
+          format="webp"
+          quality={40}
+          alt=""
+          class="hero-blur"
+          aria-hidden="true"
+          loading="eager"
+        />
+      </>
+    )}
+    <div class="container photo-hero-body">
+      {heroDetail && <p class="eyebrow rise">{heroDetail.name}{heroPlace ? `, ${heroPlace}` : ''}</p>}
+      <h1 class="photo-hero-title rise rise-2">
+        <em>{numberWords(yearsOfHistory)}</em> years, <em>{numberWords(championCount)}</em> championships, <em>{numberWords(grandSlamYears.length)}</em> grand slams.
+      </h1>
+      <p class="lead hero-lead rise rise-3">
+        The only student team to have won all three major supercomputing competitions: ASC, ISC and SC.
+      </p>
+      <div class="hero-actions rise rise-3">
+        <a class="btn btn-primary" href="/competition">See the record <Icon name="arrow-right" size={18} /></a>
+        <a class="btn" href="/join">Join the team</a>
+      </div>
     </div>
   </section>
-  <section class="sec">
-    <p class="sec-kicker">Explore</p>
-    <h2 class="sec-title">了解我们</h2>
-    <div class="cards">
-      <a class="card" href="/collaboration"><p class="card-tag">Cross-disciplinary</p><h3 class="card-title">交叉合作</h3><p class="card-desc">天格计划 · 化工系 LEB · 以超算技术服务科研一线</p></a>
-      <a class="card" href="/competition"><p class="card-tag">Competition</p><h3 class="card-title">竞赛情况</h3><p class="card-desc">ASC · ISC · SC 三大国际赛事，全球唯一满贯队伍</p></a>
-      <a class="card" href="/publications"><p class="card-tag">Research</p><h3 class="card-title">学术发表</h3><p class="card-desc">论文与技术报告</p></a>
-      <a class="card" href="/members"><p class="card-tag">People</p><h3 class="card-title">团队成员</h3><p class="card-desc">2008 级至今，百余位队员</p></a>
-      <a class="card" href="/honors"><p class="card-tag">Honors</p><h3 class="card-title">荣誉徽章</h3><p class="card-desc">团队与个人荣誉</p></a>
-      <a class="card" href="/join"><p class="card-tag">Join us</p><h3 class="card-title">加入我们</h3><p class="card-desc">欢迎热爱计算的你</p></a>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">What the team does</h2>
+    </div>
+    <ul class="icon-grid stagger">
+      {work.map((w, i) => (
+        <li style={`--i:${i}`}>
+          <Icon name={w.icon} size={28} />
+          <h3>{w.title}</h3>
+          <p>{w.text}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">How a competition works</h2>
+      <p class="section-note">The format is the same at ASC, ISC and SC.</p>
+    </div>
+    <ol class="steps stagger">
+      {steps.map((s, i) => (
+        <li style={`--i:${i}`}>
+          <Icon name={s.icon} size={26} />
+          <h3>{s.title}</h3>
+          <p>{s.text}</p>
+        </li>
+      ))}
+    </ol>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">Championship years</h2>
+    </div>
+    <ChampionTimeline />
+    <p class="timeline-caption">
+      Gold marks a year with at least one championship. A ring marks a grand slam, when the team won ASC, ISC and SC in the same year.
+    </p>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">Recent competitions</h2>
+    </div>
+    <div class="photo-cards stagger">
+      {stories.map((s, i) => (
+        <a class="photo-card" href={`/competition/${s.id}`} style={`--i:${i}`}>
+          <div class="frame" transition:name={`photo-${s.id}`}>
+            {s.image && (
+              <Image
+                src={s.image}
+                widths={[480, 800, 1200, 1600]}
+                sizes={i === 0 ? '(min-width: 1240px) 700px, (min-width: 720px) 60vw, 100vw' : '(min-width: 1240px) 440px, (min-width: 720px) 40vw, 100vw'}
+                format="webp"
+                quality={74}
+                alt={`The team at ${s.name}`}
+                loading="lazy"
+              />
+            )}
+          </div>
+          <div class="body">
+            <ul class="badge-list">
+              {s.entries.map((e) => (
+                <li><ResultBadge entry={e} link={false} /></li>
+              ))}
+            </ul>
+            <span class="title">{s.name}</span>
+            {i === 0 && s.detail.highlights && <span class="desc">{s.detail.highlights}</span>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">People</h2>
+      <p class="section-note">{activeCount} current members and {alumniCount} alumni since the class of {earliestClass}.</p>
+    </div>
+    <ul class="people-row stagger">
+      {advisors.current.map((p, i) => (
+        <li style={`--i:${i}`}>
+          <span class="name">{p.name}</span>
+          <span class="role">{p.title ? `${p.title}, faculty advisor` : 'Faculty advisor'}</span>
+          {p.url && (
+            <a href={p.url} target="_blank" rel="noopener">Homepage <Icon name="arrow-up-right" size={16} /></a>
+          )}
+        </li>
+      ))}
+    </ul>
+    <a class="btn" href="/members">Meet all {memberCount} members <Icon name="arrow-right" size={18} /></a>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">Questions we get asked</h2>
+    </div>
+    <div class="faq stagger">
+      {faq.map((item, i) => (
+        <details style={`--i:${i}`}>
+          <summary>
+            <span>{item.q}</span>
+            <Icon name="plus" size={20} class="icon-plus" />
+            <Icon name="minus" size={20} class="icon-minus" />
+          </summary>
+          <p>{item.a}</p>
+        </details>
+      ))}
+    </div>
+  </section>
+
+  <section class="container duo" data-reveal>
+    <div class="duo-item">
+      <h2 class="duo-title">Research collaboration</h2>
+      <p class="duo-desc">
+        We work with research groups on numerical simulation, large-scale data processing, AI inference and distributed
+        systems, from the GRID gamma-ray satellites to genomics.
+      </p>
+      <a class="btn btn-primary" href="/collaboration">Work with us <Icon name="arrow-right" size={18} /></a>
+    </div>
+    <div class="duo-item">
+      <h2 class="duo-title">New members every autumn</h2>
+      <p class="duo-desc">
+        We recruit each autumn semester and train from scratch. Physics, mathematics and chemical engineering students
+        have all competed for the team.
+      </p>
+      <a class="btn" href="/join">Join the team</a>
     </div>
   </section>
 </Base>
+
+<style>
+  .hero-lead {
+    max-width: 38rem;
+  }
+  .section > .btn {
+    justify-self: start;
+  }
+  .duo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 3rem clamp(2rem, 5vw, 5rem);
+    padding-top: clamp(2rem, 4vw, 3rem);
+    border-top: 1px solid var(--line);
+  }
+  .duo-item {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+    align-content: start;
+  }
+  .duo-title {
+    font-size: var(--text-2xl);
+    font-weight: 600;
+  }
+  .duo-desc {
+    color: var(--fg-2);
+    max-width: 40rem;
+    text-wrap: pretty;
+  }
+</style>

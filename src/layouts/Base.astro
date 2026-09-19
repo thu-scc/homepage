@@ -1,250 +1,84 @@
 ---
-import Nav from '../components/Nav.astro';
-import Footer from '../components/Footer.astro';
+import '../styles/plex.css';
+import '../styles/fonts.css';
+import '../styles/global.css';
+import { ClientRouter } from 'astro:transitions';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 
 interface Props {
+  /** Page name; the site name is appended. Omit on the home page. */
   title?: string;
   description?: string;
   activePage?: string;
+  /** `overlay` floats the header over a photo hero; `solid` is the default sticky bar. */
+  header?: 'solid' | 'overlay';
+  /** Set when the page starts with a full-bleed hero that manages its own spacing. */
+  bleed?: boolean;
 }
 
-const { title = 'THUSCC · 清华大学学生超算团队', description = '清华大学学生超算团队 - 让超算技术走出竞赛场，走进科研现场', activePage = 'home' } = Astro.props;
+const siteName = 'THUSCC · Tsinghua University Student Cluster Competition Team';
+const {
+  title,
+  description = 'The Tsinghua University Student Cluster Competition Team: the only team to have won all three major student supercomputing competitions, ASC, ISC and SC.',
+  activePage = 'home',
+  header = 'solid',
+  bleed = false,
+} = Astro.props;
+const fullTitle = title ? `${title} · THUSCC` : siteName;
+declare const __BUILD_TIME__: string;
+declare const __COMMIT_HASH__: string;
+const buildInfo = [__COMMIT_HASH__, __BUILD_TIME__].filter(Boolean).join(' ');
+const canonical = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : undefined;
 ---
-<!DOCTYPE html>
-<html lang="zh-CN" data-theme="dark">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
-  <meta name="description" content={description}>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-  <script
-    is:inline
-    src="https://rbt.dang.fan/api/script.js"
-    data-site-id="23af4434c5c1"
-    defer
-  ></script>
-</head>
-<body>
-  <canvas id="bg-dark" class="bg-canvas"></canvas>
-  <canvas id="bg-light" class="bg-canvas"></canvas>
-
-  <Nav activePage={activePage} />
-
-  <div class="page-container">
-    <slot />
-  </div>
-
-  <Footer />
-
-  <script src="../scripts/webgl.ts"></script>
-  <script src="../scripts/theme.ts"></script>
-  <script src="../scripts/nav-toggle.ts"></script>
-</body>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f6f3f8" data-default="#f6f3f8" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#3a2647" data-default="#3a2647" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    {canonical && <link rel="canonical" href={canonical} />}
+    {buildInfo && <meta name="build" content={buildInfo} />}
+    <ClientRouter />
+    <link rel="icon" href="/img/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/fonts/newsreader-var.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline>
+      (function () {
+        try {
+          var t = localStorage.getItem('thuscc-theme-v2');
+          if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preload" href="/fonts/ibm-plex-mono-500.woff2" as="font" type="font/woff2" crossorigin />
+    <script is:inline src="https://rbt.dang.fan/api/script.js" data-site-id="23af4434c5c1" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader activePage={activePage} variant={header} />
+    <main id="main" class:list={['page', { container: !bleed, 'page-bleed': bleed }]}>
+      <slot />
+    </main>
+    <SiteFooter />
+    <script src="../scripts/nav.ts"></script>
+    <script src="../scripts/reveal.ts"></script>
+    <script src="../scripts/theme.ts"></script>
+  </body>
 </html>
 
 <style is:global>
-/* ============ Theme Variables ============ */
-:root {
-  --ink: #0a1f3d;
-  --ink-rgb: 10,31,61;
-  --paper: #f1f3f5;
-  --paper-rgb: 241,243,245;
-  --paper-tint: #e4e8ec;
-  --ink-tint: #152a4a;
-  --accent: #82318E;
-  --accent-light: #a855c8;
-  --accent-dim: rgba(130,49,142,0.12);
-  --mono: "IBM Plex Mono", ui-monospace, monospace;
-  --serif-en: "Playfair Display", "Source Serif 4", Georgia, serif;
-  --serif-zh: "Noto Serif SC", source-han-serif-sc, serif;
-  --sans-zh: "Noto Sans SC", source-han-sans-sc, sans-serif;
-  --nav-h: 64px;
-  --page-gutter: clamp(16px, 5vw, 80px);
-  --content-max: 1120px;
-  --content-readable: 720px;
-  --section-y: clamp(56px, 9vh, 120px);
-  --section-y-top: clamp(56px, 9vh, 120px);
-  --grid-gap: clamp(14px, 2vw, 24px);
-  --card-min: 260px;
-}
-
-[data-theme="dark"] {
-  --bg: #0a1f3d;
-  --bg-rgb: 10,31,61;
-  --fg: #f1f3f5;
-  --fg-rgb: 241,243,245;
-  --nav-bg: rgba(10,31,61,0.88);
-  --card-bg: rgba(241,243,245,0.035);
-  --card-border: rgba(241,243,245,0.08);
-  --hero-overlay: rgba(10,31,61,0.3);
-  --gold-bg: rgba(255,200,0,0.12);
-  --gold-color: #ffc800;
-  --link-color: #a855c8;
-}
-
-[data-theme="light"] {
-  --bg: #f1f3f5;
-  --bg-rgb: 241,243,245;
-  --fg: #0a1f3d;
-  --fg-rgb: 10,31,61;
-  --nav-bg: rgba(241,243,245,0.88);
-  --card-bg: rgba(10,31,61,0.035);
-  --card-border: rgba(10,31,61,0.08);
-  --hero-overlay: rgba(241,243,245,0.25);
-  --gold-bg: rgba(180,130,0,0.12);
-  --gold-color: #8a6000;
-  --link-color: #82318E;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
-body { font-family: var(--sans-zh); background: var(--bg); color: var(--fg); line-height: 1.7; overflow-x: hidden; transition: background 0.6s, color 0.6s; }
-
-/* ============ WebGL ============ */
-canvas.bg-canvas { position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; transition: opacity 0.8s ease; }
-#bg-dark { opacity: 1; }
-#bg-light { opacity: 0; }
-[data-theme="light"] #bg-dark { opacity: 0; }
-[data-theme="light"] #bg-light { opacity: 1; }
-
-/* ============ Page Container ============ */
-.page-container { position: relative; z-index: 1; min-height: 100vh; }
-
-/* ============ Hero ============ */
-.hero { min-height: min(100svh, 920px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: calc(var(--nav-h) + clamp(28px, 6vh, 72px)) var(--page-gutter) var(--section-y); position: relative; }
-.hero::before { content: ""; position: absolute; inset: 0; background: var(--hero-overlay); z-index: -1; transition: background 0.6s; }
-.hero-kicker { font-family: var(--mono); font-size: clamp(0.62rem, 0.72vw, 0.8rem); letter-spacing: 0.3em; text-transform: uppercase; opacity: 0.55; margin-bottom: 3vh; overflow-wrap: anywhere; }
-.hero-logo { width: clamp(90px, 14vw, 160px); height: auto; margin-bottom: 3vh; animation: hero-logo-float 6s ease-in-out infinite; }
-@keyframes hero-logo-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-.hero-title { font-family: var(--serif-zh); font-weight: 900; font-size: clamp(2.2rem, 7vw, 5rem); line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 2.5vh; }
-.hero-sub { font-family: var(--serif-zh); font-weight: 400; font-size: clamp(0.95rem, 1.5vw, 1.3rem); line-height: 1.65; opacity: 0.78; max-width: var(--content-readable); }
-.hero-stats { display: grid; grid-template-columns: repeat(4, minmax(0, max-content)); gap: clamp(20px, 4vw, 56px); margin-top: 6vh; justify-content: center; max-width: min(100%, 980px); }
-.hero-stat .n { font-family: var(--serif-en); font-weight: 800; font-size: clamp(1.8rem, 3.5vw, 3rem); line-height: 1; letter-spacing: -0.02em; display: block; }
-.hero-stat .l { font-family: var(--mono); font-size: clamp(0.58rem, 0.68vw, 0.72rem); letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.5; margin-top: 0.6vh; display: block; }
-
-/* ============ Section ============ */
-.sec { width: 100%; max-width: var(--content-max); margin: 0 auto; padding: var(--section-y) var(--page-gutter); }
-.sec-top { padding-top: calc(var(--nav-h) + var(--section-y-top)); }
-.sec-kicker { font-family: var(--mono); font-size: clamp(0.62rem, 0.72vw, 0.78rem); letter-spacing: 0.28em; text-transform: uppercase; opacity: 0.5; margin-bottom: 2vh; overflow-wrap: anywhere; }
-.sec-title { font-family: var(--serif-zh); font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.6rem); line-height: 1.15; margin-bottom: 2.5vh; }
-.sec-lead { font-family: var(--serif-zh); font-weight: 400; font-size: clamp(0.9rem, 1.2vw, 1.1rem); line-height: 1.7; opacity: 0.78; max-width: var(--content-readable); margin-bottom: 5vh; }
-
-/* ============ Cards ============ */
-.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--card-min)), 1fr)); gap: var(--grid-gap); }
-.cards-sm { --card-min: 180px; }
-.card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: clamp(20px, 2.5vw, 36px); transition: border-color 0.3s, transform 0.2s, background 0.6s; text-decoration: none; color: inherit; display: block; cursor: pointer; }
-.card:hover { border-color: var(--accent-light); transform: translateY(-2px); }
-.card-tag { font-family: var(--mono); font-size: 9px; letter-spacing: 0.24em; text-transform: uppercase; opacity: 0.45; margin-bottom: 1.2vh; overflow-wrap: anywhere; }
-.card-title { font-family: var(--serif-zh); font-weight: 600; font-size: clamp(1rem, 1.4vw, 1.25rem); line-height: 1.3; margin-bottom: 1vh; }
-.card-desc { font-size: 0.85rem; line-height: 1.7; opacity: 0.68; overflow-wrap: anywhere; }
-.card-center { text-align: center; padding: 20px; }
-.card-center .card-title { font-size: 0.95rem; }
-
-/* ============ Stats ============ */
-.stats-row { display: flex; gap: clamp(24px, 4vw, 56px); flex-wrap: wrap; margin-bottom: 5vh; }
-.stat-item .n { font-family: var(--serif-en); font-weight: 800; font-size: clamp(2rem, 4vw, 3.2rem); line-height: 1; letter-spacing: -0.02em; }
-.stat-item .l { font-family: var(--mono); font-size: clamp(0.58rem, 0.68vw, 0.72rem); letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.5; margin-top: 0.5vh; }
-
-/* ============ Table ============ */
-.table-wrap { overflow-x: auto; margin: 3vh 0; -webkit-overflow-scrolling: touch; }
-table.dt { width: 100%; border-collapse: collapse; font-size: 0.83rem; }
-table.dt th { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; opacity: 0.55; text-align: left; padding: 10px 14px; border-bottom: 1px solid rgba(var(--fg-rgb), 0.12); }
-table.dt td { padding: 10px 14px; border-bottom: 1px solid rgba(var(--fg-rgb), 0.05); }
-table.dt tr:hover td { background: rgba(var(--fg-rgb), 0.03); }
-.gold { display: inline-block; padding: 2px 8px; border-radius: 4px; background: var(--gold-bg); color: var(--gold-color); font-weight: 600; font-size: 0.78rem; transition: background 0.6s, color 0.6s; }
-
-/* ============ Members ============ */
-.grade-title { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.45; margin: 3vh 0 1.2vh; padding-top: 2vh; border-top: 1px solid rgba(var(--fg-rgb), 0.06); }
-.members-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr)); gap: 6px 20px; list-style: none; }
-.members-grid li { font-size: 0.85rem; opacity: 0.78; padding: 3px 0; }
-.members-grid a { color: var(--link-color); text-decoration: none; }
-.members-grid a:hover { text-decoration: underline; }
-
-/* ============ Markdown Content Styling ============ */
-.md-content { max-width: 100%; }
-.md-content h1 { font-family: var(--serif-zh); font-weight: 700; font-size: clamp(1.6rem, 3.5vw, 2.6rem); line-height: 1.15; margin: 3vh 0 2vh; overflow-wrap: anywhere; }
-.md-content h2 { font-family: var(--serif-zh); font-weight: 600; font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.2; margin: 4vh 0 1.5vh; overflow-wrap: anywhere; }
-.md-content h3 { font-family: var(--serif-zh); font-weight: 600; font-size: 1.1rem; margin: 3vh 0 1vh; overflow-wrap: anywhere; }
-.md-content p { margin-bottom: 1.5vh; opacity: 0.82; }
-.md-content ul, .md-content ol { margin: 1vh 0 2vh 1.5em; opacity: 0.82; }
-.md-content li { margin-bottom: 0.5vh; }
-.md-content a { color: var(--link-color); text-decoration: none; overflow-wrap: anywhere; }
-.md-content a:hover { text-decoration: underline; }
-.md-content blockquote { border-left: 3px solid var(--accent-light); padding: 1vh 2vw; margin: 2vh 0; opacity: 0.85; font-family: var(--serif-zh); }
-.md-content code { font-family: var(--mono); font-size: 0.88em; background: rgba(var(--fg-rgb), 0.06); padding: 2px 6px; border-radius: 4px; }
-.md-content pre { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
-.md-content img { max-width: 100%; height: auto; }
-.md-content table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; margin: 2vh 0; font-size: 0.85rem; -webkit-overflow-scrolling: touch; }
-.md-content th { font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.55; text-align: left; padding: 8px 12px; border-bottom: 1px solid rgba(var(--fg-rgb), 0.12); }
-.md-content td { padding: 8px 12px; border-bottom: 1px solid rgba(var(--fg-rgb), 0.05); }
-.md-content hr { border: none; border-top: 1px solid rgba(var(--fg-rgb), 0.08); margin: 5vh 0; }
-
-/* ============ Misc ============ */
-.divider { border: none; border-top: 1px solid rgba(var(--fg-rgb), 0.08); margin: 5vh 0; }
-.foot { position: relative; z-index: 1; padding: 32px clamp(20px, 4vw, 56px); border-top: 1px solid rgba(var(--fg-rgb), 0.06); text-align: center; font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.12em; opacity: 0.4; }
-
-/* ============ Responsive ============ */
-@media (min-width: 1200px) {
-  .sec { padding-inline: 0; }
-}
-
-@media (min-width: 1440px) {
-  :root {
-    --content-max: 1180px;
-    --content-readable: 760px;
+  /* A bleeding page lays out its own containers; the hero starts under the overlay header. */
+  .page-bleed {
+    padding-top: 0;
   }
-}
-
-@media (min-width: 1920px) {
-  :root {
-    --content-max: 1240px;
-    --section-y: clamp(80px, 8vh, 136px);
-    --section-y-top: clamp(80px, 8vh, 136px);
+  .page-bleed > .container {
+    width: 100%;
   }
-}
-
-@media (max-width: 1023px) {
-  :root {
-    --page-gutter: clamp(20px, 5vw, 48px);
-    --card-min: 240px;
-  }
-  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); width: min(100%, 520px); }
-  .stats-row { display: grid; grid-template-columns: repeat(3, minmax(0, max-content)); justify-content: start; }
-  .members-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-
-@media (max-width: 767px) {
-  :root {
-    --nav-h: 58px;
-    --page-gutter: 18px;
-    --section-y: clamp(48px, 8vh, 72px);
-    --section-y-top: clamp(44px, 8vh, 68px);
-    --card-min: 100%;
-  }
-  .hero { min-height: auto; padding-top: calc(var(--nav-h) + 34px); }
-  .hero-kicker { letter-spacing: 0.18em; max-width: 32ch; }
-  .hero-title { font-size: clamp(2.1rem, 13vw, 3.6rem); }
-  .hero-sub { font-size: 0.95rem; }
-  .hero-stats { gap: 22px 14px; margin-top: 42px; }
-  .hero-stat { min-width: 0; }
-  .hero-stat .l { letter-spacing: 0.12em; }
-  .sec-title { font-size: clamp(1.55rem, 8vw, 2.2rem); }
-  .sec-lead { margin-bottom: 36px; }
-  .stats-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 18px; }
-  .cards { grid-template-columns: 1fr; }
-  .members-grid { gap: 6px 14px; }
-  .md-content blockquote { padding-inline: 16px; }
-  .foot { padding-inline: var(--page-gutter); line-height: 1.6; }
-}
-
-@media (max-width: 480px) {
-  :root { --page-gutter: 16px; }
-  .members-grid { grid-template-columns: 1fr; }
-  .stats-row { grid-template-columns: 1fr; }
-  .hero-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
 </style>
