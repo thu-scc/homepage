@@ -27,6 +27,20 @@ export const alumniCount = alumniGroups.reduce((n, g) => n + g.members.length, 0
 export const memberCount = activeCount + alumniCount;
 export const earliestClass = alumniGroups[alumniGroups.length - 1]?.grade.replace('Class of ', '') ?? '2008';
 
+/**
+ * The name as it is shown. A trailing class year only exists in the data to tell
+ * two people with the same romanization apart, so it is dropped for display; the
+ * full string stays the key into members.json and the competition team lists.
+ */
+export function displayName(name: string): string {
+  return name.replace(/\s*\((?:19|20)\d{2}\)$/, '');
+}
+
+/** The class year a disambiguated name carries, e.g. "Yang Zhang (2023)" → "2023". */
+export function classYearIn(name: string): string | undefined {
+  return name.match(/\((\d{4})\)$/)?.[1];
+}
+
 /** URL-safe slug, e.g. "Jidong Zhai" → "jidong-zhai". */
 export function toSlug(name: string): string {
   return name

@@ -51,11 +51,12 @@ function init() {
 
   function open(btn: HTMLElement) {
     const name = btn.dataset.name ?? '';
+    const display = btn.dataset.display || name;
     const dept = btn.dataset.dept ?? '';
     const url = btn.dataset.url ?? '';
     const slug = btn.dataset.slug ?? '';
 
-    nameEl.textContent = name;
+    nameEl.textContent = display;
     deptEl.textContent = dept;
     deptEl.hidden = !dept;
     if (url) {

@@ -5,7 +5,7 @@ import Base from '../../layouts/Base.astro';
 import PageIntro from '../../components/PageIntro.astro';
 import Icon from '../../components/Icon.astro';
 import { details, roleOrder, roleLabels, formatDate, type CompetitionDetail } from '../../lib/competitions';
-import { memberHref } from '../../lib/members';
+import { memberHref, displayName } from '../../lib/members';
 
 export function getStaticPaths() {
   return Object.entries(details).map(([id, info]) => ({ params: { id }, props: { id, info } }));
@@ -97,7 +97,8 @@ const awardType = (award: string) => (award.toLowerCase().includes('champion') ?
               <ul class="name-list">
                 {info.team![role]!.map((name) => {
                   const href = memberHref(name);
-                  return <li>{href ? <a href={href}>{name}</a> : name}</li>;
+                  const label = displayName(name);
+                  return <li>{href ? <a href={href}>{label}</a> : label}</li>;
                 })}
               </ul>
             </div>

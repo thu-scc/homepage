@@ -24,7 +24,6 @@ const navLinks = [
     <a href="/" class="brand" aria-label="THUSCC home" aria-current={activePage === 'home' ? 'page' : undefined}>
       <Logo class="brand-mark" strokeWidth={3} />
       <span class="brand-name">THUSCC</span>
-      <span class="brand-sub">Tsinghua Student Cluster Competition Team</span>
     </a>
 
     <nav class="site-nav" id="site-nav" aria-label="Main navigation">
@@ -121,12 +120,6 @@ const navLinks = [
     letter-spacing: 0.02em;
     line-height: 1;
   }
-  .brand-sub {
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: 0.08em;
-    color: var(--fg-3);
-  }
   .site-nav {
     margin-left: auto;
   }
@@ -186,11 +179,6 @@ const navLinks = [
     display: block;
   }
 
-  @media (max-width: 1279px) {
-    .brand-sub {
-      display: none;
-    }
-  }
   @media (max-width: 899px) {
     .header-actions {
       margin-left: auto;
