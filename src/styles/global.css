@@ -1172,6 +1172,93 @@ a.badge-champion:hover {
   color: var(--accent-text-2);
 }
 
+/* News: a dated index, on the home page and on /news. The first row carries no
+   rule of its own so it does not double the line under the section heading. */
+.news-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.news-list > li {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 0.35rem 1.5rem;
+  align-content: start;
+  padding-block: 1.375rem;
+}
+
+.news-list > li + li {
+  border-top: 1px solid var(--line-2);
+}
+
+.news-date {
+  font-size: var(--text-sm);
+  color: var(--fg-3);
+  padding-top: 0.2rem;
+  white-space: nowrap;
+}
+
+.news-body {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+}
+
+.news-title {
+  font-family: var(--font-serif);
+  font-optical-sizing: auto;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.35;
+  text-wrap: pretty;
+}
+
+.news-title a {
+  color: var(--fg);
+  text-decoration-color: var(--line);
+}
+
+.news-title a:hover {
+  color: var(--accent-text-2);
+  text-decoration-color: var(--accent-strong);
+}
+
+.news-summary {
+  font-size: var(--text-sm);
+  color: var(--fg-2);
+  max-width: 46rem;
+  text-wrap: pretty;
+}
+
+.news-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1.25rem;
+  font-size: var(--text-xs);
+  color: var(--fg-3);
+}
+
+.news-meta a {
+  color: var(--fg-3);
+}
+
+.news-meta a:hover {
+  color: var(--accent-text-2);
+}
+
+@media (max-width: 599px) {
+  .news-list > li {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.4rem;
+  }
+  .news-date {
+    padding-top: 0;
+  }
+}
+
 /* Empty state */
 .placeholder {
   padding: 2.5rem 1.5rem;

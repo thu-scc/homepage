@@ -130,7 +130,7 @@ const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 
 export function formatDate(iso: string | undefined): string | undefined {
   if (!iso) return undefined;
   const [y, m, d] = iso.split('-');
-  if (!m) return y;
-  const month = MONTHS[Number(m) - 1] ?? m;
+  const month = MONTHS[Number(m) - 1];
+  if (!month) return y;
   return d ? `${Number(d)} ${month} ${y}` : `${month} ${y}`;
 }

@@ -39,17 +39,20 @@ src/
 │   ├── SiteHeader.astro     ← header and navigation (edit navLinks here)
 │   ├── SiteFooter.astro     ← footer with build time and commit
 │   ├── ChampionTimeline.astro ← championship-years strip used on the home and competitions pages
+│   ├── NewsList.astro       ← dated news rows, shared by the home page and /news
 │   ├── PageIntro.astro      ← page title block (eyebrow / title / lead)
 │   ├── ResultBadge.astro    ← result chip
 │   ├── PersonItem.astro     ← member row
 │   └── Logo.astro           ← the team mark as a flat SVG
 ├── lib/
 │   ├── competitions.ts      ← typed competition data, statistics, latest results, number words
-│   └── members.ts           ← typed member data, slugs, person → participation index
+│   ├── members.ts           ← typed member data, slugs, person → participation index
+│   └── news.ts              ← team posts merged with the press coverage held on each competition
 ├── data/                    ← structured data, the source of truth
 │   ├── competitions.json    ← results grid by year
 │   ├── competition-details.json ← one entry per event: team, problems, coverage, photos
 │   ├── members.json         ← advisors, current members, alumni
+│   ├── news.json            ← posts from the team's WeChat account
 │   └── publications.json
 ├── content/pages/           ← markdown pages: collaboration, honors, join
 ├── assets/competition/<id>/ ← photographs (built into responsive WebP)
@@ -67,6 +70,26 @@ public/
 1. Add an entry to the year's column (`ASC`, `ISC`, `SC` or `Other`) in `src/data/competitions.json` with an `id` such as `sc26`. The `type` picks the chip colour: `champion`, `runner-up`, `linpack`, `eprize`, `special`, `place`, `notHeld` or `absent`.
 2. Add the matching key to `src/data/competition-details.json`. Every key becomes a `/competition/<id>` page.
 3. Put photographs in `src/assets/competition/<id>/01.jpg` and list them in `photos` as `/img/competition/<id>/01.jpg`. The first photo becomes the page's opener.
+
+### Adding a news post
+
+The `/news` page and the home page's News section merge two sources:
+
+- **Team posts** in `src/data/news.json`, newest first. One entry per WeChat post:
+
+  ```json
+  {
+    "date": "2026-08-29",
+    "title": "An English title, written for this site",
+    "summary": "One or two sentences. Optional.",
+    "url": "https://mp.weixin.qq.com/s/GU3ViQz13EZZ3KgKj0hJmQ",
+    "source": "WeChat"
+  }
+  ```
+
+  The team's account is **THUSCC** on WeChat. It has no public feed, so posts are added by hand: open the post in WeChat, copy its link, and translate the title. Keep the site's English-only rule, the whole entry is written in English.
+
+- **Press coverage**, taken automatically from the `news` array of every entry in `competition-details.json` and dated to that competition. The outlet is derived from the link's host, so nothing extra is needed when a result is added.
 
 ### Adding a member
 

@@ -5,10 +5,12 @@ import Base from '../layouts/Base.astro';
 import ChampionTimeline from '../components/ChampionTimeline.astro';
 import ResultBadge from '../components/ResultBadge.astro';
 import Icon from '../components/Icon.astro';
+import NewsList from '../components/NewsList.astro';
 import faq from '../data/faq.json';
 import publications from '../data/publications.json';
 import { championCount, yearsOfHistory, grandSlamYears, recentResults, details, numberWords } from '../lib/competitions';
 import { advisors, activeCount, alumniCount, earliestClass, memberCount } from '../lib/members';
+import { recentNews } from '../lib/news';
 
 const photoModules = import.meta.glob<ImageMetadata>('/src/assets/competition/**/*.{jpg,jpeg,png,webp}', {
   eager: true,
@@ -27,6 +29,8 @@ const stories = recentResults(20)
   .filter((r) => r.id !== hero?.id && details[r.id]?.photos?.length)
   .slice(0, 3)
   .map((r) => ({ ...r, detail: details[r.id], image: photoFor(details[r.id].photos![0]) }));
+
+const latestNews = recentNews(4);
 
 const work = [
   {
@@ -114,6 +118,15 @@ const steps = [
         <a class="btn" href="/join">Join the team</a>
       </div>
     </div>
+  </section>
+
+  <section class="container section" data-reveal>
+    <div class="section-head">
+      <h2 class="section-title">News</h2>
+      <p class="section-note">From the team's WeChat account and the press.</p>
+    </div>
+    <NewsList items={latestNews} stagger />
+    <a class="btn" href="/news">All news <Icon name="arrow-right" size={18} /></a>
   </section>
 
   <section class="container section" data-reveal>

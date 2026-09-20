@@ -26,6 +26,6 @@ lead: We are looking for students who care about high-performance computing, sys
 
 ## How to join
 
-Recruitment happens every autumn semester. Follow the team's WeChat account or contact the [faculty advisors](/members) directly.
+Recruitment happens every autumn semester. Watch the [news](/news), follow the team's WeChat account, or contact the [faculty advisors](/members) directly.
 
 Outside the recruiting season, if you are interested in a research collaboration, reach out any time. The team's open-source code is on GitHub at [thu-scc](https://github.com/thu-scc).
