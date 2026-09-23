@@ -1,0 +1,5 @@
+# Dev toolchain for this repo. Run `mise install` once, then `pnpm install`.
+# Keep the node major in sync with .nvmrc (Cloudflare Pages reads .nvmrc).
+[tools]
+node = "24"
+pnpm = "11.22.0"

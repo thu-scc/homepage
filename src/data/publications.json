@@ -2,15 +2,15 @@
   {
     "title": "Critique of \"Data Flow Lifecycles for Optimizing Workflow Coordination\" by SCC Team From Tsinghua University",
     "authors": [
-      "杨恺",
-      "李轶凡",
-      "薛志宇",
-      "杨雨晴",
-      "王宇澄",
-      "施程予",
-      "韩文弢",
-      "金煜阳",
-      "翟季冬"
+      "Kai Yang",
+      "Yifan Li",
+      "Zhiyu Xue",
+      "Yuqing Yang",
+      "Yucheng Wang",
+      "Chengyu Shi",
+      "Wentao Han",
+      "Yuyang Jin",
+      "Jidong Zhai"
     ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",
@@ -22,14 +22,14 @@
   {
     "title": "Critique of \"A Parallel Framework for Constraint-Based Bayesian Network Learning via Markov Blanket Discovery\" by SCC Team From Tsinghua University",
     "authors": [
-      "翟明书",
-      "宋泽宇",
-      "融凯源",
-      "任彦羽",
-      "曹隽诚",
-      "朱昱熹",
-      "韩文弢",
-      "翟季冬"
+      "Mingshu Zhai",
+      "Zeyu Song",
+      "Kaiyuan Rong",
+      "Yanyu Ren",
+      "Juncheng Cao",
+      "Yuxi Zhu",
+      "Wentao Han",
+      "Jidong Zhai"
     ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",
@@ -41,15 +41,15 @@
   {
     "title": "Critique of \"MemXCT: Memory-Centric X-ray CT Reconstruction with Massive Parallelization\" by SCC Team from Tsinghua University",
     "authors": [
-      "钟闰鑫",
-      "陈嘉杰",
-      "张晨",
-      "翟明书",
-      "宋泽宇",
-      "王雨田",
-      "韩文弢",
-      "甘霖",
-      "翟季冬"
+      "Runxin Zhong",
+      "Jiajie Chen",
+      "Chen Zhang",
+      "Mingshu Zhai",
+      "Zeyu Song",
+      "Yutian Wang",
+      "Wentao Han",
+      "Lin Gan",
+      "Jidong Zhai"
     ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",
@@ -61,14 +61,14 @@
   {
     "title": "Critique of \"Planetary Normal Mode Computation: Parallel Algorithms, Performance, and Reproducibility\" by SCC Team From Tsinghua University",
     "authors": [
-      "张晨",
-      "赵成钢",
-      "何家傲",
-      "陈晟祺",
-      "郑立言",
-      "黄可钊",
-      "韩文弢",
-      "翟季冬"
+      "Chen Zhang",
+      "Chenggang Zhao",
+      "Jiaao He",
+      "Shengqi Chen",
+      "Liyan Zheng",
+      "Kezhao Huang",
+      "Wentao Han",
+      "Jidong Zhai"
     ],
     "venue": "IEEE Transactions on Parallel and Distributed Systems",
     "venueShort": "IEEE TPDS",

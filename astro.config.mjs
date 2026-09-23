@@ -10,6 +10,10 @@ export default defineConfig({
   site: 'https://sc.team',
   output: 'static',
 
+  server: {
+    allowedHosts: ['acdbentity-gets-receipt-helped.trycloudflare.com']
+  },
+
   build: {
     assets: '_assets'
   },

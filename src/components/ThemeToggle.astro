@@ -1,0 +1,58 @@
+---
+import Icon from './Icon.astro';
+/**
+ * Three-state colour theme control: follow the system (default), light, dark.
+ * theme.ts stores the choice and keeps aria-pressed in sync across page loads.
+ */
+const options = [
+  { mode: 'system', icon: 'monitor', label: 'Match the system theme' },
+  { mode: 'light', icon: 'sun', label: 'Light theme' },
+  { mode: 'dark', icon: 'moon', label: 'Dark theme' },
+];
+---
+<div class="theme-toggle" role="group" aria-label="Colour theme" data-theme-toggle>
+  {options.map((o) => (
+    <button
+      type="button"
+      data-theme-set={o.mode}
+      aria-pressed={o.mode === 'system' ? 'true' : 'false'}
+      aria-label={o.label}
+      title={o.label}
+    >
+      <Icon name={o.icon} size={16} />
+    </button>
+  ))}
+</div>
+
+<style>
+  .theme-toggle {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    background: var(--bg);
+  }
+  .theme-toggle button {
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--fg-3);
+    cursor: pointer;
+    transition: color 0.2s, background-color 0.2s;
+  }
+  .theme-toggle button + button {
+    border-left: 1px solid var(--line);
+  }
+  .theme-toggle button:hover {
+    color: var(--fg);
+  }
+  .theme-toggle button[aria-pressed="true"] {
+    background: var(--accent-soft);
+    color: var(--accent-strong);
+  }
+  .theme-toggle button:focus-visible {
+    outline-offset: -3px;
+  }
+</style>

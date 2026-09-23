@@ -1,0 +1,28 @@
+---
+import { championYears, grandSlamYears, firstYear, latestYear } from '../lib/competitions';
+
+interface Props {
+  /** Link each year to the results table on the competitions page. */
+  link?: boolean;
+}
+const { link = true } = Astro.props;
+const years = Array.from({ length: latestYear - firstYear + 1 }, (_, i) => firstYear + i);
+---
+<ol class="timeline" aria-label="Championship years">
+  {years.map((y, i) => {
+    const champion = championYears.has(y);
+    const slam = grandSlamYears.includes(y);
+    const label = `${y}${champion ? ': championship' : ''}${slam ? ', grand slam' : ''}`;
+    const inner = (
+      <>
+        <span class="dot" aria-hidden="true"></span>
+        <span class="year">{y}</span>
+      </>
+    );
+    return (
+      <li class:list={{ 'is-champion': champion, 'is-slam': slam }} style={`--i:${i}`}>
+        {link ? <a href={`/competition#y${y}`} aria-label={label}>{inner}</a> : inner}
+      </li>
+    );
+  })}
+</ol>

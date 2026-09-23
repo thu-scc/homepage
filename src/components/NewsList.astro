@@ -1,0 +1,34 @@
+---
+import { details, formatDate } from '../lib/competitions';
+import type { NewsItem } from '../lib/news';
+
+interface Props {
+  items: NewsItem[];
+  /** Let the items follow their section in sequence when it reveals. */
+  stagger?: boolean;
+}
+const { items, stagger = false } = Astro.props;
+---
+<ul class:list={['news-list', { stagger }]}>
+  {items.map((item, i) => (
+    <li style={`--i:${i}`}>
+      <p class="news-date num">{formatDate(item.date)}</p>
+      <div class="news-body">
+        <h3 class="news-title">
+          {item.url ? (
+            <a href={item.url} target="_blank" rel="noopener">{item.title}</a>
+          ) : (
+            item.title
+          )}
+        </h3>
+        {item.summary && <p class="news-summary">{item.summary}</p>}
+        <p class="news-meta">
+          <span class="mono">{item.source}</span>
+          {item.competitionId && details[item.competitionId] && (
+            <a href={`/competition/${item.competitionId}`}>{details[item.competitionId].name}</a>
+          )}
+        </p>
+      </div>
+    </li>
+  ))}
+</ul>

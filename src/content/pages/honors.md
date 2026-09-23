@@ -1,27 +1,24 @@
 ---
-kicker: Honors & Awards
-title: 荣誉徽章
-lead: 团队与个人荣誉。
+kicker: Honors
+title: Honors
+lead: Awards to the team and its members.
 ---
 
-## 团队荣誉
+## Team honors
 
 <div class="cards">
 <div class="card">
 <p class="card-tag">2020</p>
-<h3 class="card-title">谭浩强计算机教育基金优秀学生（团队）奖</h3>
-<p class="card-desc">第一届谭浩强计算机教育基金优秀学生（团队）奖</p>
+<h3 class="card-title">Tan Haoqiang Computer Education Fund Outstanding Student Award (Team)</h3>
+<p class="card-desc">First edition of the award.</p>
 </div>
 <div class="card">
 <p class="card-tag">2018</p>
-<h3 class="card-title">清华大学学生年度人物</h3>
-<p class="card-desc">清华大学学生年度人物（团队）</p>
+<h3 class="card-title">Tsinghua University Student of the Year (Team)</h3>
+<p class="card-desc">Awarded to the team as a whole.</p>
 </div>
 </div>
 
-## 个人荣誉
+## Individual honors
 
-<div class="placeholder">
-<p class="mono">COMING SOON</p>
-<p style="margin-top:10px;font-size:0.88rem;opacity:0.6;">内容整理中，欢迎补充</p>
-</div>
+<p class="placeholder">Being compiled. Contributions welcome.</p>

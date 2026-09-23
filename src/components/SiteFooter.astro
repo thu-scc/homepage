@@ -1,0 +1,87 @@
+---
+import Icon from './Icon.astro';
+
+const links = [
+  { href: '/competition', label: 'Competitions' },
+  { href: '/members', label: 'Members' },
+  { href: '/publications', label: 'Publications' },
+  { href: '/collaboration', label: 'Collaboration' },
+  { href: '/join', label: 'Join' },
+  { href: 'https://github.com/thu-scc', label: 'GitHub', external: true },
+];
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <p class="footer-name">Tsinghua University Student Cluster Competition Team</p>
+      <p class="footer-sub">Department of Computer Science and Technology, Beijing</p>
+    </div>
+    <ul class="footer-links">
+      {links.map((l) => (
+        <li>
+          <a href={l.href} target={l.external ? '_blank' : undefined} rel={l.external ? 'noopener' : undefined}>
+            {l.external && <Icon name="github-logo" size={16} />}
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="footer-meta">Copyright 2012-{year} THUSCC</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--line-2);
+    background: var(--bg-deep);
+    padding-block: 3rem 3.5rem;
+    font-size: var(--text-sm);
+    color: var(--fg-2);
+  }
+  .footer-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.5rem 3rem;
+    align-items: start;
+  }
+  .footer-name {
+    font-family: var(--font-serif);
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-size: var(--text-lg);
+    color: var(--fg);
+  }
+  .footer-sub {
+    color: var(--fg-3);
+  }
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem 1.5rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--fg-2);
+    text-decoration: none;
+  }
+  .footer-links a:hover {
+    color: var(--accent-text-2);
+  }
+  .footer-meta {
+    grid-column: 1 / -1;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--fg-3);
+  }
+  @media (max-width: 640px) {
+    .footer-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

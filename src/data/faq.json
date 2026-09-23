@@ -1,0 +1,22 @@
+[
+  {
+    "q": "Do I need supercomputing experience to join?",
+    "a": "No. The team trains new members from scratch every autumn, starting with Linux, networking and parallel programming on the team's own hardware."
+  },
+  {
+    "q": "Do I have to study computer science?",
+    "a": "No. Physics, mathematics, chemical engineering and astronomy students have all competed for the team. A solid programming foundation matters more than the department."
+  },
+  {
+    "q": "Which years can apply?",
+    "a": "Any. First-years through graduate students are welcome, and most members stay for several competition seasons."
+  },
+  {
+    "q": "When and how does recruitment happen?",
+    "a": "Every autumn semester. Follow the team's WeChat account or contact one of the faculty advisors through their homepage."
+  },
+  {
+    "q": "Can my research group work with the team?",
+    "a": "Yes, at any time of year. Bring a concrete computational problem, such as a simulation that is too slow or a data pipeline that does not scale, and the team will scope it with you."
+  }
+]

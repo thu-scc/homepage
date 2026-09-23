@@ -1,24 +1,24 @@
 {
   "asc26": {
     "name": "ASC 2026",
-    "location": "无锡学院",
+    "location": "Wuxi University, Wuxi",
     "date": "2026-05-16 ~ 2026-05-20",
     "awards": [
-      "亚军"
+      "Runner-up"
     ],
     "problems": [
-      "HPL/HPCG 基准测试",
-      "世界模型 UnifoLM-WMA-0",
-      "引力波数值模拟 AMSS-NCKU",
-      "量子线路仿真 QiboTN",
-      "世界模型 LeWorldModel",
-      "超级团队赛：全球气候数值模拟 ICON"
+      "HPL/HPCG benchmarks",
+      "UnifoLM-WMA-0 world model",
+      "AMSS-NCKU gravitational-wave simulation",
+      "QiboTN quantum circuit simulation",
+      "LeWorldModel world model",
+      "Super team challenge: ICON global climate simulation"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "金煜阳",
-        "翟季冬"
+        "Wentao Han",
+        "Yuyang Jin",
+        "Jidong Zhai"
       ],
       "players": [],
       "support": [],
@@ -26,67 +26,67 @@
     },
     "news": [
       {
-        "title": "ASC26世界大学生超算竞赛落幕，北大清华分获冠亚军",
+        "title": "ASC26 concludes with Peking University first and Tsinghua second",
         "url": "https://tech.gmw.cn/2026-05/21/content_38779557.htm"
       },
       {
-        "title": "ASC26世界大学生超算竞赛落幕",
+        "title": "ASC26 Student Supercomputer Challenge concludes",
         "url": "https://news.sciencenet.cn/htmlnews/2026/5/565178.shtm"
       }
     ],
     "photos": [],
-    "_notes": "清华官网暂无 ASC26 专门报道，上场队员名单待确认",
+    "_notes": "No dedicated Tsinghua news story yet; the roster of competing members is unconfirmed.",
     "sortDate": "2026-05"
   },
   "isc25": {
     "name": "ISC 2025",
-    "location": "德国汉堡国际会议中心",
+    "location": "Congress Center Hamburg, Germany",
     "date": "2025-06-12",
     "awards": [
-      "冠军",
-      "最高 LINPACK"
+      "Champion",
+      "Highest LINPACK"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "IO500 基准测试",
-      "地震模拟 SeisSol",
-      "大模型后训练 Llama",
-      "计算流体力学 code_saturne",
-      "分子动力学模拟 LAMMPS（神秘应用）"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "IO500 benchmark",
+      "SeisSol earthquake simulation",
+      "Llama post-training",
+      "code_saturne computational fluid dynamics",
+      "LAMMPS molecular dynamics (secret application)"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "金煜阳",
-        "翟季冬"
+        "Wentao Han",
+        "Yuyang Jin",
+        "Jidong Zhai"
       ],
       "players": [
-        "杨雨晴",
-        "李双宇",
-        "吕嘉鑫",
-        "杨恺",
-        "贾朝蓬",
-        "张扬"
+        "Yuqing Yang",
+        "Shuangyu Li",
+        "Jiaxin Lyu",
+        "Kai Yang",
+        "Chaopeng Jia",
+        "Yang Zhang (2023)"
       ],
       "support": [
-        "张闰清",
-        "单敬博",
-        "陈晟祺"
+        "Runqing Zhang",
+        "Jingbo Shan",
+        "Shengqi Chen"
       ],
       "training": [
-        "岳章乔",
-        "施程予",
-        "王宇澄"
+        "Zhangqiao Yue",
+        "Chengyu Shi",
+        "Yucheng Wang"
       ]
     },
     "news": [
       {
-        "title": "清华大学学生超算团队获得2025国际大学生超算竞赛总冠军",
+        "title": "Tsinghua student cluster team wins the 2025 ISC Student Cluster Competition",
         "url": "https://www.tsinghua.edu.cn/info/1175/119554.htm"
       },
       {
-        "title": "清华大学学生超算团队获得2025国际大学生超算竞赛总冠军（计算机系）",
+        "title": "Tsinghua student cluster team wins the 2025 ISC Student Cluster Competition (Department of Computer Science)",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/6764.htm"
       },
       {
@@ -97,139 +97,139 @@
     "photos": [
       "/img/competition/isc25/01.jpg"
     ],
-    "highlights": "LINPACK 成绩 340TFLOPS，打破赛事纪录。4机12卡配置，6千瓦功率限制。第19个三大赛冠军，ISC 第8个冠军。",
+    "highlights": "LINPACK 340 TFLOPS, a competition record, on four nodes with twelve GPUs under a 6 kW power cap. The 19th championship across the three major competitions and the 8th at ISC.",
     "sortDate": "2025-06"
   },
   "asc25": {
     "name": "ASC 2025",
-    "location": "青海大学",
+    "location": "Qinghai University, Xining",
     "date": "2025-05-10 ~ 2025-05-14",
     "awards": [
-      "第五名"
+      "5th place"
     ],
     "problems": [
-      "HPL/HPCG 基准测试",
-      "AlphaFold3 推理优化",
-      "RNA 甲基化修饰位点检测",
-      "DeepSeek 推理优化",
-      "宇宙中微子探测模拟",
-      "超级团队赛：青藏高原气候数值模拟",
-      "英文答辩"
+      "HPL/HPCG benchmarks",
+      "AlphaFold 3 inference optimization",
+      "RNA methylation site detection",
+      "DeepSeek inference optimization",
+      "Cosmic neutrino detection simulation",
+      "Super team challenge: Tibetan Plateau climate simulation",
+      "Presentation and interview"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "翟季冬",
-        "金煜阳"
+        "Wentao Han",
+        "Jidong Zhai",
+        "Yuyang Jin"
       ],
       "players": [
-        "杨雨晴",
-        "施程予",
-        "吕嘉鑫",
-        "贾朝蓬",
-        "岳章乔"
+        "Yuqing Yang",
+        "Chengyu Shi",
+        "Jiaxin Lyu",
+        "Chaopeng Jia",
+        "Zhangqiao Yue"
       ],
       "support": [
-        "张闰清",
-        "陈晟祺",
-        "翟明书"
+        "Runqing Zhang",
+        "Shengqi Chen",
+        "Mingshu Zhai"
       ],
       "training": [
-        "张扬",
-        "杨恺"
+        "Yang Zhang (2023)",
+        "Kai Yang"
       ]
     },
     "news": [],
     "photos": [
       "/img/competition/asc25/01.jpg"
     ],
-    "highlights": "全球300余支队伍参赛，25支晋级决赛。4000瓦功耗约束。ASC举办以来海拔最高的一届（青海大学）。上交冠军，北大亚军。",
+    "highlights": "Over 300 teams entered and 25 reached the final, under a 4 kW power cap, at the highest-altitude ASC final to date. Shanghai Jiao Tong won and Peking University was runner-up.",
     "sortDate": "2025-05"
   },
   "pac25": {
-    "name": "PAC 2025 (第十二届并行应用挑战赛)",
-    "location": "鄂尔多斯",
+    "name": "PAC 2025 (12th Parallel Application Challenge)",
+    "location": "Ordos, Inner Mongolia",
     "date": "2025-08-15",
     "awards": [
-      "优化赛道特等奖"
+      "Optimization Track Grand Prize"
     ],
     "problems": [
-      "Int8GEMM 算子加速（加速 56,300 倍）",
-      "Attention 算子加速（加速 2,083 倍）"
+      "Int8 GEMM operator acceleration (56,300× speedup)",
+      "Attention operator acceleration (2,083× speedup)"
     ],
     "team": {
       "coaches": [
-        "翟季冬"
+        "Jidong Zhai"
       ],
       "players": [
-        "黄晨衍",
-        "黄嘉豪",
-        "王浩旭",
-        "任世鑫"
+        "Chenyan Huang",
+        "Jiahao Huang",
+        "Haoxu Wang",
+        "Shixin Ren"
       ],
       "support": [
-        "杨雨晴",
-        "邢竞择"
+        "Yuqing Yang",
+        "Jingze Xing"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "清华大学计算机系在第十二届PAC大赛中获优化赛道特等奖",
+        "title": "Tsinghua CS wins the Optimization Track Grand Prize at the 12th PAC",
         "url": "https://www.cs.tsinghua.edu.cn/info/1034/6853.htm"
       }
     ],
     "photos": [
       "/img/competition/pac25/01.jpg"
     ],
-    "highlights": "首次获得优化赛道特等奖。Int8GEMM 加速 56,300 倍，Attention 加速 2,083 倍。",
+    "highlights": "First Grand Prize in the optimization track: Int8 GEMM accelerated 56,300× and Attention 2,083×.",
     "sortDate": "2025-08"
   },
   "isc24": {
     "name": "ISC 2024",
-    "location": "德国汉堡国际会议中心",
+    "location": "Congress Center Hamburg, Germany",
     "date": "2024-05-15",
     "awards": [
-      "冠军",
-      "最高 LINPACK",
-      "线上比赛亚军"
+      "Champion",
+      "Highest LINPACK",
+      "Online runner-up"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "HPCC 基准测试",
-      "高阶光谱元素流动模拟 Neko",
-      "第一性原理计算 Conquest",
-      "区域大气模式 RegCM",
-      "格子玻尔兹曼模拟 OpenLB（神秘应用）"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "HPCC benchmark",
+      "Neko high-order spectral element flow simulation",
+      "Conquest first-principles calculation",
+      "RegCM regional climate model",
+      "OpenLB lattice Boltzmann simulation (secret application)"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "翟季冬",
-        "金煜阳"
+        "Wentao Han",
+        "Jidong Zhai",
+        "Yuyang Jin"
       ],
       "players": [
-        "张闰清",
-        "单敬博",
-        "袁兴业",
-        "杨恺",
-        "薛志宇",
-        "潘佳奇"
+        "Runqing Zhang",
+        "Jingbo Shan",
+        "Xingye Yuan",
+        "Kai Yang",
+        "Zhiyu Xue",
+        "Jiaqi Pan"
       ],
       "support": [
-        "陈晟祺",
-        "翟明书"
+        "Shengqi Chen",
+        "Mingshu Zhai"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "清华大学学生超算团队获得2024国际大学生超算竞赛总冠军",
+        "title": "Tsinghua student cluster team wins the 2024 ISC Student Cluster Competition",
         "url": "https://www.tsinghua.edu.cn/info/1175/111550.htm"
       },
       {
-        "title": "清华大学学生超算团队获得2024国际大学生超算竞赛总冠军（计算机系）",
+        "title": "Tsinghua student cluster team wins the 2024 ISC Student Cluster Competition (Department of Computer Science)",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/6092.htm"
       }
     ],
@@ -238,54 +238,54 @@
       "/img/competition/isc24/02.jpg",
       "/img/competition/isc24/03.jpg"
     ],
-    "highlights": "LINPACK 成绩 337TFLOPS，首次在该单项获得第一名。6千瓦功率限制。第17个三大赛冠军，ISC 第7个冠军。自2019年以来首次参加现场比赛。",
+    "highlights": "LINPACK 337 TFLOPS, the first win in that category, under a 6 kW power cap. The 17th championship across the three majors and the 7th at ISC, and the first in-person final since 2019.",
     "sortDate": "2024-05"
   },
   "sc24": {
     "name": "SC 2024",
-    "location": "美国亚特兰大",
+    "location": "Atlanta, USA",
     "date": "2024-11-21",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "MLPerf 基准测试",
-      "NPB 基准测试",
-      "天气预报和气候建模系统 ICON",
-      "并行分子动力学程序 NAMD",
-      "复现挑战：数据流生命周期分析",
-      "神秘应用：针对猫的物体识别挑战"
+      "LINPACK benchmark",
+      "MLPerf benchmark",
+      "NAS Parallel Benchmarks",
+      "ICON weather and climate model",
+      "NAMD parallel molecular dynamics",
+      "Reproducibility challenge: data flow lifecycle analysis",
+      "Secret application: cat object-recognition challenge"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "金煜阳",
-        "翟季冬"
+        "Wentao Han",
+        "Yuyang Jin",
+        "Jidong Zhai"
       ],
       "players": [
-        "杨恺",
-        "李轶凡",
-        "薛志宇",
-        "杨雨晴",
-        "王宇澄",
-        "施程予"
+        "Kai Yang",
+        "Yifan Li",
+        "Zhiyu Xue",
+        "Yuqing Yang",
+        "Yucheng Wang",
+        "Chengyu Shi"
       ],
       "support": [
-        "陈晟祺",
-        "翟明书",
-        "张闰清",
-        "单敬博"
+        "Shengqi Chen",
+        "Mingshu Zhai",
+        "Runqing Zhang",
+        "Jingbo Shan"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "清华大学学生超算团队获得2024全球大学生超算竞赛总冠军",
+        "title": "Tsinghua student cluster team wins the 2024 SC Student Cluster Competition",
         "url": "https://www.tsinghua.edu.cn/info/1175/115401.htm"
       },
       {
-        "title": "清华大学学生超算团队获得2024全球大学生超算竞赛总冠军（计算机系）",
+        "title": "Tsinghua student cluster team wins the 2024 SC Student Cluster Competition (Department of Computer Science)",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/6449.htm"
       }
     ],
@@ -295,38 +295,38 @@
       "/img/competition/sc24/03.jpg",
       "/img/competition/sc24/04.jpg"
     ],
-    "highlights": "4.5千瓦功率限制。连续47小时比赛。第18个三大赛冠军。",
+    "highlights": "A 4.5 kW power cap and 47 hours of continuous competition. The 18th championship across the three major competitions.",
     "sortDate": "2024-11"
   },
   "asc23": {
     "name": "ASC 2023",
-    "location": "中国科学技术大学",
+    "location": "University of Science and Technology of China, Hefei",
     "date": "2023-05-06 ~ 2023-05-10",
     "awards": [
-      "第五名"
+      "5th place"
     ],
     "problems": [
-      "HPL/HPCG 基准测试",
-      "AI 语言大模型训练（15亿/179亿参数）",
-      "机器学习分子动力学 DeePMD",
-      "气候水文模式 WRF-Hydro",
-      "超级团队赛：随机量子线路采样模拟"
+      "HPL/HPCG benchmarks",
+      "Large language model training (1.5B and 17.9B parameters)",
+      "DeePMD machine-learning molecular dynamics",
+      "WRF-Hydro hydrological model",
+      "Super team challenge: random quantum circuit sampling simulation"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "翟季冬"
+        "Wentao Han",
+        "Jidong Zhai"
       ],
       "players": [
-        "张闰清",
-        "刘蜀琪",
-        "曹隽诚",
-        "胡沐彦",
-        "任彦羽"
+        "Runqing Zhang",
+        "Shuqi Liu",
+        "Juncheng Cao",
+        "Muyan Hu",
+        "Yanyu Ren"
       ],
       "support": [
-        "陈晟祺",
-        "翟明书"
+        "Shengqi Chen",
+        "Mingshu Zhai"
       ],
       "training": []
     },
@@ -335,32 +335,32 @@
       "/img/competition/asc23/01.jpg",
       "/img/competition/asc23/02.jpg"
     ],
-    "highlights": "全球300余支队伍参赛，24支晋级决赛。3000W功耗约束。北大冠军，中科大亚军。清华获一等奖（第五名）。",
+    "highlights": "Over 300 teams entered and 24 reached the final under a 3 kW power cap. Peking University won and USTC was runner-up; Tsinghua took a first prize in 5th place.",
     "sortDate": "2023-05"
   },
   "sc23": {
     "name": "SC 2023",
-    "location": "美国丹佛",
+    "location": "Denver, USA",
     "date": "2023-11",
     "awards": [
-      "第四名"
+      "4th place"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "翟季冬"
+        "Wentao Han",
+        "Jidong Zhai"
       ],
       "players": [
-        "张闰清",
-        "单敬博",
-        "杨恺",
-        "袁兴业",
-        "项晨东",
-        "蔡欣然"
+        "Runqing Zhang",
+        "Jingbo Shan",
+        "Kai Yang",
+        "Xingye Yuan",
+        "Chendong Xiang",
+        "Xinran Cai"
       ],
       "support": [
-        "陈晟祺",
-        "翟明书"
+        "Shengqi Chen",
+        "Mingshu Zhai"
       ],
       "training": []
     },
@@ -378,42 +378,42 @@
   },
   "isc22": {
     "name": "ISC 2022",
-    "location": "德国汉堡（线上）",
+    "location": "Hamburg, Germany (online)",
     "date": "2022-06-01",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "天气预报程序 ICON",
-      "计算化学程序 NWChem",
-      "流体力学程序 Xcompact3d",
-      "DPU 编程挑战"
+      "ICON weather forecasting",
+      "NWChem computational chemistry",
+      "Xcompact3d fluid dynamics",
+      "DPU programming challenge"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "翟季冬"
+        "Wentao Han",
+        "Jidong Zhai"
       ],
       "players": [
-        "翟明书",
-        "宋泽宇",
-        "融凯源",
-        "曹隽诚",
-        "胡沐彦",
-        "罗富文"
+        "Mingshu Zhai",
+        "Zeyu Song",
+        "Kaiyuan Rong",
+        "Juncheng Cao",
+        "Muyan Hu",
+        "Fuwen Luo"
       ],
       "support": [
-        "张晨",
-        "陈嘉杰"
+        "Chen Zhang",
+        "Jiajie Chen"
       ],
       "training": [
-        "张闰清",
-        "袁兴业"
+        "Runqing Zhang",
+        "Xingye Yuan"
       ]
     },
     "news": [
       {
-        "title": "计算机系学生超算团队获得国际大学生超算竞赛(ISC22)总冠军",
+        "title": "CS student cluster team wins the ISC22 Student Cluster Competition",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/5040.htm"
       }
     ],
@@ -425,37 +425,37 @@
   },
   "asc21": {
     "name": "ASC 20-21",
-    "location": "南方科技大学（深圳）",
+    "location": "Southern University of Science and Technology, Shenzhen",
     "date": "2021-05-08 ~ 2021-05-12",
     "awards": [
-      "亚军",
+      "Runner-up",
       "E-Prize"
     ],
     "problems": [
-      "基准测试",
-      "AI 自然语言理解",
-      "脉冲星搜索 PRESTO 优化",
-      "量子计算模拟",
-      "VENAS 新冠预测"
+      "Benchmarks",
+      "AI natural language understanding",
+      "PRESTO pulsar search optimization",
+      "Quantum computing simulation",
+      "VENAS COVID-19 prediction"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "张晨",
-        "陈嘉杰",
-        "宋泽宇",
-        "王雨田",
-        "翟明书"
+        "Chen Zhang",
+        "Jiajie Chen",
+        "Zeyu Song",
+        "Yutian Wang",
+        "Mingshu Zhai"
       ],
       "support": [
-        "何家傲",
-        "陈晟祺"
+        "Jiaao He",
+        "Shengqi Chen"
       ],
       "training": [
-        "钟闰鑫"
+        "Runxin Zhong"
       ]
     },
     "news": [],
@@ -464,49 +464,49 @@
       "/img/competition/asc21/02.jpg",
       "/img/competition/asc21/03.jpg"
     ],
-    "highlights": "E-Prize 计算挑战奖：脉冲星搜索 PRESTO 优化。",
+    "highlights": "E-Prize for the computational challenge: PRESTO pulsar search optimization.",
     "sortDate": "2021-05"
   },
   "isc21": {
     "name": "ISC 2021",
-    "location": "线上",
+    "location": "Online",
     "date": "2021-07-01",
     "awards": [
-      "冠军",
-      "最高 LINPACK"
+      "Champion",
+      "Highest LINPACK"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "HPCC 基准测试",
-      "天气预报程序 WRF",
-      "分子动力学模拟 LAMMPS",
-      "宏基因组组装 MetaHipMer",
-      "量子力学原子模拟 GPAW",
-      "编程挑战：应用通信模式分析"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "HPCC benchmark",
+      "WRF weather forecasting",
+      "LAMMPS molecular dynamics",
+      "MetaHipMer metagenome assembly",
+      "GPAW atomistic quantum simulation",
+      "Coding challenge: application communication pattern analysis"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "翟季冬"
+        "Wentao Han",
+        "Jidong Zhai"
       ],
       "players": [
-        "张晨",
-        "钟闰鑫",
-        "陈嘉杰",
-        "王雨田",
-        "翟明书",
-        "宋泽宇"
+        "Chen Zhang",
+        "Runxin Zhong",
+        "Jiajie Chen",
+        "Yutian Wang",
+        "Mingshu Zhai",
+        "Zeyu Song"
       ],
       "support": [
-        "陈晟祺",
-        "何家傲"
+        "Shengqi Chen",
+        "Jiaao He"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "计算机系学生超算团队获国际大学生超算竞赛(ISC21)总冠军",
+        "title": "CS student cluster team wins the ISC21 Student Cluster Competition",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/4847.htm"
       }
     ],
@@ -519,47 +519,47 @@
   },
   "sc21": {
     "name": "SC 2021",
-    "location": "美国圣路易斯（线上）",
+    "location": "St. Louis, USA (online)",
     "date": "2021-11-19",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "IO500 基准测试",
-      "多尺度心脏模拟 Cardioid",
-      "量子材料模拟 Quantum ESPRESSO",
-      "SC20论文复现：大规模贝叶斯网络并行学习框架",
-      "神秘应用：Cosmic Tagger（高能中微子物理图像分类）"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "IO500 benchmark",
+      "Cardioid multiscale heart simulation",
+      "Quantum ESPRESSO materials simulation",
+      "SC20 reproducibility: parallel learning of large-scale Bayesian networks",
+      "Secret application: CosmicTagger (neutrino physics image classification)"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "翟明书",
-        "宋泽宇",
-        "融凯源",
-        "任彦羽",
-        "曹隽诚",
-        "朱昱熹"
+        "Mingshu Zhai",
+        "Zeyu Song",
+        "Kaiyuan Rong",
+        "Yanyu Ren",
+        "Juncheng Cao",
+        "Yuxi Zhu"
       ],
       "support": [
-        "陈晟祺",
-        "张晨",
-        "曹焕琦"
+        "Shengqi Chen",
+        "Chen Zhang",
+        "Huanqi Cao"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "计算机系本科生获得国际大学生超算竞赛(SC21)总冠军",
+        "title": "CS undergraduates win the SC21 Student Cluster Competition",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/4883.htm"
       },
       {
-        "title": "'破壁少年'迎来超算四连冠",
+        "title": "'Wall breakers' claim a fourth straight supercomputing title",
         "url": "https://www.tsinghua.edu.cn/info/1182/89126.htm"
       }
     ],
@@ -567,54 +567,54 @@
       "/img/competition/sc21/01.jpg",
       "/img/competition/sc21/02.jpg"
     ],
-    "highlights": "SC 系列四连冠。三大竞赛第15个冠军。",
+    "highlights": "Fourth consecutive SC title and the 15th championship across the three major competitions.",
     "sortDate": "2021-11"
   },
   "sc20": {
     "name": "SC 2020",
-    "location": "线上",
+    "location": "Online",
     "date": "2020-11-20",
     "awards": [
-      "冠军",
-      "最高 LINPACK"
+      "Champion",
+      "Highest LINPACK"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "IO500 基准测试",
-      "地球系统模型 CESM",
-      "分子动力学模型 GROMACS",
-      "SC19论文复现：大规模并行CT重建 MemXCT",
-      "神秘应用：miniVite（图社区发现）"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "IO500 benchmark",
+      "CESM earth system model",
+      "GROMACS molecular dynamics",
+      "SC19 reproducibility: MemXCT massively parallel CT reconstruction",
+      "Secret application: miniVite (graph community detection)"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢",
-        "甘霖"
+        "Jidong Zhai",
+        "Wentao Han",
+        "Lin Gan"
       ],
       "players": [
-        "张晨",
-        "陈嘉杰",
-        "王雨田",
-        "钟闰鑫",
-        "宋泽宇",
-        "翟明书"
+        "Chen Zhang",
+        "Jiajie Chen",
+        "Yutian Wang",
+        "Runxin Zhong",
+        "Zeyu Song",
+        "Mingshu Zhai"
       ],
       "support": [
-        "何家傲",
-        "陈晟祺",
-        "曹焕琦"
+        "Jiaao He",
+        "Shengqi Chen",
+        "Huanqi Cao"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "计算机系学生超算团队获得国际大学生超算竞赛SC20总冠军",
+        "title": "CS student cluster team wins the SC20 Student Cluster Competition",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/4871.htm"
       },
       {
-        "title": "清华学生超算团队获国际大学生超级计算机竞赛SC20总冠军",
+        "title": "Tsinghua student cluster team wins the SC20 Student Cluster Competition",
         "url": "https://www.tsinghua.edu.cn/info/1173/18693.htm"
       }
     ],
@@ -622,36 +622,36 @@
       "/img/competition/sc20/01.jpg",
       "/img/competition/sc20/02.jpg"
     ],
-    "highlights": "SC 系列三连冠。IO500 成绩 143.73 分，5倍于第二名。",
+    "highlights": "Third consecutive SC title. IO500 score of 143.73, five times the runner-up.",
     "sortDate": "2020-11"
   },
   "isc20": {
     "name": "ISC 2020",
-    "location": "线上",
+    "location": "Online",
     "date": "2020-06",
     "awards": [
-      "第三名"
+      "3rd place"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢",
-        "甘霖"
+        "Jidong Zhai",
+        "Wentao Han",
+        "Lin Gan"
       ],
       "players": [
-        "陈晟祺",
-        "宋泽宇",
-        "陈嘉杰",
-        "王雨田",
-        "翟明书",
-        "张晨"
+        "Shengqi Chen",
+        "Zeyu Song",
+        "Jiajie Chen",
+        "Yutian Wang",
+        "Mingshu Zhai",
+        "Chen Zhang"
       ],
       "support": [
-        "于纪平"
+        "Jiping Yu"
       ],
       "training": [
-        "何家傲",
-        "黄可钊"
+        "Jiaao He",
+        "Kezhao Huang"
       ]
     },
     "news": [],
@@ -660,33 +660,33 @@
   },
   "asc19": {
     "name": "ASC 2019",
-    "location": "大连理工大学",
+    "location": "Dalian University of Technology, Dalian",
     "date": "2019-04-21 ~ 2019-04-25",
     "awards": [
-      "亚军"
+      "Runner-up"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "AI 图像超分辨率 SR",
-      "气候模拟 CESM"
+      "LINPACK benchmark",
+      "AI image super-resolution",
+      "CESM climate simulation"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "于纪平",
-        "郑立言",
-        "黄可钊",
-        "陈晟祺",
-        "唐适之"
+        "Jiping Yu",
+        "Liyan Zheng",
+        "Kezhao Huang",
+        "Shengqi Chen",
+        "Shizhi Tang"
       ],
       "support": [],
       "training": [
-        "顾煜贤",
-        "张晨",
-        "赵成钢"
+        "Yuxian Gu",
+        "Chen Zhang",
+        "Chenggang Zhao"
       ]
     },
     "news": [],
@@ -697,27 +697,27 @@
   },
   "isc19": {
     "name": "ISC 2019",
-    "location": "德国法兰克福",
+    "location": "Frankfurt, Germany",
     "date": "2019-06",
     "awards": [
-      "亚军"
+      "Runner-up"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "于纪平",
-        "郑立言",
-        "黄可钊",
-        "何家傲",
-        "唐适之",
-        "陈晟祺"
+        "Jiping Yu",
+        "Liyan Zheng",
+        "Kezhao Huang",
+        "Jiaao He",
+        "Shizhi Tang",
+        "Shengqi Chen"
       ],
       "support": [],
       "training": [
-        "张晨"
+        "Chen Zhang"
       ]
     },
     "news": [],
@@ -726,39 +726,39 @@
   },
   "sc19": {
     "name": "SC 2019",
-    "location": "美国丹佛会展中心",
+    "location": "Colorado Convention Center, Denver, USA",
     "date": "2019-11-21",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "IO-500 基准测试",
-      "向量粒子模拟 VPIC",
-      "系统结构模拟器 SST",
-      "SC18论文复现：恒星内部法向模式计算",
-      "稠密整数矩阵乘法 Sparkler"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "IO500 benchmark",
+      "VPIC particle-in-cell simulation",
+      "SST structural simulation toolkit",
+      "SC18 reproducibility: normal modes of stellar interiors",
+      "Sparkler dense integer matrix multiplication"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "何家傲",
-        "陈晟祺",
-        "黄可钊",
-        "郑立言",
-        "张晨",
-        "赵成钢"
+        "Jiaao He",
+        "Shengqi Chen",
+        "Kezhao Huang",
+        "Liyan Zheng",
+        "Chen Zhang",
+        "Chenggang Zhao"
       ],
       "support": [],
       "training": []
     },
     "news": [
       {
-        "title": "计算机系本科生获国际大学生超算竞赛SC19总冠军",
+        "title": "CS undergraduates win the SC19 Student Cluster Competition",
         "url": "https://www.tsinghua.edu.cn/info/1181/33933.htm"
       }
     ],
@@ -767,47 +767,47 @@
       "/img/competition/sc19/02.jpg",
       "/img/competition/sc19/03.jpg"
     ],
-    "highlights": "IO-500 性能排名第一（30.56分，带宽3.08GiB/s，元数据操作303.12kIOP/s）。16支队伍来自7个国家，3千瓦功率限制。三大竞赛第12个冠军。",
+    "highlights": "First place in IO500 (30.56 points: 3.08 GiB/s bandwidth, 303.12 kIOP/s metadata). Sixteen teams from seven countries under a 3 kW power cap. The 12th championship across the three majors.",
     "sortDate": "2019-11"
   },
   "asc18": {
     "name": "ASC 2018",
-    "location": "南昌大学",
+    "location": "Nanchang University, Nanchang",
     "date": "2018-05-09",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "三维重建 Relion",
-      "分子动力学 SIESTA",
-      "计算流体力学 CFL3D",
-      "深度学习 CNTK（MSMARCO 数据集）"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "RELION 3D reconstruction",
+      "SIESTA molecular dynamics",
+      "CFL3D computational fluid dynamics",
+      "CNTK deep learning (MS MARCO dataset)"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "李北辰",
-        "冯冠宇",
-        "于纪平",
-        "陈宇",
-        "谢磊"
+        "Beichen Li",
+        "Guanyu Feng",
+        "Jiping Yu",
+        "Yu Chen",
+        "Lei Xie"
       ],
       "support": [
-        "王邈"
+        "Miao Wang"
       ],
       "training": [
-        "劉家昌",
-        "唐适之"
+        "Jiachang Liu",
+        "Shizhi Tang"
       ]
     },
     "news": [
       {
-        "title": "清华超算团队获ASC18世界大学生超算竞赛冠军",
+        "title": "Tsinghua wins the ASC18 Student Supercomputer Challenge",
         "url": "https://www.tsinghua.edu.cn/info/1176/27215.htm"
       }
     ],
@@ -818,45 +818,45 @@
       "/img/competition/asc18/04.jpg",
       "/img/competition/asc18/05.jpg"
     ],
-    "highlights": "6台服务器，16块V100 GPU。大满贯年第一冠。",
+    "highlights": "Six servers with sixteen V100 GPUs. First title of the grand slam year.",
     "sortDate": "2018-05"
   },
   "isc18": {
     "name": "ISC 2018",
-    "location": "德国法兰克福",
+    "location": "Frankfurt, Germany",
     "date": "2018-06-27 ~ 2018-06-30",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "HPCC 基准测试",
-      "HPCG 基准测试",
-      "数据并行库 Grid",
-      "有限元 Nektar++",
+      "HPCC benchmark",
+      "HPCG benchmark",
+      "Grid data-parallel library",
+      "Nektar++ finite elements",
       "TensorFlow",
-      "计算流体力学 Nek5000"
+      "Nek5000 computational fluid dynamics"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "李北辰",
-        "冯冠宇",
-        "于纪平",
-        "唐适之",
-        "陈宇",
-        "何家傲"
+        "Beichen Li",
+        "Guanyu Feng",
+        "Jiping Yu",
+        "Shizhi Tang",
+        "Yu Chen",
+        "Jiaao He"
       ],
       "support": [
-        "劉家昌"
+        "Jiachang Liu"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "清华大学超算团队卫冕ISC18国际大学生超算竞赛冠军",
+        "title": "Tsinghua defends its ISC18 Student Cluster Competition title",
         "url": "https://www.tsinghua.edu.cn/info/1175/19426.htm"
       }
     ],
@@ -867,53 +867,53 @@
       "/img/competition/isc18/04.jpg",
       "/img/competition/isc18/05.jpg"
     ],
-    "highlights": "5台服务器，16块V100 GPU，每台2块FDR InfiniBand网卡。大满贯年第二冠。",
+    "highlights": "Five servers with sixteen V100 GPUs and two FDR InfiniBand adapters each. Second title of the grand slam year.",
     "sortDate": "2018-06"
   },
   "sc18": {
     "name": "SC 2018",
-    "location": "美国达拉斯",
+    "location": "Dallas, USA",
     "date": "2018-11-15",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "LINPACK 基准测试",
-      "HPCG 基准测试",
-      "机器学习",
-      "裂变链式反应模拟",
-      "地震模拟（论文复现）",
-      "天气预报 WRF"
+      "LINPACK benchmark",
+      "HPCG benchmark",
+      "Machine learning",
+      "Fission chain-reaction simulation",
+      "Earthquake simulation (reproducibility challenge)",
+      "WRF weather forecasting"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "于纪平",
-        "余欣健",
-        "何家傲",
-        "郑立言",
-        "赵成钢",
-        "娄晨耀"
+        "Jiping Yu",
+        "Xinjian Yu",
+        "Jiaao He",
+        "Liyan Zheng",
+        "Chenggang Zhao",
+        "Chenyao Lou"
       ],
       "support": [
-        "曹焕琦",
-        "冯冠宇",
-        "王邈"
+        "Huanqi Cao",
+        "Guanyu Feng",
+        "Miao Wang"
       ],
       "training": [
-        "唐适之",
-        "陈宇",
-        "顾煜贤",
-        "陈晟祺",
-        "张晨"
+        "Shizhi Tang",
+        "Yu Chen",
+        "Yuxian Gu",
+        "Shengqi Chen",
+        "Chen Zhang"
       ]
     },
     "news": [
       {
-        "title": "清华超算团队夺得SC18国际大学生超算竞赛总冠军",
+        "title": "Tsinghua wins the SC18 Student Cluster Competition",
         "url": "https://www.tsinghua.edu.cn/info/1181/37094.htm"
       }
     ],
@@ -933,46 +933,46 @@
       "/img/competition/sc18/13.jpg",
       "/img/competition/sc18/14.jpg"
     ],
-    "highlights": "总分 88.398/100，领先第二名南洋理工大学 11.518 分。大满贯年第三冠，完成全满贯。",
+    "highlights": "Overall score 88.398 out of 100, 11.518 points ahead of Nanyang Technological University. Third title of the year, completing the grand slam.",
     "sortDate": "2018-11"
   },
   "asc17": {
     "name": "ASC 2017",
-    "location": "国家超级计算无锡中心",
+    "location": "National Supercomputing Center in Wuxi",
     "date": "2017-04-28",
     "awards": [
-      "冠军",
+      "Champion",
       "E-Prize"
     ],
     "problems": [
-      "HPL 基准测试",
-      "HPCG 基准测试",
-      "第三代基因测序组装工具 Falcon 性能优化",
-      "深度学习框架 PaddlePaddle 交通流量预测",
-      "计算流体力学 CodeSaturne",
-      "分子动力学 LAMMPS（Intel KNL 平台）",
-      "高分辨率海洋数值模拟 MASNUM（神威·太湖之光）"
+      "HPL benchmark",
+      "HPCG benchmark",
+      "Falcon genome assembler optimization",
+      "PaddlePaddle traffic flow prediction",
+      "Code_Saturne computational fluid dynamics",
+      "LAMMPS molecular dynamics (Intel KNL)",
+      "MASNUM ocean wave model (Sunway TaihuLight)"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "叶方轲",
-        "李宇轩",
-        "冯冠宇",
-        "劉家昌",
-        "李北辰"
+        "Fangke Ye",
+        "Yuxuan Li",
+        "Guanyu Feng",
+        "Jiachang Liu",
+        "Beichen Li"
       ],
       "support": [
-        "王邈"
+        "Miao Wang"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "清华超算团队蝉联ASC17世界大学生超算竞赛冠军",
+        "title": "Tsinghua wins ASC17 for the second year running",
         "url": "https://www.cs.tsinghua.edu.cn/info/1088/2738.htm"
       }
     ],
@@ -980,50 +980,50 @@
       "/img/competition/asc17/01.jpg",
       "/img/competition/asc17/02.jpg"
     ],
-    "highlights": "MASNUM 在神威平台上取得 392 倍加速，获 E-Prize 计算挑战奖。230支高校队伍参赛，来自15个国家和地区。3千瓦功率限制。",
+    "highlights": "MASNUM ran 392× faster on the Sunway platform and won the E-Prize. 230 university teams from 15 countries and regions entered under a 3 kW power cap.",
     "sortDate": "2017-04"
   },
   "isc17": {
     "name": "ISC 2017",
-    "location": "德国法兰克福会展中心",
+    "location": "Messe Frankfurt, Germany",
     "date": "2017-06-21",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "HPCC 基准测试",
-      "HPCG 基准测试",
-      "偏微分方程计算框架 FEniCS",
-      "材料平面波模拟 MiniDFT",
-      "分子动力学模拟 LAMMPS",
-      "深度学习框架 TensorFlow",
-      "深度学习验证码识别挑战"
+      "HPCC benchmark",
+      "HPCG benchmark",
+      "FEniCS PDE framework",
+      "MiniDFT plane-wave materials simulation",
+      "LAMMPS molecular dynamics",
+      "TensorFlow deep learning",
+      "Deep-learning CAPTCHA recognition challenge"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "叶方轲",
-        "李宇轩",
-        "冯冠宇",
-        "劉家昌",
-        "李北辰",
-        "谢磊"
+        "Fangke Ye",
+        "Yuxuan Li",
+        "Guanyu Feng",
+        "Jiachang Liu",
+        "Beichen Li",
+        "Lei Xie"
       ],
       "support": [
-        "王邈"
+        "Miao Wang"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "计算机系超算团队获ISC17国际大学生超算竞赛冠军",
+        "title": "CS cluster team wins the ISC17 Student Cluster Competition",
         "url": "https://www.cs.tsinghua.edu.cn/info/1088/2756.htm"
       },
       {
-        "title": "清华超算团队夺得2017国际大学生超算竞赛冠军",
+        "title": "Tsinghua wins the 2017 ISC Student Cluster Competition",
         "url": "https://www.tsinghua.edu.cn/info/1182/46396.htm"
       }
     ],
@@ -1032,36 +1032,36 @@
       "/img/competition/isc17/02.jpg",
       "/img/competition/isc17/03.jpg"
     ],
-    "highlights": "ISC 第6届比赛中清华第3次夺冠。2017年包揽 ASC+ISC 冠军。3千瓦功率限制，11支队伍来自7个国家。同时获得深度学习验证码识别挑战冠军。",
+    "highlights": "Tsinghua's third ISC title in the competition's sixth edition, completing an ASC and ISC double in 2017. Eleven teams from seven countries under a 3 kW cap; the team also won the deep-learning CAPTCHA challenge.",
     "sortDate": "2017-06"
   },
   "sc17": {
     "name": "SC 2017",
-    "location": "美国丹佛",
+    "location": "Denver, USA",
     "date": "2017-11",
     "awards": [
-      "第三名"
+      "3rd place"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "劉家昌",
-        "冯冠宇",
-        "李北辰",
-        "谢磊",
-        "陈宇",
-        "于纪平"
+        "Jiachang Liu",
+        "Guanyu Feng",
+        "Beichen Li",
+        "Lei Xie",
+        "Yu Chen",
+        "Jiping Yu"
       ],
       "support": [
-        "王邈",
-        "李宇轩"
+        "Miao Wang",
+        "Yuxuan Li"
       ],
       "training": [
-        "谢倩",
-        "余欣健"
+        "Qian Xie",
+        "Xinjian Yu"
       ]
     },
     "news": [],
@@ -1070,64 +1070,64 @@
   },
   "asc16": {
     "name": "ASC 2016",
-    "location": "武汉",
+    "location": "Wuhan",
     "date": "2016-04",
     "awards": [
-      "第五名"
+      "5th place"
     ],
     "problems": [
-      "HPL 基准测试",
-      "HPCG 基准测试",
-      "海浪模式 MASNUM_WAVE",
-      "第一性原理计算 Abinit",
-      "深度神经网络 DNN（MIC 集群）",
-      "神秘应用：基因组装 ABySS"
+      "HPL benchmark",
+      "HPCG benchmark",
+      "MASNUM_WAVE ocean wave model",
+      "ABINIT first-principles calculation",
+      "Deep neural network on a MIC cluster",
+      "Secret application: ABySS genome assembly"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "卓有为",
-        "梁俊邦",
-        "王邈",
-        "龙浩民",
-        "冯冠宇"
+        "Youwei Zhuo",
+        "Junbang Liang",
+        "Miao Wang",
+        "Haomin Long",
+        "Guanyu Feng"
       ],
       "support": [],
       "training": []
     },
     "news": [
       {
-        "title": "ASC16：我们输了（队员博客）",
+        "title": "ASC16: we lost (team member's blog)",
         "url": "https://innull.com/we-lost-asc-16/"
       }
     ],
     "photos": [],
-    "highlights": "8机6卡(K80)配置，3000W严格功耗限制。华科夺冠，上交亚军。",
-    "_notes": "具体上场队员名单待确认。博文作者为2015大满贯老队员，提到四字班新队员表现强。",
+    "highlights": "Eight nodes with six K80 GPUs under a strict 3 kW cap. Huazhong University of Science and Technology won and Shanghai Jiao Tong was runner-up.",
+    "_notes": "Exact competing roster unconfirmed. The blog post was written by a member of the 2015 grand slam team and notes strong performances from the new class of 2014 members.",
     "sortDate": "2016-04"
   },
   "isc16": {
     "name": "ISC 2016",
-    "location": "德国法兰克福",
+    "location": "Frankfurt, Germany",
     "date": "2016-06",
     "awards": [
-      "亚军"
+      "Runner-up"
     ],
     "team": {
       "coaches": [
-        "翟季冬",
-        "韩文弢"
+        "Jidong Zhai",
+        "Wentao Han"
       ],
       "players": [
-        "王邈",
-        "卓有为",
-        "劉家昌",
-        "冯冠宇",
-        "李宇轩",
-        "叶方轲"
+        "Miao Wang",
+        "Youwei Zhuo",
+        "Jiachang Liu",
+        "Guanyu Feng",
+        "Yuxuan Li",
+        "Fangke Ye"
       ],
       "support": [],
       "training": []
@@ -1138,94 +1138,94 @@
   },
   "asc15": {
     "name": "ASC 2015",
-    "location": "太原理工大学",
+    "location": "Taiyuan University of Technology, Taiyuan",
     "date": "2015-05-18 ~ 2015-05-22",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "HPL 基准测试",
-      "HPCG 基准测试",
-      "分子动力学 NAMD",
-      "天气预报 WRF-CHEM",
-      "Xeon Phi 优化",
-      "流体模拟 Palabos",
-      "展示环节"
+      "HPL benchmark",
+      "HPCG benchmark",
+      "NAMD molecular dynamics",
+      "WRF-Chem weather forecasting",
+      "Xeon Phi optimization",
+      "Palabos fluid simulation",
+      "Presentation"
     ],
     "team": {
       "coaches": [
-        "翟季冬"
+        "Jidong Zhai"
       ],
       "players": [
-        "吴育昕",
-        "张阳",
-        "宋方睿",
-        "裘捷中",
-        "王邈"
+        "Yuxin Wu",
+        "Yang Zhang (2011)",
+        "Fangrui Song",
+        "Jiezhong Qiu",
+        "Miao Wang"
       ],
       "support": [
-        "李恺威"
+        "Kaiwei Li"
       ],
       "training": [
-        "卓有为"
+        "Youwei Zhuo"
       ]
     },
     "news": [
       {
-        "title": "清华大学获得世界大学生超级计算机竞赛ASC15总冠军",
+        "title": "Tsinghua wins the ASC15 Student Supercomputer Challenge",
         "url": "https://www.tsinghua.edu.cn/info/1182/41191.htm"
       },
       {
-        "title": "清华大学获得世界大学生超级计算机竞赛ASC15总冠军（计算机系）",
+        "title": "Tsinghua wins the ASC15 Student Supercomputer Challenge (Department of Computer Science)",
         "url": "https://www.cs.tsinghua.edu.cn/info/1058/1129.htm"
       }
     ],
     "photos": [
       "/img/competition/asc15/01.jpg"
     ],
-    "highlights": "6机6卡(Tesla K80)配置，3000W功率限制。NAMD应用创新奖。全球152支队伍报名，16支入围决赛。大满贯年第一冠。",
+    "highlights": "Six nodes with six Tesla K80 GPUs under a 3 kW cap, plus the NAMD application innovation award. 152 teams registered and 16 reached the final. First title of the grand slam year.",
     "sortDate": "2015-05"
   },
   "isc15": {
     "name": "ISC 2015",
-    "location": "德国法兰克福",
+    "location": "Frankfurt, Germany",
     "date": "2015-07-11 ~ 2015-07-15",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "HPL 基准测试",
-      "HPCC 基准测试",
-      "量子模拟 Octopus",
-      "计算流体力学 PyFR",
-      "分子动力学 LAMMPS",
-      "图计算 Graph 500",
-      "神秘应用：PyFR 低功耗挑战"
+      "HPL benchmark",
+      "HPCC benchmark",
+      "Octopus quantum simulation",
+      "PyFR computational fluid dynamics",
+      "LAMMPS molecular dynamics",
+      "Graph500 benchmark",
+      "Secret application: PyFR low-power challenge"
     ],
     "team": {
       "coaches": [
-        "翟季冬"
+        "Jidong Zhai"
       ],
       "players": [
-        "梁盾",
-        "卓有为",
-        "宋方睿",
-        "吴育昕",
-        "张阳",
-        "王邈"
+        "Dun Liang",
+        "Youwei Zhuo",
+        "Fangrui Song",
+        "Yuxin Wu",
+        "Yang Zhang (2011)",
+        "Miao Wang"
       ],
       "support": [
-        "李恺威"
+        "Kaiwei Li"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "清华大学获ISC15国际大学生超算竞赛总冠军",
+        "title": "Tsinghua wins the ISC15 Student Cluster Competition",
         "url": "https://www.cs.tsinghua.edu.cn/info/1088/2539.htm"
       },
       {
-        "title": "ISC15 报道（腾讯）",
+        "title": "ISC15 coverage (Tencent)",
         "url": "https://ur.tencent.com/article/168"
       }
     ],
@@ -1233,43 +1233,43 @@
       "/img/competition/isc15/01.jpg",
       "/img/competition/isc15/02.jpg"
     ],
-    "highlights": "7机5卡配置(赛中从8机调整)，3000瓦功率限制。神秘应用(PyFR)时间估算极精准，最后一分钟运行完毕。时隔三年再度夺冠。大满贯年第二冠。",
+    "highlights": "Seven nodes with five GPUs, cut from eight during the event, under a 3 kW cap. The secret application, PyFR, finished in the last minute on a precise time estimate. First ISC title in three years and second title of the grand slam year.",
     "sortDate": "2015-07"
   },
   "sc15": {
     "name": "SC 2015",
-    "location": "美国德克萨斯州奥斯汀",
+    "location": "Austin, Texas, USA",
     "date": "2015-11-19",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "problems": [
-      "天气预测",
-      "量子力学",
-      "生物基因",
-      "人口流动",
-      "共5个应用程序 + 专家面试"
+      "Weather prediction",
+      "Quantum mechanics",
+      "Genomics",
+      "Population migration",
+      "Five applications plus expert interviews"
     ],
     "team": {
       "coaches": [
-        "翟季冬"
+        "Jidong Zhai"
       ],
       "players": [
-        "梁盾",
-        "鲁逸沁",
-        "裘捷中",
-        "梁俊邦",
-        "王邈",
-        "卓有为"
+        "Dun Liang",
+        "Yiqin Lu",
+        "Jiezhong Qiu",
+        "Junbang Liang",
+        "Miao Wang",
+        "Youwei Zhuo"
       ],
       "support": [
-        "李恺威"
+        "Kaiwei Li"
       ],
       "training": []
     },
     "news": [
       {
-        "title": "清华超算：48小时，我们终于赢了这场战役",
+        "title": "Tsinghua supercomputing: 48 hours, and we finally won this battle",
         "url": "https://www.tsinghua.edu.cn/info/1175/20416.htm"
       }
     ],
@@ -1278,29 +1278,29 @@
       "/img/competition/sc15/02.jpg",
       "/img/competition/sc15/03.jpg"
     ],
-    "highlights": "中国大陆高校首次在SC赛事获冠。48小时不间断比赛，3120瓦功率限制。包揽2015年三大赛全部冠军（大满贯）。",
+    "highlights": "The first SC championship for a university from mainland China. 48 hours non-stop under a 3,120 W cap, completing the 2015 grand slam of all three major competitions.",
     "sortDate": "2015-11"
   },
   "asc14": {
     "name": "ASC 2014",
-    "location": "广州中山大学",
+    "location": "Sun Yat-sen University, Guangzhou",
     "date": "2014-04-21 ~ 2014-04-25",
     "awards": [
       "E-Prize"
     ],
     "problems": [
-      "HPL 基准测试",
+      "HPL benchmark",
       "Quantum Espresso",
-      "SU2 计算流体力学",
-      "3D-EW 地震波模拟（天河二号）",
-      "海洋模式 LICOM2",
-      "神秘应用：mpiBLAST 基因比对",
-      "Palabos 流体模拟"
+      "SU2 computational fluid dynamics",
+      "3D-EW seismic wave simulation (Tianhe-2)",
+      "LICOM2 ocean model",
+      "Secret application: mpiBLAST sequence alignment",
+      "Palabos fluid simulation"
     ],
     "team": {
       "coaches": [
-        "黄小猛",
-        "翟季冬"
+        "Xiaomeng Huang",
+        "Jidong Zhai"
       ],
       "players": [],
       "support": [],
@@ -1308,29 +1308,29 @@
     },
     "news": [],
     "photos": [],
-    "highlights": "78支参赛队伍，16支进决赛。SU2应用创新奖（第一名甩开第二名很多）。上交夺冠。",
-    "_notes": "队员5人（含蒋林浩、喬宇宸等），教练徐世真、李恺威。具体名单待确认。",
+    "highlights": "78 teams entered and 16 reached the final. SU2 application innovation award by a wide margin. Shanghai Jiao Tong won.",
+    "_notes": "Five team members (including Linhao Jiang and Yuchen Qiao); coaches Shizhen Xu and Kaiwei Li. Exact roster unconfirmed.",
     "sortDate": "2014-04"
   },
   "isc14": {
     "name": "ISC 2014",
-    "location": "德国法兰克福",
+    "location": "Frankfurt, Germany",
     "date": "2014-07",
     "awards": [
-      "第三名"
+      "3rd place"
     ],
     "problems": [
-      "HPCC 基准测试",
-      "LINPACK 基准测试",
+      "HPCC benchmark",
+      "LINPACK benchmark",
       "Quantum Espresso",
       "OpenFOAM",
-      "HPCG（神秘应用）",
+      "HPCG (secret application)",
       "Gadget",
-      "Quantum Espresso 低功耗挑战（神秘应用）"
+      "Quantum ESPRESSO low-power challenge (secret application)"
     ],
     "team": {
       "coaches": [
-        "翟季冬"
+        "Jidong Zhai"
       ],
       "players": [],
       "support": [],
@@ -1338,22 +1338,22 @@
     },
     "news": [],
     "photos": [],
-    "highlights": "神秘应用(Quantum Espresso低功耗)仅三队得分，清华次于南非CHPC。总分第三，次于南非CHPC和中科大。",
-    "_notes": "⚠️ 此前记录为亚军，但队员博客明确写'第三名，次于南非CHPC和中科大'。需人工确认。郭家宝参与了Quantum Espresso神秘应用。",
+    "highlights": "Only three teams scored on the secret application, the Quantum ESPRESSO low-power challenge, where Tsinghua finished behind South Africa's CHPC. Third overall behind CHPC and USTC.",
+    "_notes": "Previously recorded as runner-up, but a team member's blog states third place behind South Africa's CHPC and USTC. Needs manual confirmation. Jiabao Guo worked on the Quantum ESPRESSO secret application.",
     "sortDate": "2014-07"
   },
   "asc13": {
     "name": "ASC 2013",
-    "location": "上海交通大学",
+    "location": "Shanghai Jiao Tong University, Shanghai",
     "date": "2013-04",
     "awards": [
-      "冠军",
-      "最高 LINPACK"
+      "Champion",
+      "Highest LINPACK"
     ],
     "problems": [],
     "team": {
       "coaches": [
-        "黄小猛"
+        "Xiaomeng Huang"
       ],
       "players": [],
       "support": [],
@@ -1361,20 +1361,20 @@
     },
     "news": [],
     "photos": [],
-    "highlights": "8机10卡（浪潮英信NF5280M3、Tesla K20），HPL达到7579Gflops，刷新同类赛事记录。人称'梦之队'。",
-    "_notes": "具体队员名单待确认（博客提到'前两年的带队老师黄小猛'）",
+    "highlights": "Eight nodes with ten GPUs (Inspur NF5280M3, Tesla K20). HPL reached 7,579 GFLOPS, a record for the event. Known as the 'dream team'.",
+    "_notes": "Exact roster unconfirmed (a blog post mentions Xiaomeng Huang as the coach in the first two years).",
     "sortDate": "2013-04"
   },
   "isc13": {
     "name": "ISC 2013",
-    "location": "德国莱比锡",
+    "location": "Leipzig, Germany",
     "date": "2013-06",
     "awards": [
-      "亚军"
+      "Runner-up"
     ],
     "team": {
       "coaches": [
-        "黄小猛"
+        "Xiaomeng Huang"
       ],
       "players": [],
       "support": [],
@@ -1382,8 +1382,8 @@
     },
     "news": [],
     "photos": [],
-    "highlights": "8所学校参加。展示前领先第二名甚多，展示环节（占50分）后被反超。",
-    "_notes": "具体队员同ASC13",
+    "highlights": "Eight universities competed. Tsinghua led by a wide margin before the presentation round, worth 50 points, and was overtaken there.",
+    "_notes": "Same members as ASC13.",
     "sortDate": "2013-06"
   },
   "asc12": {
@@ -1391,11 +1391,11 @@
     "location": "",
     "date": "2012",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "team": {
       "coaches": [
-        "黄小猛"
+        "Xiaomeng Huang"
       ],
       "players": [],
       "support": [],
@@ -1403,19 +1403,19 @@
     },
     "news": [],
     "photos": [],
-    "_notes": "第一届ASC比赛。具体信息待补充。",
+    "_notes": "The first ASC competition. Details to be added.",
     "sortDate": "2012-05"
   },
   "isc12": {
     "name": "ISC 2012",
-    "location": "德国汉堡",
+    "location": "Hamburg, Germany",
     "date": "2012-06",
     "awards": [
-      "冠军"
+      "Champion"
     ],
     "team": {
       "coaches": [
-        "黄小猛"
+        "Xiaomeng Huang"
       ],
       "players": [],
       "support": [],
@@ -1423,28 +1423,28 @@
     },
     "news": [],
     "photos": [],
-    "_notes": "ISC SCC第一届比赛。具体信息待补充。",
+    "_notes": "The first ISC Student Cluster Competition. Details to be added.",
     "sortDate": "2012-06"
   },
   "sc25": {
     "name": "IndySCC 2025",
-    "location": "线上",
+    "location": "Online",
     "date": "2025-11",
     "awards": [
-      "参赛"
+      "Participated"
     ],
     "team": {
       "coaches": [
-        "韩文弢",
-        "金煜阳"
+        "Wentao Han",
+        "Yuyang Jin"
       ],
       "players": [
-        "张扬",
-        "黄嘉豪",
-        "秦非冉",
-        "董业恺",
-        "杨鑫和",
-        "王浩旭"
+        "Yang Zhang (2023)",
+        "Jiahao Huang",
+        "Feiran Qin",
+        "Yekai Dong",
+        "Xinhe Yang",
+        "Haoxu Wang"
       ],
       "support": [],
       "training": []
@@ -1456,7 +1456,7 @@
       }
     ],
     "photos": [],
-    "highlights": "IndySCC 为线上赛制。",
+    "highlights": "IndySCC is held online.",
     "sortDate": "2025-11"
   }
 }
