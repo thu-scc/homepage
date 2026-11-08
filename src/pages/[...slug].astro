@@ -1,0 +1,38 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import PageIntro from '../components/PageIntro.astro';
+import Icon from '../components/Icon.astro';
+
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
+  return pages.map((page) => ({ params: { slug: page.id }, props: { page } }));
+}
+
+const { page } = Astro.props;
+const { Content } = await render(page);
+const { title, lead } = page.data;
+
+// A page in a subfolder (collaboration/<slug>) belongs to the page of the same
+// name: it lights that section in the header and links back to it.
+const [section, ...rest] = page.id.split('/');
+const parent = rest.length > 0 ? await getEntry('pages', section) : undefined;
+---
+<Base title={title ?? page.id} activePage={section}>
+  <div class="intro">
+    {parent && (
+      <a class="back-link" href={`/${parent.id}`}><Icon name="arrow-left" size={16} /> {parent.data.title ?? parent.id}</a>
+    )}
+    <PageIntro title={title ?? page.id} lead={lead} />
+  </div>
+  <div class="prose">
+    <Content />
+  </div>
+</Base>
+
+<style>
+  .intro {
+    display: grid;
+    gap: 1.5rem;
+  }
+</style>

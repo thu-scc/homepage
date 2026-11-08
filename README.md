@@ -54,7 +54,7 @@ src/
 │   ├── members.json         ← advisors, current members, alumni
 │   ├── news.json            ← posts from the team's WeChat account
 │   └── publications.json
-├── content/pages/           ← markdown pages: collaboration, honors, join
+├── content/pages/           ← markdown pages: collaboration, honors, join; project write-ups in collaboration/
 ├── assets/competition/<id>/ ← photographs (built into responsive WebP)
 ├── pages/                   ← routes
 └── scripts/                 ← small vanilla TS: navigation, member dialog
@@ -94,6 +94,10 @@ The `/news` page and the home page's News section merge two sources:
 ### Adding a member
 
 Edit `src/data/members.json`. Names must match the spelling used in the `team` lists of `competition-details.json` exactly, otherwise their competition record will not link up. Two members with the same romanized name are distinguished by class year in parentheses, for example `Yang Zhang (2023)`. Each member gets an anchor such as `/members#jidong-zhai`.
+
+### Adding a collaboration project write-up
+
+Each project gets one Markdown file at `src/content/pages/collaboration/<slug>.md`, served at `/collaboration/<slug>` and linked from a card on the Collaboration page. Project leaders can hand their draft to any coding agent; [AGENTS.md](AGENTS.md) tells the agent how to convert it, check it and open the pull request.
 
 ### Editing a markdown page
 
