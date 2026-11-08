@@ -1,9 +1,7 @@
 ---
-title: "Optimization of the GRID Satellite Data-Link Pre-processing Software"
-lead: "With the GRID collaboration, 2024–2026"
+title: "SuperGRID: fast data processing system for GRID 2.0"
+lead: "Collaboration with the GRID Group, 2024–2026"
 ---
-
-> Review draft: this is the English version of the site page `/collaboration/grid-pre-pipeline`. Figures are exported as standalone files (`images/`) and can be read directly in a Markdown previewer.
 
 ## Abstract
 
@@ -205,5 +203,5 @@ Several measurement caveats must be stated: it is one representative file on one
 The goal of the GRID 2.0 data system is to shorten the time from "data downlink" to "GCN notice issued" from days to hours. Pre-processing was never the whole of this latency, but it is the part that must be paid file by file and cannot be skipped.
 
 At about 44 s per pass (incl. I/O), a single machine processing a day's data for a ten-satellite constellation takes about an hour, so this stage is no longer a scheduling constraint. The remaining work lies in other links of the chain: IoTDB storage for constellation products, and an agent that ingests triggers, runs the analysis, and drafts the notice.
-
-**Related reference materials**
+<!-- 
+**Related reference materials** -->
