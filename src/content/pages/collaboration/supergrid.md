@@ -25,13 +25,22 @@ The possibility of associating GRBs with other messengers was established by GW 
 
 The GRID program (Gamma Ray Integrated Detectors) began in 2016 as a student project at Tsinghua University. The payload occupies 0.5 U, reads out a GAGG:Ce scintillator with an SiPM array, and covers the energy range 10 keV to 2 MeV. Thirteen payloads have been placed in orbit aboard CubeSats developed by several universities. The collaboration has published GRB 210121A, GRID's first scientific result; GRB 230703A was the first burst GRID led the localization of, using GRID-03B's Earth-occultation geometry to rule out Cygnus X-1; GRB 230812B was the third-brightest burst in history, and GRID-05B provided the only unsaturated observation of this event.
 
+<div class="figure-pair">
+<div>
+
 ![Exploded view of the payload](../../../assets/projects/supergrid/01.png)
 
 *Figure 1. Exploded view of the payload, from the entrance window and GAGG:Ce crystal, through the SiPM board, to the front-end and acquisition electronics, stacked into 0.5 U.*
 
+</div>
+<div>
+
 ![Light curve and spectrum of GRB 230812B](../../../assets/projects/supergrid/02.png)
 
 *Figure 2. GRB 230812B recorded simultaneously by Fermi/GBM, GECAM, and GRID; the third panel is GRID's data, also the only unsaturated observation of this third-brightest burst in history.*
+
+</div>
+</div>
 
 GRID 2.0 aims to become an instrument, not just a verification effort: ten to twenty satellites, a MeV Compton telescope covering the band left open after COMPTEL, with an expected detection of more than 160 bursts per year.
 

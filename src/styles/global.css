@@ -1378,3 +1378,30 @@ a.badge-champion:hover {
 .prose > h2 + .cards {
   margin-top: 1.5rem;
 }
+
+/* Paired figures keep their original Markdown images and captions. */
+.prose .figure-pair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 2rem;
+  align-items: start;
+}
+
+.prose .figure-pair > div {
+  min-width: 0;
+}
+
+.prose .figure-pair img {
+  width: 100%;
+  height: auto;
+}
+
+.prose .figure-pair p + p {
+  margin-top: 1rem;
+}
+
+@media (max-width: 719px) {
+  .prose .figure-pair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
