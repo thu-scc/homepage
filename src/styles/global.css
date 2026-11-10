@@ -75,6 +75,7 @@
 
   --container: 1200px;
   --measure: 64ch;
+  --measure-prose: 80ch;
   --gutter: clamp(20px, 4vw, 56px);
   --header-h: 72px;
   --radius-sm: 0;
@@ -1292,7 +1293,7 @@ a.badge-champion:hover {
 .prose > blockquote,
 .prose > h2,
 .prose > h3 {
-  max-width: var(--measure);
+  max-width: var(--measure-prose);
 }
 
 .prose p,
