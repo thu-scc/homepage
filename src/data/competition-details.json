@@ -7,11 +7,12 @@
     "awards": [
       "Onsite runner-up"
     ],
-    "highlights": "Led by Jiahao Huang, Tsinghua’s six-member Team Diablo placed second in the onsite competition in Hamburg. For the DFTB+ task, the team built a distributed GPU eigensolver and recorded the fastest run.",
+    "highlights": "Tsinghua’s six-member Team Diablo placed second in the onsite competition in Hamburg. For the DFTB+ task, the team built a distributed GPU eigensolver and recorded the fastest run.",
     "team": {
       "coaches": [
-        "Jidong Zhai",
-        "Wentao Han"
+        "Wentao Han",
+        "Yuyang Jin",
+        "Jidong Zhai"
       ],
       "players": [
         "Jiahao Huang",
