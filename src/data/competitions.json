@@ -19,7 +19,13 @@
           "id": "asc26"
         }
       ],
-      "ISC": [],
+      "ISC": [
+        {
+          "type": "runner-up",
+          "label": "Onsite runner-up",
+          "id": "isc26"
+        }
+      ],
       "SC": [],
       "Other": []
     },
