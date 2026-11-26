@@ -1,4 +1,60 @@
 {
+  "isc26": {
+    "name": "ISC 2026",
+    "location": "Congress Center Hamburg, Germany",
+    "date": "2026-06-25",
+    "sortDate": "2026-06",
+    "awards": [
+      "Onsite runner-up"
+    ],
+    "highlights": "Tsinghua’s six-member Team Diablo placed second in the onsite competition in Hamburg. For the DFTB+ task, the team built a distributed GPU eigensolver and recorded the fastest run.",
+    "team": {
+      "coaches": [
+        "Wentao Han",
+        "Yuyang Jin",
+        "Jidong Zhai"
+      ],
+      "players": [
+        "Jiahao Huang",
+        "Haoxu Wang",
+        "Chenyan Huang",
+        "Feiran Qin",
+        "Yang Zhang (2023)",
+        "Xinhe Yang"
+      ]
+    },
+    "problems": [
+      "High Performance LINPACK (HPL) and High Performance Conjugate Gradients (HPCG)",
+      "FIO storage benchmarks across clients sharing NVMe storage",
+      "Batched inference with llama.cpp on Llama 3.1 Nemotron 70B, with a 10% perplexity tolerance",
+      "OpenFOAM computational fluid dynamics",
+      "ASCOT5 particle orbit simulation in fusion plasmas",
+      "DFTB+ electronic structure calculations",
+      "HemeLB blood flow simulation",
+      "SOD2D turbulent flow simulation (secret application)"
+    ],
+    "news": [
+      {
+        "title": "Team Diablo takes second place in the ISC 2026 onsite competition",
+        "url": "https://www.hpcadvisorycouncil.com/events/2026/student-cluster-competition/"
+      },
+      {
+        "title": "Tsinghua’s ISC 2026 team roster",
+        "url": "https://www.hpcadvisorycouncil.com/events/2026/student-cluster-competition/team-tsinghua.php"
+      },
+      {
+        "title": "ISC 2026 Student Cluster Competition award ceremony",
+        "url": "https://www.youtube.com/watch?v=9Gj2uCwe0Dg"
+      },
+      {
+        "title": "Team Diablo’s DFTB+ eigensolver",
+        "url": "https://github.com/Ljh0107-L/GEVD4ISC26/blob/master/README_EN.md"
+      }
+    ],
+    "photos": [
+      "/img/competition/isc26/01.jpg"
+    ]
+  },
   "asc26": {
     "name": "ASC 2026",
     "location": "Wuxi University, Wuxi",
