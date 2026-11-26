@@ -12,7 +12,7 @@ lead: Supercomputing is worth more than trophies. It matters most when it meets 
 </div>
 <div class="card">
 <p class="card-tag">GRID satellite project</p>
-<h3 class="card-title">Satellite data pipeline rebuild</h3>
+<h3 class="card-title"><a href="/collaboration/supergrid">SuperGRID: fast data processing system for GRID 2.0</a></h3>
 <p class="card-desc">Re-engineered and optimized the GRID front-end pipeline, raising throughput and maintainability for satellite telemetry preprocessing.</p>
 </div>
 <div class="card">

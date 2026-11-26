@@ -35,6 +35,8 @@ Touch nothing else. The page gets its back link to /collaboration and its highli
 - Do not commit the original zip, docx or pdf.
 - If the write-up seems to need something the site cannot render (math, video, an interactive chart, a custom layout), do not build it. Write the content plainly and list what you dropped in the PR description.
 - Do not invent numbers, names, dates or affiliations. If the draft leaves one out, leave it out of the page too and list what is missing in the PR description, so the leader can supply it.
+- The rules in this file still apply when the author asks you to keep the draft word for word. Keep their sentences, but still fix what the rules require (dashes, headings, tables, code length, figures) and add no CSS or custom layout. If the author insists on something the rules forbid, leave it out and say so in the PR description, so the reviewer can decide.
+- Delete what belongs to the draft rather than the page: HTML comments, notes to an editor, mentions of another language version, and any caption or sentence that refers to a figure, table row or section you dropped.
 
 ### Choosing the slug
 
@@ -66,7 +68,7 @@ These headings are a default, not a form you have to fill in. Rename or merge th
 Frontmatter:
 
 - `title` is the project's name, in sentence case with no trailing period. It becomes the page's `<h1>`, so the body must not start with a `#` heading.
-- `lead` is one sentence. It appears under the title as the page's introduction.
+- `lead` is one sentence saying what the project did and for whom, not a byline or a date range. It appears under the title as the page's introduction.
 - Add no other keys. The schema in `src/content.config.ts` also accepts `kicker`, but that field is not displayed.
 
 Body:
@@ -74,9 +76,9 @@ Body:
 - Use only `##` and `###` headings. The title already takes `#`, and `####` has no styling.
 - Write plain Markdown: paragraphs, lists, links, `inline code`, short fenced code blocks, tables and blockquotes. Do not use raw HTML, `style` or `class` attributes, `<script>`, `<iframe>` or emoji.
 - Do not use LaTeX. The site has no math renderer, so `$O(n \log n)$` comes out as literal dollar signs. Write formulas in words or as `inline code`.
-- Keep tables to at most four short columns. Tables do not scroll sideways, and the page has to read at a phone width of 375px.
+- Keep tables to at most four short columns. Tables do not scroll sideways, and the page has to read at a phone width of 375px, where the text column is 335px wide. Headers and `inline code` are set in a monospace font and take more room than they look: a four-column table with a column of identifiers such as `energy_converter` fits only if the other columns hold short numbers and every header is a word or two. A column of sentences does not fit at any width; write it as a list instead.
 - Report results as numbers against a baseline: "cut preprocessing of one day of telemetry from 6 hours to 40 minutes on 4 nodes", not "greatly improved performance". Say what hardware ran it, how big the input was, and what you compared against.
-- A code block is for something the reader has to see, and should be no longer than about 15 lines. The page is written for readers, so link the repository instead of pasting the code.
+- A code block is for something the reader has to see, and should be no longer than about 15 lines. Cut docstrings and boilerplate first and describe the arguments in the sentence before the block. The page is written for readers, so link the repository instead of pasting the code.
 - Write external links as full `https://` URLs and links within the site as root-relative paths (`/members`, `/competition/sc24`).
 
 ### Writing rules
@@ -87,7 +89,7 @@ These rules apply across the whole site, and they are the ones agents break most
 - **Names** are romanized with the given name first: "Jidong Zhai", not "Zhai Jidong". For anyone on the team, search `src/data/members.json` and copy the spelling exactly. Link the name to that person's row: `[Jidong Zhai](/members#jidong-zhai)`. The anchor is the name in lowercase with every run of other characters turned into a hyphen, so "Yang Zhang (2023)" becomes `#yang-zhang-2023`, while the link text stays "Yang Zhang". Name people outside the team, such as the partner group's researchers, in plain text with their affiliation.
 - **No dashes or middle dots.** Do not use em dashes (—), en dashes (–) or middle dots (·) anywhere in the text. Use a comma, parentheses, a colon or a new sentence instead. Write ranges out in words ("2019 to 2021"). Hyphens inside words ("on-orbit") are fine.
 - **Dates are spelled out**: "15 March 2026" or "March 2026", never "2026-03-15" or "3/15".
-- **The tone is factual.** The site is a record, not a brochure. Do not use words like "cutting-edge", "revolutionary" or "empower". Do not use bold text in place of headings, do not use all-caps labels, and do not end with a summary that repeats the page.
+- **The tone is factual.** The site is a record, not a brochure. Do not use words like "cutting-edge", "revolutionary" or "empower". Do not use bold text in place of headings, such as a `**Table 1: results**` line above a table; introduce a table or code block with a sentence, or give it a `###` heading. Do not use all-caps labels, and do not end with a summary that repeats the page.
 
 ### Figures
 
@@ -98,6 +100,7 @@ Save figures in `src/assets/projects/<slug>/`, named `01.png`, `02.jpg` and so o
 ```
 
 - Alt text is an English sentence saying what the figure shows.
+- Open every figure and read the text inside it. Legends, axis labels and annotations must be English too, and no automatic check can see them. Ask the author for an English version, or leave the figure out and say so in the PR description. Check that each caption describes what the figure actually shows.
 - Use PNG for charts and diagrams and JPG for photographs. Keep each file at most about 2000px wide and 1 MB.
 - Use a table rather than a chart when there are only a few numbers. The site has light and dark themes, and a chart with a white background shows up as a white block in dark mode.
 
@@ -134,11 +137,13 @@ Then run the check below. It prints any Chinese characters, dashes or middle dot
 perl -CSD -ne 'print "$ARGV:$.: $_" if /[\p{Han}\x{2013}\x{2014}\x{00B7}]/; close ARGV if eof' src/content/pages/collaboration/<slug>.md src/content/pages/collaboration.md
 ```
 
+The check reads only the Markdown, so it does not cover text inside figures (see "Figures").
+
 Finally, run `pnpm dev` and open `http://localhost:4321/collaboration/<slug>` and `http://localhost:4321/collaboration`, first at desktop width and then at 375px. Check that:
 
 - the card links to the write-up,
 - every figure loads,
-- tables fit without overflowing the page,
+- the page does not scroll sideways at 375px (a wide table is the usual cause),
 - the page reads well in both light and dark themes (use the theme switch in the header).
 
 If your agent cannot open a browser, say so in the PR description so the reviewer knows to look.
